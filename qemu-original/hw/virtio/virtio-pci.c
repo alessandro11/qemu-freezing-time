@@ -113,13 +113,9 @@ static void virtio_pci_notify(DeviceState *d, uint16_t vector)
 {
     VirtIOPCIProxy *proxy = to_virtio_pci_proxy_fast(d);
     if (msix_enabled(&proxy->pci_dev))
-    { 
         msix_notify(&proxy->pci_dev, vector);
-    }
     else
-    {
         qemu_set_irq(proxy->pci_dev.irq[0], proxy->vdev->isr & 1);
-    }
 }
 
 static void virtio_pci_save_config(DeviceState *d, QEMUFile *f)

@@ -42,9 +42,6 @@
 #include "qemu/compatfd.h"
 #endif
 
-#include "include/hw/kvm/clock.h"
-
-
 #ifdef CONFIG_LINUX
 
 #include <sys/prctl.h>
@@ -566,7 +563,6 @@ static void qemu_kvm_eat_signals(CPUState *cpu)
 #ifndef _WIN32
 static void dummy_signal(int sig)
 {
-	fprintf(stderr, "SIG");
 }
 
 static void qemu_kvm_init_cpu_signals(CPUState *cpu)
@@ -615,8 +611,6 @@ static void qemu_tcg_init_cpu_signals(void)
 #endif /* _WIN32 */
 
 static QemuMutex qemu_global_mutex;
-sem_t qemu_kvmclock_sem;
-
 static QemuCond qemu_io_proceeded_cond;
 static bool iothread_requesting_mutex;
 
@@ -627,13 +621,9 @@ static QemuCond *tcg_halt_cond;
 
 /* cpu creation */
 static QemuCond qemu_cpu_cond;
-
 /* system init */
 static QemuCond qemu_pause_cond;
 static QemuCond qemu_work_cond;
-
-
-pthread_barrier_t our_barrier;
 
 void qemu_init_cpu_loop(void)
 {
@@ -643,7 +633,7 @@ void qemu_init_cpu_loop(void)
     qemu_cond_init(&qemu_work_cond);
     qemu_cond_init(&qemu_io_proceeded_cond);
     qemu_mutex_init(&qemu_global_mutex);
-    sem_init(&qemu_kvmclock_sem,0,0);
+
     qemu_thread_get_self(&io_thread);
 }
 
@@ -683,6 +673,7 @@ static void flush_queued_work(CPUState *cpu)
     if (cpu->queued_work_first == NULL) {
         return;
     }
+
     while ((wi = cpu->queued_work_first)) {
         cpu->queued_work_first = wi->next;
         wi->func(wi->data);
@@ -697,7 +688,6 @@ static void qemu_wait_io_event_common(CPUState *cpu)
     if (cpu->stop) {
         cpu->stop = false;
         cpu->stopped = true;
-        flush_queued_work(cpu);
         qemu_cond_signal(&qemu_pause_cond);
     }
     flush_queued_work(cpu);
@@ -758,15 +748,14 @@ static void *qemu_kvm_cpu_thread_fn(void *arg)
 
     while (1) {
         if (cpu_can_run(cpu)) {
-    	   //fprintf(stderr, ":CONTINUE %d", kvmclock_elapsed() );
             r = kvm_cpu_exec(cpu);
             if (r == EXCP_DEBUG) {
                 cpu_handle_guest_debug(cpu);
             }
         }
-
-	qemu_kvm_wait_io_event(cpu);
+        qemu_kvm_wait_io_event(cpu);
     }
+
     return NULL;
 }
 
@@ -894,9 +883,7 @@ static void qemu_cpu_kick_thread(CPUState *cpu)
 void qemu_cpu_kick(CPUState *cpu)
 {
     qemu_cond_broadcast(cpu->halt_cond);
- 
     if (!tcg_enabled() && !cpu->thread_kicked) {
-	/* aqui envia o sinal, somente se já não está kicked */ 
         qemu_cpu_kick_thread(cpu);
         cpu->thread_kicked = true;
     }
@@ -924,48 +911,6 @@ bool qemu_cpu_is_self(CPUState *cpu)
 static bool qemu_in_vcpu_thread(void)
 {
     return current_cpu && qemu_cpu_is_self(current_cpu);
-}
-
-bool thereisbarrier = false;
-
-void qemu_up_vcpu_sem(void)
-{
-	int x;
-	for (x=1;x<=2;x++)
-	{
-		sem_post(&qemu_kvmclock_sem);
-	}
-}
-
-void qemu_dw_vcpu_sem(void)
-{
-	if ( thereisbarrier)
-		sem_wait(&qemu_kvmclock_sem);
-}
-
-
-void qemu_barrier_init(void)
-{
-	pthread_barrier_init(&our_barrier,NULL,3);
-	thereisbarrier = true;
-}
-
-
-void qemu_barrier_wait(void)
-{
-	if ( thereisbarrier )
-	{	
-		pthread_barrier_wait(&our_barrier);
-	}	
-}
-
-
-void qemu_barrier_destroy(void)
-{
-	if ( thereisbarrier ){
-		pthread_barrier_destroy(&our_barrier);
-		thereisbarrier = false;
-	}
 }
 
 void qemu_mutex_lock_iothread(void)
@@ -1002,22 +947,6 @@ static int all_vcpus_paused(void)
     return 1;
 }
 
-void pause1_all_vcpus(void)
-{
-    CPUState *cpu = first_cpu;
-
-    while (cpu) {
-        cpu->stop = true;
-        qemu_cpu_kick(cpu);
-        cpu = cpu->next_cpu;
-    }
-}
-
-void pause2_all_vcpus(void)
-{
-       qemu_cond_wait(&qemu_pause_cond, &qemu_global_mutex);
-}
-
 void pause_all_vcpus(void)
 {
     CPUState *cpu = first_cpu;
@@ -1028,6 +957,7 @@ void pause_all_vcpus(void)
         qemu_cpu_kick(cpu);
         cpu = cpu->next_cpu;
     }
+
     if (qemu_in_vcpu_thread()) {
         cpu_stop_current();
         if (!kvm_enabled()) {
@@ -1040,13 +970,14 @@ void pause_all_vcpus(void)
             return;
         }
     }
+
     while (!all_vcpus_paused()) {
         qemu_cond_wait(&qemu_pause_cond, &qemu_global_mutex);
         cpu = first_cpu;
         while (cpu) {
             qemu_cpu_kick(cpu);
             cpu = cpu->next_cpu;
-       }
+        }
     }
 }
 
@@ -1062,13 +993,10 @@ void resume_all_vcpus(void)
     CPUState *cpu = first_cpu;
 
     qemu_clock_enable(vm_clock, true);
-    /* o resume atribui stop, stopped false e faz o broad da condição*/
     while (cpu) {
         cpu_resume(cpu);
         cpu = cpu->next_cpu;
     }
-	
-   
 }
 
 static void qemu_tcg_init_vcpu(CPUState *cpu)

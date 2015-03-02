@@ -479,13 +479,6 @@ void cpu_resume(CPUState *cpu);
  */
 void qemu_init_vcpu(CPUState *cpu);
 
-void qemu_barrier_init(void);
-void qemu_barrier_wait(void);
-void qemu_barrier_destroy(void);
-void qemu_up_vcpu_sem(void);
-void qemu_dw_vcpu_sem(void);
-
-
 #ifdef CONFIG_SOFTMMU
 extern const struct VMStateDescription vmstate_cpu_common;
 #else

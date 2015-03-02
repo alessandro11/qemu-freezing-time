@@ -35,8 +35,6 @@
 #include "qemu/event_notifier.h"
 #include "trace.h"
 
-#include "include/hw/kvm/clock.h"
-
 /* This check must be after config-host.h is included */
 #ifdef CONFIG_EVENTFD
 #include <sys/eventfd.h>
@@ -1613,27 +1611,19 @@ void kvm_cpu_synchronize_post_init(CPUState *cpu)
     cpu->kvm_vcpu_dirty = false;
 }
 
-int sleeping=0;
-
 int kvm_cpu_exec(CPUState *cpu)
 {
     struct kvm_run *run = cpu->kvm_run;
     int ret, run_ret;
-bool first=true;
 
     DPRINTF("kvm_cpu_exec()\n");
 
-
-    //MYTRACE
     if (kvm_arch_process_async_events(cpu)) {
         cpu->exit_request = 0;
         return EXCP_HLT;
     }
 
-    
-
     do {
-	
         if (cpu->kvm_vcpu_dirty) {
             kvm_arch_put_registers(cpu, KVM_PUT_RUNTIME_STATE);
             cpu->kvm_vcpu_dirty = false;
@@ -1646,35 +1636,27 @@ bool first=true;
              * KVM requires us to reenter the kernel after IO exits to complete
              * instruction emulation. This self-signal will ensure that we
              * leave ASAP again.
-             */ 
+             */
             qemu_cpu_kick_self();
         }
-
-	/* se ficar para cima disto dá tempos negativos */
-	if (kvmclock() && first){
-		first=false;
-        	qemu_mutex_unlock_iothread();
-		qemu_barrier_wait();
-		qemu_dw_vcpu_sem();
-		kvmclock_start();
-	}else{
-        	qemu_mutex_unlock_iothread();}
+        qemu_mutex_unlock_iothread();
 
         run_ret = kvm_vcpu_ioctl(cpu, KVM_RUN, 0);
+
         qemu_mutex_lock_iothread();
         kvm_arch_post_run(cpu, run);
+
         if (run_ret < 0) {
             if (run_ret == -EINTR || run_ret == -EAGAIN) {
-		/* supostamente quando saiu por conta do meu pause
-				   veio parar aqui */
                 DPRINTF("io window exit\n");
-		ret = EXCP_INTERRUPT;
+                ret = EXCP_INTERRUPT;
                 break;
             }
             fprintf(stderr, "error: kvm run failed %s\n",
                     strerror(-run_ret));
             abort();
         }
+
         trace_kvm_run_exit(cpu->cpu_index, run->exit_reason);
         switch (run->exit_reason) {
         case KVM_EXIT_IO:

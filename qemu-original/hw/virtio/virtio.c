@@ -757,7 +757,6 @@ static bool vring_notify(VirtIODevice *vdev, VirtQueue *vq)
 {
     uint16_t old, new;
     bool v;
-
     /* We need to expose used array entries before checking used event. */
     smp_mb();
     /* Always notify when queue is empty (when feature acknowledge) */
@@ -779,9 +778,10 @@ static bool vring_notify(VirtIODevice *vdev, VirtQueue *vq)
 
 void virtio_notify(VirtIODevice *vdev, VirtQueue *vq)
 {
-     if (!vring_notify(vdev, vq)) {
+    if (!vring_notify(vdev, vq)) {
         return;
     }
+
     trace_virtio_notify(vdev, vq);
     vdev->isr |= 0x01;
     virtio_notify_vector(vdev, vq->vector);
@@ -1067,7 +1067,6 @@ EventNotifier *virtio_queue_get_guest_notifier(VirtQueue *vq)
 static void virtio_queue_host_notifier_read(EventNotifier *n)
 {
     VirtQueue *vq = container_of(n, VirtQueue, host_notifier);
-	//MYTRACE    fprintf(stderr, ":VIRTIO_READ");
     if (event_notifier_test_and_clear(n)) {
         virtio_queue_notify_vq(vq);
     }

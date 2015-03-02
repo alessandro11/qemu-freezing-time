@@ -805,7 +805,6 @@ static BlockDriverAIOCB *raw_aio_submit(BlockDriverState *bs,
         BlockDriverCompletionFunc *cb, void *opaque, int type)
 {
     BDRVRawState *s = bs->opaque;
-    BlockDriverAIOCB *ret;
 
     if (fd_open(bs) < 0)
         return NULL;
@@ -820,13 +819,8 @@ static BlockDriverAIOCB *raw_aio_submit(BlockDriverState *bs,
             type |= QEMU_AIO_MISALIGNED;
 #ifdef CONFIG_LINUX_AIO
         } else if (s->use_aio) {
-/*	    if ((bs->open_flags & BDRV_O_SIMTIME))
-		fprintf(stderr, "SIMTIME\n");*/
-//MYTRACE            fprintf(stderr, ":LAIO_A");
-            ret=laio_submit(bs, s->aio_ctx, s->fd, sector_num, qiov,
+            return laio_submit(bs, s->aio_ctx, s->fd, sector_num, qiov,
                                nb_sectors, cb, opaque, type);
-        //MYTRACE     fprintf(stderr, ":LAIO_B");
-	    return ret;
 #endif
         }
     }

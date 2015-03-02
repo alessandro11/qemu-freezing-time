@@ -26,7 +26,6 @@
 #include "block/aio.h"
 #include "block/thread-pool.h"
 #include "qemu/main-loop.h"
-#include "hw/kvm/clock.h"
 
 /***********************************************************/
 /* bottom halves (can be seen as timers which expire ASAP) */

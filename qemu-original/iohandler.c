@@ -130,7 +130,6 @@ void qemu_iohandler_poll(GArray *pollfds, int ret)
         IOHandlerRecord *pioh, *ioh;
 
         QLIST_FOREACH_SAFE(ioh, &io_handlers, next, pioh) {
-	    //MYTRACE
             int revents = 0;
 
             if (!ioh->deleted && ioh->pollfds_idx != -1) {

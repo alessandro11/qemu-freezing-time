@@ -17,7 +17,6 @@
 #include "block/block.h"
 #include "qemu/queue.h"
 #include "qemu/sockets.h"
-#include "hw/kvm/clock.h"
 
 struct AioHandler
 {
@@ -183,7 +182,7 @@ bool aio_poll(AioContext *ctx, bool blocking)
      * Do not call select in this case, because it is possible that the caller
      * does not need a complete flush (as is the case for qemu_aio_wait loops).
      */
-    if (aio_bh_poll(ctx) ) {
+    if (aio_bh_poll(ctx)) {
         blocking = false;
         progress = true;
     }
@@ -204,6 +203,7 @@ bool aio_poll(AioContext *ctx, bool blocking)
     busy = false;
     QLIST_FOREACH(node, &ctx->aio_handlers, node) {
         node->pollfds_idx = -1;
+
         /* If there aren't pending AIO operations, don't invoke callbacks.
          * Otherwise, if there are no AIO requests, qemu_aio_wait() would
          * wait indefinitely.

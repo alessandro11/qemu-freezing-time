@@ -75,8 +75,6 @@ typedef struct BlockDevOps {
 #define BDRV_O_ALLOW_RDWR  0x2000  /* allow reopen to change from r/o to r/w */
 #define BDRV_O_UNMAP       0x4000  /* execute guest UNMAP/TRIM operations */
 
-#define BDRV_O_SIMTIME	   0x8000  /* simulate device time */
-
 #define BDRV_O_CACHE_MASK  (BDRV_O_NOCACHE | BDRV_O_CACHE_WB | BDRV_O_NO_FLUSH)
 
 #define BDRV_SECTOR_BITS   9

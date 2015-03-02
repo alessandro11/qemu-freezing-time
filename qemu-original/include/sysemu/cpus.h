@@ -5,8 +5,6 @@
 void qemu_init_cpu_loop(void);
 void resume_all_vcpus(void);
 void pause_all_vcpus(void);
-void pause1_all_vcpus(void);
-void pause2_all_vcpus(void);
 void cpu_stop_current(void);
 
 void cpu_synchronize_all_states(void);

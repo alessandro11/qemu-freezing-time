@@ -48,6 +48,4 @@ BlockDriverAIOCB *win32_aio_submit(BlockDriverState *bs,
         BlockDriverCompletionFunc *cb, void *opaque, int type);
 #endif
 
-bool laio_pending(void);
-
 #endif /* QEMU_RAW_AIO_H */

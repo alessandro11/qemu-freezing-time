@@ -251,6 +251,7 @@ BlockDriverAIOCB *thread_pool_submit_aio(ThreadPool *pool,
     QLIST_INSERT_HEAD(&pool->head, req, all);
 
     trace_thread_pool_submit(pool, req, arg);
+
     qemu_mutex_lock(&pool->lock);
     if (pool->idle_threads == 0 && pool->cur_threads < pool->max_threads) {
         spawn_thread(pool);

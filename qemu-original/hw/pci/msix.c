@@ -1,5 +1,4 @@
 /*
-
  * MSI-X device support
  *
  * This module includes support for MSI-X in pci devices.

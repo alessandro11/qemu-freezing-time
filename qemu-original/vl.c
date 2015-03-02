@@ -29,7 +29,6 @@
 #include <sys/time.h>
 #include <zlib.h>
 #include "qemu/bitmap.h"
-#include "hw/kvm/clock.h"
 
 /* Needed early for CONFIG_BSD etc. */
 #include "config-host.h"
@@ -2089,7 +2088,6 @@ static void main_loop(void)
         ti = profile_getclock();
 #endif
         last_io = main_loop_wait(nonblocking);
-
 #ifdef CONFIG_PROFILER
         dev_time += profile_getclock() - ti;
 #endif
