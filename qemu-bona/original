@@ -1,0 +1,27 @@
+    if (blkcount>=100){
+        kvmclock_set();
+        kvmclock_stop();
+        pause_all_vcpus();
+        cpu_synchronize_all_states();  
+        qemu_barrier_init();
+
+
+    }
+    while ((req = virtio_blk_get_request(s))) {
+               blkcount++;
+               virtio_blk_handle_request(req, &mrb);
+    }
+    if (blkcount>100){
+        bdrv_drain_all();
+        bdrv_flush_all();
+        bdrv_drain_all();
+        resume_all_vcpus();
+        qemu_mutex_unlock_iothread();
+        qemu_barrier_wait();
+        qemu_up_vcpu_sem();
+        qemu_barrier_destroy();
+        qemu_mutex_lock_iothread();
+    }
+
+
+

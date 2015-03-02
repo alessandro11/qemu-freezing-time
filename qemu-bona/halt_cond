@@ -1,0 +1,2826 @@
+arch_init.c:#include "exec/cpu-all.h"
+audio/wavcapture.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+audio/wavcapture.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+audio/wavaudio.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+audio/wavaudio.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+audio/audio.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+audio/audio.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+backends/rng-egd.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+backends/rng-egd.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+balloon.c:#include "exec/cpu-common.h"
+block/vpc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/vpc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block/linux-aio.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+block/linux-aio.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+block/linux-aio.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+block/linux-aio.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/linux-aio.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+block/linux-aio.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+block/linux-aio.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+block/linux-aio.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário block/linux-aio.o coincide com o padrão
+block/qcow.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/qcow.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block/vvfat.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/vvfat.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block/vdi.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/vdi.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block/qed.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/qed.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block/qed.h:    QEDHeader header;               /* always cpu-endian */
+block/vmdk.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block/vmdk.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block/qed.c:    cpu->magic = le32_to_cpu(le->magic);
+block/qed.c:    cpu->cluster_size = le32_to_cpu(le->cluster_size);
+block/qed.c:    cpu->table_size = le32_to_cpu(le->table_size);
+block/qed.c:    cpu->header_size = le32_to_cpu(le->header_size);
+block/qed.c:    cpu->features = le64_to_cpu(le->features);
+block/qed.c:    cpu->compat_features = le64_to_cpu(le->compat_features);
+block/qed.c:    cpu->autoclear_features = le64_to_cpu(le->autoclear_features);
+block/qed.c:    cpu->l1_table_offset = le64_to_cpu(le->l1_table_offset);
+block/qed.c:    cpu->image_size = le64_to_cpu(le->image_size);
+block/qed.c:    cpu->backing_filename_offset = le32_to_cpu(le->backing_filename_offset);
+block/qed.c:    cpu->backing_filename_size = le32_to_cpu(le->backing_filename_size);
+block/qed.c:    le->magic = cpu_to_le32(cpu->magic);
+block/qed.c:    le->cluster_size = cpu_to_le32(cpu->cluster_size);
+block/qed.c:    le->table_size = cpu_to_le32(cpu->table_size);
+block/qed.c:    le->header_size = cpu_to_le32(cpu->header_size);
+block/qed.c:    le->features = cpu_to_le64(cpu->features);
+block/qed.c:    le->compat_features = cpu_to_le64(cpu->compat_features);
+block/qed.c:    le->autoclear_features = cpu_to_le64(cpu->autoclear_features);
+block/qed.c:    le->l1_table_offset = cpu_to_le64(cpu->l1_table_offset);
+block/qed.c:    le->image_size = cpu_to_le64(cpu->image_size);
+block/qed.c:    le->backing_filename_offset = cpu_to_le32(cpu->backing_filename_offset);
+block/qed.c:    le->backing_filename_size = cpu_to_le32(cpu->backing_filename_size);
+block.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+block.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+block.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+block.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+block.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+block.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+block.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+block-migration.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+block-migration.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário block.o coincide com o padrão
+bsd-user/elfload.c:    return cpu->env.features[FEAT_1_EDX];
+bsd-user/main.c:        gdbserver_fork((CPUArchState *)thread_cpu->env_ptr);
+configure:  case "$cpu-$targetos" in
+cpu-exec.c:    cpu->current_tb = NULL;
+cpu-exec.c:    CPUArchState *env = cpu->env_ptr;
+cpu-exec.c:        cpu->tcg_exit_req = 0;
+cpu-exec.c:    cpu->current_tb = tb;
+cpu-exec.c:    cpu->current_tb = NULL;
+cpu-exec.c:    if (cpu->halted) {
+cpu-exec.c:        cpu->halted = 0;
+cpu-exec.c:        cpu->exit_request = 1;
+cpu-exec.c:                interrupt_request = cpu->interrupt_request;
+cpu-exec.c:                        cpu->interrupt_request &= ~CPU_INTERRUPT_DEBUG;
+cpu-exec.c:                        cpu->interrupt_request &= ~CPU_INTERRUPT_HALT;
+cpu-exec.c:                        cpu->halted = 1;
+cpu-exec.c:                        cpu->interrupt_request &= ~CPU_INTERRUPT_POLL;
+cpu-exec.c:                            cpu->interrupt_request &= ~CPU_INTERRUPT_SMI;
+cpu-exec.c:                            cpu->interrupt_request &= ~CPU_INTERRUPT_NMI;
+cpu-exec.c:                            cpu->interrupt_request &= ~CPU_INTERRUPT_MCE;
+cpu-exec.c:                            cpu->interrupt_request &= ~(CPU_INTERRUPT_HARD |
+cpu-exec.c:                            cpu->interrupt_request &= ~CPU_INTERRUPT_VIRQ;
+cpu-exec.c:                            cpu->interrupt_request &= ~CPU_INTERRUPT_HARD;
+cpu-exec.c:                    if (cpu->interrupt_request & CPU_INTERRUPT_EXITTB) {
+cpu-exec.c:                        cpu->interrupt_request &= ~CPU_INTERRUPT_EXITTB;
+cpu-exec.c:                if (unlikely(cpu->exit_request)) {
+cpu-exec.c:                    cpu->exit_request = 0;
+cpu-exec.c:                cpu->current_tb = tb;
+cpu-exec.c:                if (likely(!cpu->exit_request)) {
+cpu-exec.c:                cpu->current_tb = NULL;
+cpu-exec.c:            env = cpu->env_ptr;
+cpus.c:    if (cpu->stop || cpu->queued_work_first) {
+cpus.c:    if (cpu->stopped || !runstate_is_running()) {
+cpus.c:	if (cpu->stopped) fprintf(stderr, ".");
+cpus.c:    if (!cpu->halted || qemu_cpu_has_work(cpu) ||
+cpus.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cpus.c:        CPUArchState *env = cpu->env_ptr;
+cpus.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cpus.c:        fprintf(stderr, "CPU #%d:\n", cpu->cpu_index);
+cpus.c:    for (cpu = first_cpu; cpu; cpu = cpu->next_cpu) {
+cpus.c:    for (cpu = first_cpu; cpu; cpu = cpu->next_cpu) {
+cpus.c:    for (cpu = first_cpu; cpu; cpu = cpu->next_cpu) {
+cpus.c:    return !runstate_is_running() || cpu->stopped;
+cpus.c:    if (cpu->stop) {
+cpus.c:    if (cpu->stopped || !runstate_is_running()) {
+cpus.c:    cpu->stopped = true;
+cpus.c:    if (cpu->queued_work_first == NULL) {
+cpus.c:        cpu->queued_work_first = &wi;
+cpus.c:        cpu->queued_work_last->next = &wi;
+cpus.c:    cpu->queued_work_last = &wi;
+cpus.c:    if (cpu->queued_work_first == NULL) {
+cpus.c:    while ((wi = cpu->queued_work_first)) {
+cpus.c:        cpu->queued_work_first = wi->next;
+cpus.c:    cpu->queued_work_last = NULL;
+cpus.c:    if (cpu->stop) {
+cpus.c:        cpu->stop = false;
+cpus.c:        cpu->stopped = true;
+cpus.c:    cpu->thread_kicked = false;
+cpus.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cpus.c:        qemu_cond_wait(cpu->halt_cond, &qemu_global_mutex);
+cpus.c:    qemu_thread_get_self(cpu->thread);
+cpus.c:    cpu->thread_id = qemu_get_thread_id();
+cpus.c:    cpu->created = true;
+cpus.c:    qemu_thread_get_self(cpu->thread);
+cpus.c:    cpu->thread_id = qemu_get_thread_id();
+cpus.c:    cpu->created = true;
+cpus.c:    cpu->thread_id = qemu_get_thread_id();
+cpus.c:    cpu->created = true;
+cpus.c:    qemu_thread_get_self(cpu->thread);
+cpus.c:    while (first_cpu->stopped) {
+cpus.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cpus.c:    err = pthread_kill(cpu->thread->thread, SIG_IPI);
+cpus.c:        if (SuspendThread(cpu->hThread) == (DWORD)-1) {
+cpus.c:        while (GetThreadContext(cpu->hThread, &tcgContext) != 0) {
+cpus.c:        if (ResumeThread(cpu->hThread) == (DWORD)-1) {
+cpus.c:    qemu_cond_broadcast(cpu->halt_cond);
+cpus.c:    if (!tcg_enabled() && !cpu->thread_kicked) {
+cpus.c:        cpu->thread_kicked = true;
+cpus.c:    if (!current_cpu->thread_kicked) {
+cpus.c:        current_cpu->thread_kicked = true;
+cpus.c:    return qemu_thread_is_self(cpu->thread);
+cpus.c:        if (!cpu->stopped) {
+cpus.c:        cpu = cpu->next_cpu;
+cpus.c:        cpu->stop = true;
+cpus.c:        cpu = cpu->next_cpu;
+cpus.c:            cpu = cpu->next_cpu;
+cpus.c:        cpu->stop = true;
+cpus.c:        cpu = cpu->next_cpu;
+cpus.c:                cpu->stop = false;
+cpus.c:                cpu->stopped = true;
+cpus.c:                cpu = cpu->next_cpu;
+cpus.c:            cpu = cpu->next_cpu;
+cpus.c:    cpu->stop = false;
+cpus.c:    cpu->stopped = false;
+cpus.c:        cpu = cpu->next_cpu;
+cpus.c:        cpu->thread = g_malloc0(sizeof(QemuThread));
+cpus.c:        cpu->halt_cond = g_malloc0(sizeof(QemuCond));
+cpus.c:        qemu_cond_init(cpu->halt_cond);
+cpus.c:        tcg_halt_cond = cpu->halt_cond;
+cpus.c:        qemu_thread_create(cpu->thread, qemu_tcg_cpu_thread_fn, cpu,
+cpus.c:        cpu->hThread = qemu_thread_get_handle(cpu->thread);
+cpus.c:        while (!cpu->created) {
+cpus.c:        tcg_cpu_thread = cpu->thread;
+cpus.c:        cpu->thread = tcg_cpu_thread;
+cpus.c:        cpu->halt_cond = tcg_halt_cond;
+cpus.c:    cpu->thread = g_malloc0(sizeof(QemuThread));
+cpus.c:    cpu->halt_cond = g_malloc0(sizeof(QemuCond));
+cpus.c:    qemu_cond_init(cpu->halt_cond);
+cpus.c:    qemu_thread_create(cpu->thread, qemu_kvm_cpu_thread_fn, cpu,
+cpus.c:    while (!cpu->created) {
+cpus.c:    cpu->thread = g_malloc0(sizeof(QemuThread));
+cpus.c:    cpu->halt_cond = g_malloc0(sizeof(QemuCond));
+cpus.c:    qemu_cond_init(cpu->halt_cond);
+cpus.c:    qemu_thread_create(cpu->thread, qemu_dummy_cpu_thread_fn, cpu,
+cpus.c:    while (!cpu->created) {
+cpus.c:    cpu->nr_cores = smp_cores;
+cpus.c:    cpu->nr_threads = smp_threads;
+cpus.c:    cpu->stopped = true;
+cpus.c:        current_cpu->stop = false;
+cpus.c:        current_cpu->stopped = true;
+cpus.c:    for (; next_cpu != NULL && !exit_request; next_cpu = next_cpu->next_cpu) {
+cpus.c:        CPUArchState *env = cpu->env_ptr;
+cpus.c:        } else if (cpu->stop || cpu->stopped) {
+cpus.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cpus.c:            if (test_bit(cpu->cpu_index, node_cpumask[i])) {
+cpus.c:                cpu->numa_node = i;
+cpus.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cpus.c:        CPUX86State *env = &x86_cpu->env;
+cpus.c:        CPUPPCState *env = &ppc_cpu->env;
+cpus.c:        CPUSPARCState *env = &sparc_cpu->env;
+cpus.c:        CPUMIPSState *env = &mips_cpu->env;
+cpus.c:        info->value->CPU = cpu->cpu_index;
+cpus.c:        info->value->halted = cpu->halted;
+cpus.c:        info->value->thread_id = cpu->thread_id;
+cpus.c:        error_set(errp, QERR_INVALID_PARAMETER_VALUE, "cpu-index",
+cpus.c:    env = cpu->env_ptr;
+cpus.c:        CPUX86State *env = &cpu->env;
+cputlb.c:    cpu->current_tb = NULL;
+cputlb.c:    cpu->current_tb = NULL;
+cputlb.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+cputlb.c:        env = cpu->env_ptr;
+device-hotplug.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+device-hotplug.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário device-hotplug.o coincide com o padrão
+disas/ia64.c:   bfd/cpu-ia64-opc.c
+disas/sh4.c:/* These are defined in bfd/cpu-sh.c .  */
+dma-helpers.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+dma-helpers.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário dma-helpers.o coincide com o padrão
+dump.c:#include "exec/cpu-all.h"
+dump.c:    return cpu->cpu_index + 1;
+dump.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+dump.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+dump.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+dump.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+dump.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+exec.c:#include "exec/cpu-all.h"
+exec.c:    cpu->interrupt_request &= ~0x01;
+exec.c:    tlb_flush(cpu->env_ptr, 1);
+exec.c:        if (cpu->cpu_index == index) {
+exec.c:        cpu = cpu->next_cpu;
+exec.c:        cpu = cpu->next_cpu;
+exec.c:    cpu->next_cpu = NULL;
+exec.c:    cpu->cpu_index = cpu_index;
+exec.c:    cpu->numa_node = 0;
+exec.c:    cpu->thread_id = qemu_get_thread_id();
+exec.c:        CPUArchState *env = current_cpu->env_ptr;
+exec.c:    CPUArchState *env = current_cpu->env_ptr;
+exec.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+exec.c:        CPUArchState *env = cpu->env_ptr;
+gdbstub.c:            CPUArchState *env = first_cpu->env_ptr;
+gdbstub.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+gdbstub.c:            env = cpu->env_ptr;
+gdbstub.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+gdbstub.c:            env = cpu->env_ptr;
+gdbstub.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+gdbstub.c:            env = cpu->env_ptr;
+gdbstub.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+gdbstub.c:            env = cpu->env_ptr;
+gdbstub.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+gdbstub.c:        env = cpu->env_ptr;
+gdbstub.c:    s->c_cpu->eip = pc;
+gdbstub.c:    s->c_cpu->nip = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    s->c_cpu->npc = pc + 4;
+gdbstub.c:    s->c_cpu->regs[15] = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    s->c_cpu->active_tc.PC = pc & ~(target_ulong)1;
+gdbstub.c:        s->c_cpu->hflags |= MIPS_HFLAG_M16;
+gdbstub.c:        s->c_cpu->hflags &= ~(MIPS_HFLAG_M16);
+gdbstub.c:    s->c_cpu->sregs[SR_PC] = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    s->c_cpu->psw.addr = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    s->c_cpu->pc = pc;
+gdbstub.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+gdbstub.c:            return cpu->env_ptr;
+gdbstub.c:            s->query_cpu = first_cpu->env_ptr;
+gdbstub.c:                s->query_cpu = ENV_GET_CPU(s->query_cpu)->next_cpu->env_ptr;
+gdbstub.c:                               "CPU#%d [%s]", cpu->cpu_index,
+gdbstub.c:                               cpu->halted ? "halted " : "running");
+gdbstub.c:            TaskState *ts = s->c_cpu->opaque;
+gdbstub.c:    CPUArchState *env = cpu->env_ptr;
+gdbstub.c:    s->c_cpu = first_cpu->env_ptr;
+gdbstub.c:    s->g_cpu = first_cpu->env_ptr;
+gdbstub.c:    s->c_cpu = first_cpu->env_ptr;
+gdbstub.c:    s->g_cpu = first_cpu->env_ptr;
+hmp.c:    for (cpu = cpu_list; cpu; cpu = cpu->next) {
+hmp.c:        if (cpu->value->CPU == monitor_get_cpu_index()) {
+hmp.c:        monitor_printf(mon, "%c CPU #%" PRId64 ":", active, cpu->value->CPU);
+hmp.c:        if (cpu->value->has_pc) {
+hmp.c:            monitor_printf(mon, " pc=0x%016" PRIx64, cpu->value->pc);
+hmp.c:        if (cpu->value->has_nip) {
+hmp.c:            monitor_printf(mon, " nip=0x%016" PRIx64, cpu->value->nip);
+hmp.c:        if (cpu->value->has_npc) {
+hmp.c:            monitor_printf(mon, " npc=0x%016" PRIx64, cpu->value->npc);
+hmp.c:        if (cpu->value->has_PC) {
+hmp.c:            monitor_printf(mon, " PC=0x%016" PRIx64, cpu->value->PC);
+hmp.c:        if (cpu->value->halted) {
+hmp.c:        monitor_printf(mon, " thread_id=%" PRId64 "\n", cpu->value->thread_id);
+hmp.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hmp.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/isa/isa-bus.o coincide com o padrão
+Arquivo binário hw/isa/apm.o coincide com o padrão
+hw/isa/apm.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/isa/apm.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/isa/isa-bus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/isa/isa-bus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/net/vmxnet3.o coincide com o padrão
+hw/net/vmxnet3.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/vmxnet3.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/net/pcnet.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/pcnet.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/net/e1000.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/e1000.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/net/rtl8139.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/rtl8139.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/net/pcnet-pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/pcnet-pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/net/pcnet.o coincide com o padrão
+Arquivo binário hw/net/ne2000.o coincide com o padrão
+hw/net/vmxnet_tx_pkt.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/vmxnet_tx_pkt.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/net/e1000.o coincide com o padrão
+Arquivo binário hw/net/eepro100.o coincide com o padrão
+Arquivo binário hw/net/rtl8139.o coincide com o padrão
+Arquivo binário hw/net/vmxnet_tx_pkt.o coincide com o padrão
+hw/net/ne2000-isa.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/ne2000-isa.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/net/ne2000-isa.o coincide com o padrão
+hw/net/ne2000.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/ne2000.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/net/pcnet-pci.o coincide com o padrão
+hw/net/eepro100.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/net/eepro100.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/openrisc/pic_cpu.c:        cpu->env.picsr |= irq_bit;
+hw/openrisc/pic_cpu.c:        cpu->env.picsr &= ~irq_bit;
+hw/openrisc/pic_cpu.c:        if ((cpu->env.picsr && (1 << i)) && (cpu->env.picmr && (1 << i))) {
+hw/openrisc/pic_cpu.c:            cpu->env.picsr &= ~(1 << i);
+hw/openrisc/pic_cpu.c:        cpu->env.irq[i] = qi[i];
+hw/openrisc/cputimer.c:        qemu_del_timer(cpu->env.timer);
+hw/openrisc/cputimer.c:    cpu->env.ttcr += (uint32_t)muldiv64(now - last_clk, TIMER_FREQ,
+hw/openrisc/cputimer.c:    if ((cpu->env.ttmr & TTMR_TP) <= (cpu->env.ttcr & TTMR_TP)) {
+hw/openrisc/cputimer.c:        wait = TTMR_TP - (cpu->env.ttcr & TTMR_TP) + 1;
+hw/openrisc/cputimer.c:        wait += cpu->env.ttmr & TTMR_TP;
+hw/openrisc/cputimer.c:        wait = (cpu->env.ttmr & TTMR_TP) - (cpu->env.ttcr & TTMR_TP);
+hw/openrisc/cputimer.c:    qemu_mod_timer(cpu->env.timer, next);
+hw/openrisc/cputimer.c:    if ((cpu->env.ttmr & TTMR_IE) &&
+hw/openrisc/cputimer.c:         qemu_timer_expired(cpu->env.timer, qemu_get_clock_ns(vm_clock))) {
+hw/openrisc/cputimer.c:        cpu->env.ttmr |= TTMR_IP;
+hw/openrisc/cputimer.c:    switch (cpu->env.ttmr & TTMR_M) {
+hw/openrisc/cputimer.c:        cpu->env.ttcr = 0;
+hw/openrisc/cputimer.c:    cpu->env.timer = qemu_new_timer_ns(vm_clock, &openrisc_timer_cb, cpu);
+hw/openrisc/cputimer.c:    cpu->env.ttmr = 0x00000000;
+hw/openrisc/cputimer.c:    cpu->env.ttcr = 0x00000000;
+hw/openrisc/openrisc_sim.c:    cpu->env.pc = entry;
+hw/openrisc/openrisc_sim.c:    serial_mm_init(get_system_memory(), 0x90000000, 0, cpu->env.irq[2],
+hw/openrisc/openrisc_sim.c:                              0x92000400, cpu->env.irq[4], nd_table);
+hw/arm/tosa.c:    pxa2xx_pcmcia_attach(cpu->pcmcia[0], md);
+hw/arm/tosa.c:    pxa2xx_mmci_handlers(cpu->mmc,
+hw/arm/tosa.c:                    qemu_irq_invert(qdev_get_gpio_in(cpu->gpio, TOSA_GPIO_nSD_DETECT)));
+hw/arm/tosa.c:    qdev_connect_gpio_out(cpu->gpio, TOSA_GPIO_ON_RESET, cpu->reset);
+hw/arm/tosa.c:    pxa2xx_pcmcia_set_irq_cb(cpu->pcmcia[0],
+hw/arm/tosa.c:                        qdev_get_gpio_in(cpu->gpio, TOSA_GPIO_CF_IRQ),
+hw/arm/tosa.c:                        qdev_get_gpio_in(cpu->gpio, TOSA_GPIO_CF_CD));
+hw/arm/tosa.c:    pxa2xx_pcmcia_set_irq_cb(cpu->pcmcia[1],
+hw/arm/tosa.c:                        qdev_get_gpio_in(cpu->gpio, TOSA_GPIO_JC_CF_IRQ),
+hw/arm/tosa.c:    qemu_irq_raise(qdev_get_gpio_in(cpu->gpio, TOSA_GPIO_USB_IN));
+hw/arm/tosa.c:    i2c_bus *bus = pxa2xx_i2c_bus(cpu->i2c[0]);
+hw/arm/tosa.c:    ssi_create_slave(cpu->ssp[1], "tosa-ssp");
+hw/arm/armv7m.c:    env = &cpu->env;
+hw/arm/highbank.c:    CPUARMState *env = &cpu->env;
+hw/arm/highbank.c:        cpu->reset_cbar = GIC_BASE_ADDR;
+hw/arm/gumstix.c:                    qdev_get_gpio_in(cpu->gpio, 36));
+hw/arm/gumstix.c:                    qdev_get_gpio_in(cpu->gpio, 99));
+hw/arm/nseries.c:    s->mpu->cpu->env.GE = 0x5;
+hw/arm/nseries.c:        s->mpu->cpu->env.regs[15] = OMAP2_Q2_BASE + 0x400000;
+hw/arm/pxa2xx_gpio.c:    if (cpu->halted && (mask & ~s->dir[bank] & pxa2xx_gpio_wake[bank])) {
+hw/arm/omap1.c:                (cpu->halted << 6);      /* Quite useless... */
+hw/arm/omap1.c:    if (cpu->halted) {
+hw/arm/palm.c:    tsc = tsc2102_init(qdev_get_gpio_in(cpu->gpio, PALMTE_PINTDAV_GPIO));
+hw/arm/palm.c:    omap_uwire_attach(cpu->microwire, tsc, 0);
+hw/arm/palm.c:    omap_mcbsp_i2s_attach(cpu->mcbsp1, tsc210x_codec(tsc));
+hw/arm/palm.c:        omap_mpuio_key(cpu->mpuio,
+hw/arm/palm.c:    omap_mmc_handlers(cpu->mmc,
+hw/arm/palm.c:                    qdev_get_gpio_in(cpu->gpio, PALMTE_MMC_WP_GPIO),
+hw/arm/palm.c:                    qemu_irq_invert(omap_mpuio_in_get(cpu->mpuio)
+hw/arm/palm.c:    qdev_connect_gpio_out(cpu->gpio, PALMTE_MMC_POWER_GPIO,	misc_gpio[0]);
+hw/arm/palm.c:    qdev_connect_gpio_out(cpu->gpio, PALMTE_SPEAKER_GPIO,	misc_gpio[1]);
+hw/arm/palm.c:    qdev_connect_gpio_out(cpu->gpio, 11,			misc_gpio[2]);
+hw/arm/palm.c:    qdev_connect_gpio_out(cpu->gpio, 12,			misc_gpio[3]);
+hw/arm/palm.c:    qdev_connect_gpio_out(cpu->gpio, 13,			misc_gpio[4]);
+hw/arm/palm.c:    omap_mpuio_out_set(cpu->mpuio, 1,				misc_gpio[5]);
+hw/arm/palm.c:    omap_mpuio_out_set(cpu->mpuio, 3,				misc_gpio[6]);
+hw/arm/palm.c:    qemu_irq_lower(qdev_get_gpio_in(cpu->gpio, PALMTE_USBDETECT_GPIO));
+hw/arm/palm.c:    qemu_irq_lower(qdev_get_gpio_in(cpu->gpio, PALMTE_USB_OR_DC_GPIO));
+hw/arm/palm.c:    qemu_irq_lower(qdev_get_gpio_in(cpu->gpio, 4));
+hw/arm/palm.c:    qemu_irq_lower(qdev_get_gpio_in(cpu->gpio, PALMTE_HEADPHONES_GPIO));
+hw/arm/palm.c:    qemu_irq_lower(omap_mpuio_in_get(cpu->mpuio)[PALMTE_DC_GPIO]);
+hw/arm/palm.c:    qemu_irq_raise(omap_mpuio_in_get(cpu->mpuio)[6]);
+hw/arm/palm.c:    qemu_irq_raise(omap_mpuio_in_get(cpu->mpuio)[7]);
+hw/arm/palm.c:    qemu_irq_raise(omap_mpuio_in_get(cpu->mpuio)[11]);
+hw/arm/spitz.c:        qdev_connect_gpio_out(dev, i, qdev_get_gpio_in(cpu->gpio, spitz_gpio_key_sense[i]));
+hw/arm/spitz.c:        s->gpiomap[i] = qdev_get_gpio_in(cpu->gpio, spitz_gpiomap[i]);
+hw/arm/spitz.c:        qdev_connect_gpio_out(cpu->gpio, spitz_gpio_key_strobe[i],
+hw/arm/spitz.c:    mux = ssi_create_slave(cpu->ssp[CORGI_SSP_PORT - 1], "corgi-ssp");
+hw/arm/spitz.c:                          qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_TP_INT));
+hw/arm/spitz.c:    qdev_connect_gpio_out(cpu->gpio, SPITZ_GPIO_LCDCON_CS,
+hw/arm/spitz.c:    qdev_connect_gpio_out(cpu->gpio, SPITZ_GPIO_ADS7846_CS,
+hw/arm/spitz.c:    qdev_connect_gpio_out(cpu->gpio, SPITZ_GPIO_MAX1111_CS,
+hw/arm/spitz.c:    pxa2xx_pcmcia_attach(cpu->pcmcia[slot], md);
+hw/arm/spitz.c:    i2c_bus *bus = pxa2xx_i2c_bus(cpu->i2c[0]);
+hw/arm/spitz.c:    qdev_connect_gpio_out(cpu->gpio, SPITZ_GPIO_WM,
+hw/arm/spitz.c:    cpu->i2s->opaque = wm;
+hw/arm/spitz.c:    cpu->i2s->codec_out = wm8750_dac_dat;
+hw/arm/spitz.c:    cpu->i2s->codec_in = wm8750_adc_dat;
+hw/arm/spitz.c:    wm8750_data_req_set(wm, cpu->i2s->data_req, cpu->i2s);
+hw/arm/spitz.c:    i2c_create_slave(pxa2xx_i2c_bus(cpu->i2c[0]), "max7310",
+hw/arm/spitz.c:    qemu_set_irq(qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_HSYNC), spitz_hsync);
+hw/arm/spitz.c:    pxa2xx_gpio_read_notifier(cpu->gpio, lcd_hsync);
+hw/arm/spitz.c:    pxa2xx_lcd_vsync_notifier(cpu->lcd, lcd_hsync);
+hw/arm/spitz.c:    pxa2xx_mmci_handlers(cpu->mmc,
+hw/arm/spitz.c:                    qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_SD_WP),
+hw/arm/spitz.c:                    qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_SD_DETECT));
+hw/arm/spitz.c:    qemu_irq_raise(qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_BAT_COVER));
+hw/arm/spitz.c:    qdev_connect_gpio_out(cpu->gpio, SPITZ_GPIO_ON_RESET, cpu->reset);
+hw/arm/spitz.c:        pxa2xx_pcmcia_set_irq_cb(cpu->pcmcia[0],
+hw/arm/spitz.c:                        qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_CF1_IRQ),
+hw/arm/spitz.c:                        qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_CF1_CD));
+hw/arm/spitz.c:        pxa2xx_pcmcia_set_irq_cb(cpu->pcmcia[1],
+hw/arm/spitz.c:                        qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_CF2_IRQ),
+hw/arm/spitz.c:                        qdev_get_gpio_in(cpu->gpio, SPITZ_GPIO_CF2_CD));
+hw/arm/boot.c:        if (!arm_feature(&cpu->env, ARM_FEATURE_V7) &&
+hw/arm/boot.c:    CPUARMState *env = &cpu->env;
+hw/arm/boot.c:    CPUARMState *env = &cpu->env;
+hw/arm/boot.c:        cpu->env.boot_info = info;
+hw/arm/pxa2xx_pic.c:    if (cpu->halted) {
+hw/arm/pxa2xx_pic.c:    CPUARMState *env = &cpu->env;
+hw/arm/realview.c:    env = &cpu->env;
+hw/arm/pxa2xx.c:        s->cpu->env.uncached_cpsr =
+hw/arm/pxa2xx.c:        s->cpu->env.cp15.c1_sys = 0;
+hw/arm/pxa2xx.c:        s->cpu->env.cp15.c1_coproc = 0;
+hw/arm/pxa2xx.c:        s->cpu->env.cp15.c2_base0 = 0;
+hw/arm/pxa2xx.c:        s->cpu->env.cp15.c3 = 0;
+hw/arm/pxa2xx.c:        memset(s->cpu->env.regs, 0, 4 * 15);
+hw/arm/pxa2xx.c:        s->cpu->env.regs[15] = s->pm_regs[PSPR >> 2];
+hw/i2c/smbus_eeprom.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/i2c/smbus_eeprom.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/i2c/core.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/i2c/core.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/i2c/smbus_ich9.o coincide com o padrão
+Arquivo binário hw/i2c/pm_smbus.o coincide com o padrão
+hw/i2c/smbus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/i2c/smbus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/i2c/pm_smbus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/i2c/pm_smbus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/i2c/smbus_ich9.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/i2c/smbus_ich9.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/serial.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/serial.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/serial-pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/serial-pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/char/debugcon.o coincide com o padrão
+Arquivo binário hw/char/parallel.o coincide com o padrão
+Arquivo binário hw/char/serial.o coincide com o padrão
+Arquivo binário hw/char/tpci200.o coincide com o padrão
+hw/char/debugcon.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/debugcon.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/ipack.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/ipack.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/tpci200.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/tpci200.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/ipoctal232.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/ipoctal232.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/parallel.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/parallel.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/char/serial-isa.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/serial-isa.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/char/serial-pci.o coincide com o padrão
+hw/char/virtio-console.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/char/virtio-console.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/char/serial-isa.o coincide com o padrão
+hw/alpha/typhoon.c:        ret = s->cchip.misc | (cpu->cpu_index & 3);
+hw/alpha/typhoon.c:            cpu->alarm_timer = qemu_new_timer_ns(rtc_clock,
+hw/sparc/leon3.c:    CPUSPARCState  *env = &s->cpu->env;
+hw/sparc/leon3.c:    cpu->halted = 0;
+hw/sparc/leon3.c:    env = &cpu->env;
+hw/sparc/sun4m.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc/sun4m.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc/sun4m.c:    env = &cpu->env;
+Arquivo binário hw/audio/ac97.o coincide com o padrão
+Arquivo binário hw/audio/es1370.o coincide com o padrão
+hw/audio/cs4231a.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/cs4231a.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/audio/hda-codec.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/hda-codec.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/audio/intel-hda.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/intel-hda.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/audio/cs4231a.o coincide com o padrão
+Arquivo binário hw/audio/intel-hda.o coincide com o padrão
+hw/audio/adlib.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/adlib.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/audio/es1370.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/es1370.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/audio/pcspk.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/pcspk.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/audio/sb16.o coincide com o padrão
+hw/audio/ac97.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/ac97.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/audio/gus.o coincide com o padrão
+Arquivo binário hw/audio/pcspk.o coincide com o padrão
+Arquivo binário hw/audio/adlib.o coincide com o padrão
+hw/audio/sb16.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/sb16.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/audio/gus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/audio/gus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/nvram/eeprom93xx.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/nvram/eeprom93xx.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/nvram/fw_cfg.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/nvram/fw_cfg.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/nvram/fw_cfg.o coincide com o padrão
+hw/sh4/r2d.c:    CPUSH4State *env = &s->cpu->env;
+hw/sh4/r2d.c:    env = &cpu->env;
+hw/sh4/sh7750.c:    return s->cpu->env.features & SH_FEATURE_BCR3_AND_BCR4;
+hw/sh4/sh7750.c:        return s->cpu->env.mmucr;
+hw/sh4/sh7750.c:        return s->cpu->env.pteh;
+hw/sh4/sh7750.c:        return s->cpu->env.ptel;
+hw/sh4/sh7750.c:        return s->cpu->env.ttb;
+hw/sh4/sh7750.c:        return s->cpu->env.tea;
+hw/sh4/sh7750.c:        return s->cpu->env.tra;
+hw/sh4/sh7750.c:        return s->cpu->env.expevt;
+hw/sh4/sh7750.c:        return s->cpu->env.intevt;
+hw/sh4/sh7750.c:            cpu_sh4_invalidate_tlb(&s->cpu->env);
+hw/sh4/sh7750.c:        s->cpu->env.mmucr = mem_value & ~MMUCR_TI;
+hw/sh4/sh7750.c:        if ((s->cpu->env.pteh & 0xff) != (mem_value & 0xff)) {
+hw/sh4/sh7750.c:            tlb_flush(&s->cpu->env, 1);
+hw/sh4/sh7750.c:        s->cpu->env.pteh = mem_value;
+hw/sh4/sh7750.c:        s->cpu->env.ptel = mem_value;
+hw/sh4/sh7750.c:        s->cpu->env.ptea = mem_value & 0x0000000f;
+hw/sh4/sh7750.c:        s->cpu->env.ttb = mem_value;
+hw/sh4/sh7750.c:        s->cpu->env.tea = mem_value;
+hw/sh4/sh7750.c:        s->cpu->env.tra = mem_value & 0x000007ff;
+hw/sh4/sh7750.c:        s->cpu->env.expevt = mem_value & 0x000007ff;
+hw/sh4/sh7750.c:        s->cpu->env.intevt = mem_value & 0x000007ff;
+hw/sh4/sh7750.c:        ret = cpu_sh4_read_mmaped_itlb_addr(&s->cpu->env, addr);
+hw/sh4/sh7750.c:        ret = cpu_sh4_read_mmaped_itlb_data(&s->cpu->env, addr);
+hw/sh4/sh7750.c:        ret = cpu_sh4_read_mmaped_utlb_addr(&s->cpu->env, addr);
+hw/sh4/sh7750.c:        ret = cpu_sh4_read_mmaped_utlb_data(&s->cpu->env, addr);
+hw/sh4/sh7750.c:        cpu_sh4_write_mmaped_itlb_addr(&s->cpu->env, addr, mem_value);
+hw/sh4/sh7750.c:        cpu_sh4_write_mmaped_itlb_data(&s->cpu->env, addr, mem_value);
+hw/sh4/sh7750.c:        cpu_sh4_write_mmaped_utlb_addr(&s->cpu->env, addr, mem_value);
+hw/sh4/sh7750.c:        cpu_sh4_write_mmaped_utlb_data(&s->cpu->env, addr, mem_value);
+hw/sh4/sh7750.c:    cpu->env.intc_handle = &s->intc;
+hw/sh4/sh7750.c:    if (cpu->env.id & (SH_CPU_SH7750 | SH_CPU_SH7750S | SH_CPU_SH7751)) {
+hw/sh4/sh7750.c:    if (cpu->env.id & (SH_CPU_SH7750R | SH_CPU_SH7751R)) {
+hw/sh4/sh7750.c:    if (cpu->env.id & (SH_CPU_SH7750R | SH_CPU_SH7751 | SH_CPU_SH7751R)) {
+hw/sh4/sh7750.c:    if (cpu->env.id & (SH_CPU_SH7751_ALL)) {
+hw/sh4/sh7750.c:    if (cpu->env.id & (SH_CPU_SH7750S | SH_CPU_SH7750R | SH_CPU_SH7751_ALL)) {
+hw/ide/isa.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/isa.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/ide/pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/ide/qdev.o coincide com o padrão
+hw/ide/ahci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/ahci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/ide/piix.o coincide com o padrão
+hw/ide/piix.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/piix.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/ide/qdev.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/qdev.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/ide/core.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/core.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/ide/isa.o coincide com o padrão
+hw/ide/atapi.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/atapi.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/ide/atapi.o coincide com o padrão
+Arquivo binário hw/ide/pci.o coincide com o padrão
+Arquivo binário hw/ide/ich.o coincide com o padrão
+Arquivo binário hw/ide/core.o coincide com o padrão
+hw/ide/ich.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/ide/ich.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/ide/ahci.o coincide com o padrão
+hw/lm32/lm32_boards.c:    CPULM32State *env = &reset_info->cpu->env;
+hw/lm32/lm32_boards.c:    env = &cpu->env;
+hw/lm32/lm32_boards.c:    env = &cpu->env;
+hw/lm32/milkymist.c:    CPULM32State *env = &reset_info->cpu->env;
+hw/lm32/milkymist.c:    env = &cpu->env;
+Arquivo binário hw/core/null-machine.o coincide com o padrão
+hw/core/qdev-properties.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/core/qdev-properties.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/core/sysbus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/core/sysbus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/core/qdev.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/core/qdev.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/core/qdev-properties-system.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/core/qdev-properties-system.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/core/null-machine.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/core/null-machine.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/core/loader.o coincide com o padrão
+hw/core/loader.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/core/loader.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/core/sysbus.o coincide com o padrão
+hw/pci/msix.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/msix.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci/pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci/pci-hotplug-old.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pci-hotplug-old.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci/pci-hotplug-old.o coincide com o padrão
+hw/pci/slotid_cap.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/slotid_cap.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci/pcie.o coincide com o padrão
+Arquivo binário hw/pci/msix.o coincide com o padrão
+hw/pci/pci-stub.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pci-stub.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci/pci_bridge.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pci_bridge.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci/pci.o coincide com o padrão
+Arquivo binário hw/pci/pci_host.o coincide com o padrão
+Arquivo binário hw/pci/pci_bridge.o coincide com o padrão
+hw/pci/msi.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/msi.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci/pcie_host.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pcie_host.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci/pcie_port.o coincide com o padrão
+hw/pci/pcie_port.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pcie_port.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci/pci_host.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pci_host.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci/pcie.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pcie.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci/pcie_aer.o coincide com o padrão
+Arquivo binário hw/pci/pcie_host.o coincide com o padrão
+hw/pci/shpc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/shpc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci/slotid_cap.o coincide com o padrão
+Arquivo binário hw/pci/shpc.o coincide com o padrão
+Arquivo binário hw/pci/msi.o coincide com o padrão
+hw/pci/pcie_aer.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci/pcie_aer.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci-bridge/i82801b11.o coincide com o padrão
+Arquivo binário hw/pci-bridge/xio3130_downstream.o coincide com o padrão
+Arquivo binário hw/pci-bridge/xio3130_upstream.o coincide com o padrão
+Arquivo binário hw/pci-bridge/pci_bridge_dev.o coincide com o padrão
+hw/pci-bridge/i82801b11.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-bridge/i82801b11.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci-bridge/pci_bridge_dev.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-bridge/pci_bridge_dev.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci-bridge/ioh3420.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-bridge/ioh3420.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci-bridge/ioh3420.o coincide com o padrão
+hw/pci-bridge/xio3130_downstream.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-bridge/xio3130_downstream.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/pci-bridge/xio3130_upstream.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-bridge/xio3130_upstream.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/microblaze/petalogix_s3adsp1800_mmu.c:    CPUMBState *env = &cpu->env;
+hw/microblaze/petalogix_s3adsp1800_mmu.c:    env = &cpu->env;
+hw/microblaze/petalogix_ml605_mmu.c:    CPUMBState *env = &cpu->env;
+hw/microblaze/petalogix_ml605_mmu.c:    env = &cpu->env;
+hw/microblaze/boot.c:    CPUMBState *env = &cpu->env;
+hw/display/cirrus_vga.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/display/cirrus_vga.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/display/vga-pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/display/vga-pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/display/vmware_vga.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/display/vmware_vga.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/display/vga-isa.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/display/vga-isa.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/display/vga-isa.o coincide com o padrão
+hw/display/cirrus_vga.c: *  bitblt (cpu-to-video)
+Arquivo binário hw/display/vmware_vga.o coincide com o padrão
+Arquivo binário hw/display/vga-pci.o coincide com o padrão
+Arquivo binário hw/display/cirrus_vga.o coincide com o padrão
+hw/intc/i8259_common.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/intc/i8259_common.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/intc/apic.c:        cpu_clear_apic_feature(&s->cpu->env);
+hw/intc/apic.c:            cpu_report_tpr_access(&s->cpu->env, TPR_ACCESS_READ);
+hw/intc/apic.c:            cpu_report_tpr_access(&s->cpu->env, TPR_ACCESS_WRITE);
+hw/intc/ioapic_common.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/intc/ioapic_common.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/intc/arm_gic.c:        return current_cpu->cpu_index;
+hw/intc/exynos4210_gic.c:    memory_region_init(&s->cpu_container, OBJECT(s), "exynos4210-cpu-container",
+hw/intc/openpic.c:    return current_cpu->cpu_index;
+Arquivo binário hw/intc/ioapic_common.o coincide com o padrão
+Arquivo binário hw/intc/i8259.o coincide com o padrão
+Arquivo binário hw/intc/i8259_common.o coincide com o padrão
+hw/intc/i8259.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/intc/i8259.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/intc/armv7m_nvic.c:        return cpu->env.cp15.c0_cpuid;
+hw/intc/armv7m_nvic.c:        return cpu->env.v7m.vecbase;
+hw/intc/armv7m_nvic.c:        cpu->env.v7m.vecbase = value & 0xffffff80;
+Arquivo binário hw/virtio/virtio-pci.o coincide com o padrão
+hw/virtio/virtio-pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/virtio/virtio-pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/virtio/dataplane/vring.o coincide com o padrão
+hw/virtio/dataplane/hostmem.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/virtio/dataplane/hostmem.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/virtio/dataplane/hostmem.o coincide com o padrão
+hw/virtio/dataplane/vring.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/virtio/dataplane/vring.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/virtio/virtio-bus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/virtio/virtio-bus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/virtio/virtio-rng.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/virtio/virtio-rng.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/xtensa/pic_cpu.c:    CPUXtensaState *env = &cpu->env;
+hw/xtensa/xtensa_lx60.c:        env = &cpu->env;
+hw/xtensa/xtensa_sim.c:        env = &cpu->env;
+Arquivo binário hw/acpi/ich9.o coincide com o padrão
+hw/acpi/core.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/acpi/core.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/acpi/ich9.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/acpi/ich9.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/acpi/piix4.o coincide com o padrão
+hw/acpi/piix4.c:                          "acpi-cpu-hotplug", PIIX4_PROC_LEN);
+Arquivo binário hw/acpi/core.o coincide com o padrão
+hw/acpi/piix4.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/acpi/piix4.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/moxie/moxiesim.c:    env = &cpu->env;
+hw/pci-host/q35.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-host/q35.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci-host/q35.o coincide com o padrão
+Arquivo binário hw/pci-host/piix.o coincide com o padrão
+hw/pci-host/piix.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-host/piix.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/pci-host/pam.o coincide com o padrão
+hw/pci-host/pam.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/pci-host/pam.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/dma/i8257.o coincide com o padrão
+hw/dma/i8257.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/dma/i8257.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/scsi/scsi-generic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/scsi-generic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/scsi/lsi53c895a.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/lsi53c895a.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/scsi/vmw_pvscsi.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/vmw_pvscsi.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/scsi/megasas.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/megasas.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/scsi/esp.o coincide com o padrão
+Arquivo binário hw/scsi/scsi-disk.o coincide com o padrão
+Arquivo binário hw/scsi/lsi53c895a.o coincide com o padrão
+hw/scsi/esp-pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/esp-pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/scsi/scsi-bus.o coincide com o padrão
+Arquivo binário hw/scsi/megasas.o coincide com o padrão
+hw/scsi/scsi-bus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/scsi-bus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/scsi/esp.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/esp.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/scsi/scsi-disk.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/scsi/scsi-disk.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/scsi/vmw_pvscsi.o coincide com o padrão
+Arquivo binário hw/scsi/esp-pci.o coincide com o padrão
+Arquivo binário hw/block/pflash_cfi01.o coincide com o padrão
+hw/block/nvme.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/block/nvme.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/block/cdrom.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/block/cdrom.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/block/pflash_cfi01.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/block/pflash_cfi01.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/block/pc_sysfw.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/block/pc_sysfw.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/block/nvme.o coincide com o padrão
+Arquivo binário hw/block/fdc.o coincide com o padrão
+hw/block/fdc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/block/fdc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/block/pc_sysfw.o coincide com o padrão
+Arquivo binário hw/timer/i8254.o coincide com o padrão
+Arquivo binário hw/timer/hpet.o coincide com o padrão
+hw/timer/i8254.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/timer/i8254.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/timer/i8254_common.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/timer/i8254_common.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/timer/arm_mptimer.c:    if (current_cpu->cpu_index >= s->num_cpu) {
+hw/timer/arm_mptimer.c:                 s->num_cpu, current_cpu->cpu_index);
+hw/timer/arm_mptimer.c:    return current_cpu->cpu_index;
+hw/timer/hpet.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/timer/hpet.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/timer/i8254_common.o coincide com o padrão
+hw/mips/mips_r4k.c:    CPUMIPSState *env = &s->cpu->env;
+hw/mips/mips_r4k.c:    env = &cpu->env;
+hw/mips/mips_fulong2e.c:    CPUMIPSState *env = &cpu->env;
+hw/mips/mips_fulong2e.c:    env = &cpu->env;
+hw/mips/mips_malta.c:    CPUMIPSState *env = &cpu->env;
+hw/mips/mips_malta.c:    CPUMIPSState *env = &cpu->env;
+hw/mips/mips_malta.c:        env = &cpu->env;
+hw/mips/mips_malta.c:    env = &cpu->env;
+hw/mips/mips_jazz.c:    env = &cpu->env;
+hw/mips/mips_int.c:    CPUMIPSState *env = &cpu->env;
+hw/mips/mips_mipssim.c:    CPUMIPSState *env = &s->cpu->env;
+hw/mips/mips_mipssim.c:    env = &cpu->env;
+hw/s390x/ipl.c:    CPUS390XState *env = &cpu->env;
+hw/s390x/s390-virtio.c:    CPUS390XState *env = &cpu->env;
+hw/s390x/s390-virtio.c:    CPUS390XState *env = &cpu->env;
+hw/s390x/s390-virtio.c:        cpu->env.exception_index = EXCP_HLT;
+hw/s390x/s390-virtio.c:        cpu->env.storage_keys = storage_keys;
+hw/ppc/mpc8544_guts.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_hcall.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_hcall.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_hcall.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_hcall.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_hcall.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_hcall.c:    tenv = tcpu->env_ptr;
+hw/ppc/spapr_hcall.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/virtex_ml507.c:    env = &cpu->env;
+hw/ppc/virtex_ml507.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/virtex_ml507.c:    env = &cpu->env;
+hw/ppc/e500.c:        env = cpu->env_ptr;
+hw/ppc/e500.c:                 cpu->cpu_index);
+hw/ppc/e500.c:        qemu_devtree_setprop_cell(fdt, cpu_name, "reg", cpu->cpu_index);
+hw/ppc/e500.c:        if (cpu->cpu_index) {
+hw/ppc/e500.c:            qemu_devtree_setprop_u64(fdt, cpu_name, "cpu-release-addr",
+hw/ppc/e500.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/e500.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/e500.c:        env = &cpu->env;
+hw/ppc/spapr.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+hw/ppc/spapr.c:                                    cpu_to_be32(cpu->numa_node),
+hw/ppc/spapr.c:                                    cpu_to_be32(cpu->cpu_index)};
+hw/ppc/spapr.c:        if ((cpu->cpu_index % smt) != 0) {
+hw/ppc/spapr.c:                 cpu->cpu_index);
+hw/ppc/spapr.c:        CPUPPCState *env = &cpu->env;
+hw/ppc/spapr.c:        _FDT((fdt_property_cell(fdt, "cpu-version", env->spr[SPR_PVR])));
+hw/ppc/spapr.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr.c:    first_ppc_cpu->env.gpr[3] = spapr->fdt_addr;
+hw/ppc/spapr.c:    first_ppc_cpu->env.gpr[5] = 0;
+hw/ppc/spapr.c:    first_cpu->halted = 0;
+hw/ppc/spapr.c:    first_ppc_cpu->env.nip = spapr->entry_point;
+hw/ppc/spapr.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/spapr.c:        env = &cpu->env;
+hw/ppc/ppc405_uc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc405_uc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc405_uc.c:    env = &cpu->env;
+hw/ppc/ppc405_uc.c:    env = &cpu->env;
+hw/ppc/ppce500_spin.c:    CPUPPCState *env = &kick->cpu->env;
+hw/ppc/ppce500_spin.c:    cpu->halted = 0;
+hw/ppc/ppce500_spin.c:    cpu->stopped = false;
+hw/ppc/ppce500_spin.c:    if (cpu->cpu_index == 0) {
+hw/ppc/ppc440_bamboo.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc440_bamboo.c:    env = &cpu->env;
+hw/ppc/mac_oldworld.c:        env = &cpu->env;
+hw/ppc/ppc4xx_devs.c:    env = &cpu->env;
+hw/ppc/ppc_booke.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc_booke.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc_booke.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc_booke.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc_booke.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc_booke.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc_booke.c:    cpu->env.tb_env = tb_env;
+hw/ppc/mac_newworld.c:    cpu->env.nip = PROM_ADDR + 0x100;
+hw/ppc/mac_newworld.c:        env = &cpu->env;
+hw/ppc/spapr_rtas.c:        if (cpu->halted) {
+hw/ppc/spapr_rtas.c:        CPUPPCState *env = &cpu->env;
+hw/ppc/spapr_rtas.c:    spapr_rtas_register("query-cpu-stopped-state",
+hw/ppc/prep.c:    cpu->env.nip = 0xfffffffc;
+hw/ppc/prep.c:        env = &cpu->env;
+hw/ppc/prep.c:                          cpu->env.irq_inputs[PPC6xx_INPUT_INT]);
+hw/ppc/prep.c:    sysctrl->reset_irq = cpu->env.irq_inputs[PPC6xx_INPUT_HRESET];
+hw/ppc/xics.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:        cpu->env.mpic_proxy = enabled;
+hw/ppc/ppc.c:    CPUPPCState *env = &cpu->env;
+hw/ppc/ppc.c:    ppc_tb_t *tb_env = cpu->env.tb_env;
+hw/ppc/ppc.c:    ppc_tb_t *tb_env = cpu->env.tb_env;
+hw/ppc/ppc.c:    ppc_tb_t *tb_env = cpu->env.tb_env;
+hw/m68k/mcf5208.c:    env = &cpu->env;
+hw/m68k/an5206.c:    env = &cpu->env;
+hw/usb/hcd-ehci-pci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/hcd-ehci-pci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/hcd-ehci-sysbus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/hcd-ehci-sysbus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-uas.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-uas.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/combined-packet.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/combined-packet.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/usb/hcd-ehci-sysbus.o coincide com o padrão
+Arquivo binário hw/usb/hcd-uhci.o coincide com o padrão
+Arquivo binário hw/usb/hcd-ehci-pci.o coincide com o padrão
+hw/usb/dev-bluetooth.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-bluetooth.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/usb/hcd-xhci.o coincide com o padrão
+hw/usb/libhw.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/libhw.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/hcd-ohci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/hcd-ohci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-storage.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-storage.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/usb/hcd-ohci.o coincide com o padrão
+hw/usb/host-linux.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/host-linux.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-smartcard-reader.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-smartcard-reader.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/core.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/core.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/ccid-card-passthru.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/ccid-card-passthru.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/hcd-uhci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/hcd-uhci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/usb/libhw.o coincide com o padrão
+hw/usb/dev-wacom.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-wacom.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/hcd-xhci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/hcd-xhci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-hub.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-hub.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-network.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-network.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/host-legacy.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/host-legacy.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/usb/hcd-ehci.o coincide com o padrão
+hw/usb/hcd-ehci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/hcd-ehci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-audio.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-audio.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/desc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/desc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-serial.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-serial.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/bus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/bus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/usb/dev-hid.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/usb/dev-hid.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/cris/axis_dev88.c:    env = &cpu->env;
+hw/cris/boot.c:    CPUCRISState *env = &cpu->env;
+hw/cris/boot.c:    CPUCRISState *env = &cpu->env;
+hw/bt/hid.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/bt/hid.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/bt/hci.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/bt/hci.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/sparc64/sun4u.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc64/sun4u.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc64/sun4u.c:    CPUSPARCState *env = &s->cpu->env;
+hw/sparc64/sun4u.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc64/sun4u.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc64/sun4u.c:    CPUSPARCState *env = &cpu->env;
+hw/sparc64/sun4u.c:    env = &cpu->env;
+hw/misc/pc-testdev.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/misc/pc-testdev.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/misc/pci-testdev.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/misc/pci-testdev.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/misc/applesmc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/misc/applesmc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/misc/pc-testdev.o coincide com o padrão
+Arquivo binário hw/misc/debugexit.o coincide com o padrão
+Arquivo binário hw/misc/pci-testdev.o coincide com o padrão
+hw/misc/vmport.c:    CPUX86State *env = &cpu->env;
+hw/misc/vmport.c:    cpu->env.regs[R_EAX] = vmport_ioport_read(opaque, addr, 4);
+hw/misc/vmport.c:    cpu->env.regs[R_EBX] = VMPORT_MAGIC;
+hw/misc/vmport.c:    cpu->env.regs[R_EBX] = 0x1177;
+hw/misc/vmport.c:    CPUX86State *env = &cpu->env;
+hw/misc/vmport.c:    CPUX86State *env = &cpu->env;
+hw/misc/sga.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/misc/sga.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/misc/applesmc.o coincide com o padrão
+hw/misc/debugexit.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/misc/debugexit.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/input/ps2.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/input/ps2.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/input/vmmouse.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/input/vmmouse.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/input/hid.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/input/hid.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/input/pckbd.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/input/pckbd.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/input/pckbd.o coincide com o padrão
+hw/i386/pc.c:    CPUX86State *env = &cpu->env;
+hw/i386/pc.c:            env = &cpu->env;
+hw/i386/pc.c:        return cpu->env.apic_state;
+hw/i386/pc.c:    if (cpu && cpu->env.apic_state) {
+hw/i386/kvm/clock.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+hw/i386/kvm/clock.c:        cpu->env.features[FEAT_KVM] & ((1ULL << KVM_FEATURE_CLOCKSOURCE) |
+hw/i386/kvmvapic.c:    CPUX86State *env = &cpu->env;
+hw/i386/kvmvapic.c:    CPUX86State *env = &cpu->env;
+hw/i386/kvmvapic.c:        env = &cpu->env;
+hw/i386/kvmvapic.c:    CPUX86State *env = &cpu->env;
+hw/i386/kvmvapic.c:    vapic_enable(s, &cpu->env);
+Arquivo binário hw/watchdog/wdt_ib700.o coincide com o padrão
+hw/watchdog/wdt_ib700.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/watchdog/wdt_ib700.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+hw/watchdog/wdt_i6300esb.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+hw/watchdog/wdt_i6300esb.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário hw/watchdog/wdt_i6300esb.o coincide com o padrão
+include/exec/gdbstub.h:    return cpu->host_tid;
+include/exec/gdbstub.h:    return cpu->cpu_index + 1;
+include/exec/cpu-all.h:#include "exec/cpu-common.h"
+include/exec/memory.h:#include "exec/cpu-common.h"
+include/exec/memory.h:/* Must match *_DIRTY_FLAGS in cpu-all.h.  To be replaced with dynamic
+include/exec/exec-all.h:/* cpu-exec.c */
+include/exec/exec-all.h:    if (cpu->current_tb == NULL) {
+include/migration/qemu-file.h:#include "exec/cpu-common.h"
+include/migration/migration.h:#include "exec/cpu-common.h"
+include/hw/arm/omap.h:# define cpu_is_omap310(cpu)		(cpu->mpu_model == omap310)
+include/hw/arm/omap.h:# define cpu_is_omap1510(cpu)		(cpu->mpu_model == omap1510)
+include/hw/arm/omap.h:# define cpu_is_omap1610(cpu)		(cpu->mpu_model == omap1610)
+include/hw/arm/omap.h:# define cpu_is_omap1710(cpu)		(cpu->mpu_model == omap1710)
+include/hw/arm/omap.h:# define cpu_is_omap2410(cpu)		(cpu->mpu_model == omap2410)
+include/hw/arm/omap.h:# define cpu_is_omap2420(cpu)		(cpu->mpu_model == omap2420)
+include/hw/arm/omap.h:# define cpu_is_omap2430(cpu)		(cpu->mpu_model == omap2430)
+include/hw/arm/omap.h:# define cpu_is_omap3430(cpu)		(cpu->mpu_model == omap3430)
+include/hw/arm/omap.h:# define cpu_is_omap3630(cpu)           (cpu->mpu_model == omap3630)
+include/hw/devices.h:/* ??? Not all users of this file can include cpu-common.h.  */
+include/hw/hw.h:#include "exec/cpu-common.h"
+iohandler.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+iohandler.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+iohandler.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+iohandler.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+iohandler.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+iohandler.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+iohandler.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+iohandler.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário iohandler.o coincide com o padrão
+kvm-all.c:    cpu->kvm_fd = ret;
+kvm-all.c:    cpu->kvm_state = s;
+kvm-all.c:    cpu->kvm_vcpu_dirty = true;
+kvm-all.c:    cpu->kvm_run = mmap(NULL, mmap_size, PROT_READ | PROT_WRITE, MAP_SHARED,
+kvm-all.c:                        cpu->kvm_fd, 0);
+kvm-all.c:    if (cpu->kvm_run == MAP_FAILED) {
+kvm-all.c:            (void *)cpu->kvm_run + s->coalesced_mmio * PAGE_SIZE;
+kvm-all.c:    cpu->interrupt_request |= mask;
+kvm-all.c:    if (!cpu->kvm_vcpu_dirty) {
+kvm-all.c:        cpu->kvm_vcpu_dirty = true;
+kvm-all.c:    if (!cpu->kvm_vcpu_dirty) {
+kvm-all.c:    cpu->kvm_vcpu_dirty = false;
+kvm-all.c:    cpu->kvm_vcpu_dirty = false;
+kvm-all.c:    struct kvm_run *run = cpu->kvm_run;
+kvm-all.c:        cpu->exit_request = 0;
+kvm-all.c:        if (cpu->kvm_vcpu_dirty) {
+kvm-all.c:            cpu->kvm_vcpu_dirty = false;
+kvm-all.c:        if (cpu->exit_request) {
+kvm-all.c:	// fprintf(stderr, ":ERUNT %d", cpu->thread_id);
+kvm-all.c:	// fprintf(stderr, ":VLOCK %d",  cpu->thread_id);
+kvm-all.c:        trace_kvm_run_exit(cpu->cpu_index, run->exit_reason);
+kvm-all.c:    cpu->exit_request = 0;
+kvm-all.c:    trace_kvm_vcpu_ioctl(cpu->cpu_index, type, arg);
+kvm-all.c:    ret = ioctl(cpu->kvm_fd, type, arg);
+kvm-all.c:    QTAILQ_FOREACH(bp, &cpu->kvm_state->kvm_sw_breakpoints, entry) {
+kvm-all.c:    return !QTAILQ_EMPTY(&cpu->kvm_state->kvm_sw_breakpoints);
+kvm-all.c:        QTAILQ_INSERT_HEAD(&cpu->kvm_state->kvm_sw_breakpoints, bp, entry);
+kvm-all.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+kvm-all.c:        CPUArchState *env = cpu->env_ptr;
+kvm-all.c:        QTAILQ_REMOVE(&cpu->kvm_state->kvm_sw_breakpoints, bp, entry);
+kvm-all.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+kvm-all.c:        CPUArchState *env = cpu->env_ptr;
+kvm-all.c:    KVMState *s = cpu->kvm_state;
+kvm-all.c:            for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+kvm-all.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+kvm-all.c:        CPUArchState *env = cpu->env_ptr;
+Arquivo binário libqemustub.a coincide com o padrão
+Arquivo binário libqemuutil.a coincide com o padrão
+linux-user/elfload.c:    return cpu->env.features[FEAT_1_EDX];
+linux-user/elfload.c:    do { if (arm_feature(&cpu->env, feat)) { hwcaps |= hwcap; } } while (0)
+linux-user/elfload.c:    do { if (cpu->env.insns_flags & flag) { features |= feature; } } while (0)
+linux-user/elfload.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+linux-user/elfload.c:        fill_thread_info(info, (CPUArchState *)cpu->env_ptr);
+linux-user/signal.c:    CPUArchState *env = thread_cpu->env_ptr;
+linux-user/signal.c:    CPUArchState *env = thread_cpu->env_ptr;
+linux-user/cpu-uname.c:#include "cpu-uname.h"
+linux-user/Makefile.objs:	elfload.o linuxload.o uaccess.o cpu-uname.o
+linux-user/linuxload.c:    CPUArchState *env = thread_cpu->env_ptr;
+linux-user/syscall.c:#include "cpu-uname.h"
+linux-user/syscall.c:    cpu->host_tid = info->tid;
+linux-user/syscall.c:        if (first_cpu->next_cpu) {
+linux-user/main.c:        first_cpu->next_cpu = NULL;
+linux-user/main.c:        gdbserver_fork((CPUArchState *)thread_cpu->env_ptr);
+linux-user/main.c:    for (other_cpu = first_cpu; other_cpu; other_cpu = other_cpu->next_cpu) {
+linux-user/main.c:        if (other_cpu->running) {
+linux-user/main.c:    cpu->running = true;
+linux-user/main.c:    cpu->running = false;
+linux-user/main.c:        gdbserver_fork((CPUArchState *)thread_cpu->env_ptr);
+main-loop.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+main-loop.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+main-loop.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+main-loop.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+main-loop.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+main-loop.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+main-loop.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+main-loop.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário main-loop.o coincide com o padrão
+Makefile.target:obj-y = exec.o translate-all.o cpu-exec.o
+memory_mapping.c:#include "exec/cpu-all.h"
+memory_mapping.c:    for (cpu = start_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+memory_mapping.c:        for (cpu = first_paging_enabled_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+migration.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+migration.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+migration-exec.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+migration-exec.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+migration-fd.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+migration-fd.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+migration-tcp.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+migration-tcp.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+migration-unix.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+migration-unix.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+monitor.c:            error_set(errp, QERR_INVALID_PARAMETER_VALUE, "cpu-index",
+monitor.c:    return cur_mon->mon_cpu->env_ptr;
+monitor.c:    return cpu->cpu_index;
+monitor.c:        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+monitor.c:            if (cpu->numa_node == i) {
+monitor.c:                monitor_printf(mon, " %d", cpu->cpu_index);
+net/tap.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/tap.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+net/slirp.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/slirp.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+net/hub.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/hub.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+net/net.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/net.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+net/socket.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/socket.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+net/queue.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/queue.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+net/dump.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+net/dump.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário pc-bios/ppc_rom.bin coincide com o padrão
+Arquivo binário pc-bios/slof.bin coincide com o padrão
+Arquivo binário pc-bios/openbios-ppc coincide com o padrão
+qapi-schema.json:# @cpu-add
+qapi-schema.json:{ 'command': 'cpu-add', 'data': {'id': 'int'} }
+qapi-schema.json:# @cpu-index: #optional the index of the virtual CPU to use for translating the
+qapi-schema.json:  'data': {'val': 'int', 'size': 'int', 'filename': 'str', '*cpu-index': 'int'} }
+qapi-schema.json:# @cpu-index: #optional The CPU to use for commands that require an implicit CPU
+qapi-schema.json:  'data': {'command-line': 'str', '*cpu-index': 'int'},
+qapi-schema.json:# @cpu-max: maximum number of CPUs supported by the machine type
+qapi-schema.json:            '*is-default': 'bool', 'cpu-max': 'int' } }
+qapi-schema.json:# @query-cpu-definitions:
+qapi-schema.json:{ 'command': 'query-cpu-definitions', 'returns': ['CpuDefinitionInfo'] }
+qapi-visit.c:                visit_type_int(m, obj ? &(*obj)->cpu_max : NULL, "cpu-max", &err);
+Arquivo binário qapi-visit.o coincide com o padrão
+qdev-monitor.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+qdev-monitor.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+qdict-test-data.txt:cpu-bugs64.c: 7627
+qdict-test-data.txt:cpu-common: 4096
+qdict-test-data.txt:cpu-drivers.txt: 7387
+qdict-test-data.txt:cpu-feature-overrides.h: 1176
+qdict-test-data.txt:cpu-features.h: 7307
+qdict-test-data.txt:cpu-freq: 4096
+qdict-test-data.txt:cpu-freq.h: 2392
+qdict-test-data.txt:cpu-h7201.c: 1510
+qdict-test-data.txt:cpu-h7202.c: 5243
+qdict-test-data.txt:cpu-hotplug-spec: 1155
+qdict-test-data.txt:cpu-hotplug.txt: 14935
+qdict-test-data.txt:cpu-info.h: 2924
+qdict-test-data.txt:cpu-irqs.h: 2654
+qdict-test-data.txt:cpu-load.txt: 3110
+qdict-test-data.txt:cpu-multi32.h: 1743
+qdict-test-data.txt:cpu-omap.c: 4053
+qdict-test-data.txt:cpu-probe.c: 23180
+qdict-test-data.txt:cpu-regs.h: 14601
+qdict-test-data.txt:cpu-sa1100.c: 7866
+qdict-test-data.txt:cpu-sa1110.c: 9518
+qdict-test-data.txt:cpu-sh2: 4096
+qdict-test-data.txt:cpu-sh2a: 4096
+qdict-test-data.txt:cpu-sh3: 4096
+qdict-test-data.txt:cpu-sh4: 4096
+qdict-test-data.txt:cpu-sh5: 4096
+qdict-test-data.txt:cpu-single.h: 1429
+qemu-char.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+qemu-char.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário qemu-ga coincide com o padrão
+Arquivo binário qemu-img coincide com o padrão
+Arquivo binário qemu-io coincide com o padrão
+qemu-timer.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+qemu-timer.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+qga/commands-posix.c: * - R: vcpu->logical_id
+qga/commands-posix.c: * - W: vcpu->online
+qga/commands-posix.c: * - W: vcpu->can_offline
+qga/commands-posix.c: * In @vcpu-to-system direction, the following @vcpu fields are accessed:
+qga/commands-posix.c: * - R: vcpu->logical_id
+qga/commands-posix.c: * - R: vcpu->online
+qga/commands-posix.c:                              vcpu->logical_id);
+qga/commands-posix.c:                vcpu->online = true;
+qga/commands-posix.c:                vcpu->can_offline = false;
+qga/commands-posix.c:            } else if (!vcpu->online) {
+qga/commands-posix.c:                           "offlined", vcpu->logical_id);
+qga/commands-posix.c:                vcpu->online = (status != '0');
+qga/commands-posix.c:                vcpu->can_offline = true;
+qga/commands-posix.c:            } else if (vcpu->online != (status != '0')) {
+qga/commands-posix.c:                status = '0' + vcpu->online;
+qga/commands-posix.c:        vcpu->logical_id = current++;
+qga/commands-posix.c:        vcpu->has_can_offline = true; /* lolspeak ftw */
+QMP/qmp-shell:                                'cpu-index': cpu_index } })
+qmp-commands.hx:        .name       = "cpu-add",
+qmp-commands.hx:cpu-add
+qmp-commands.hx:-> { "execute": "cpu-add", "arguments": { "id": 2 } }
+qmp-commands.hx:        .args_type  = "command-line:s,cpu-index:i?",
+qmp-commands.hx:- cpu-index: select the CPU number to be used by commands which access CPU
+qmp-commands.hx:        .name       = "query-cpu-definitions",
+qmp.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+qmp.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+qmp-marshal.c:    visit_start_optional(v, &has_cpu_index, "cpu-index", errp);
+qmp-marshal.c:        visit_type_int(v, &cpu_index, "cpu-index", errp);
+qmp-marshal.c:    visit_start_optional(v, &has_cpu_index, "cpu-index", errp);
+qmp-marshal.c:        visit_type_int(v, &cpu_index, "cpu-index", errp);
+qmp-marshal.c:    visit_start_optional(v, &has_cpu_index, "cpu-index", errp);
+qmp-marshal.c:        visit_type_int(v, &cpu_index, "cpu-index", errp);
+qmp-marshal.c:    visit_start_optional(v, &has_cpu_index, "cpu-index", errp);
+qmp-marshal.c:        visit_type_int(v, &cpu_index, "cpu-index", errp);
+Arquivo binário qmp-marshal.o coincide com o padrão
+Arquivo binário qmp.o coincide com o padrão
+qom/cpu.c:    cpu->interrupt_request &= ~mask;
+qom/cpu.c:    cpu->exit_request = 1;
+qom/cpu.c:    cpu->tcg_exit_req = 1;
+qom/cpu.c:        qemu_log("CPU Reset (CPU %d)\n", cpu->cpu_index);
+qom/cpu.c:    cpu->exit_request = 0;
+qom/cpu.c:    cpu->interrupt_request = 0;
+qom/cpu.c:    cpu->current_tb = NULL;
+qom/cpu.c:    cpu->halted = 0;
+qom/cpu.c:    return cpu->cpu_index;
+slirp/slirp.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+slirp/slirp.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário stubs/arch-query-cpu-def.o coincide com o padrão
+stubs/reset.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+stubs/reset.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+stubs/migr-blocker.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+stubs/migr-blocker.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário stubs/cpu-get-icount.o coincide com o padrão
+stubs/cpu-get-clock.d:stubs/cpu-get-clock.o: stubs/cpu-get-clock.c \
+stubs/cpu-get-icount.d:stubs/cpu-get-icount.o: stubs/cpu-get-icount.c \
+stubs/Makefile.objs:stub-obj-y += arch-query-cpu-def.o
+stubs/Makefile.objs:stub-obj-y += cpu-get-clock.o
+stubs/Makefile.objs:stub-obj-y += cpu-get-icount.o
+stubs/vmstate.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+stubs/vmstate.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+stubs/arch-query-cpu-def.d:stubs/arch-query-cpu-def.o: stubs/arch-query-cpu-def.c \
+Arquivo binário stubs/cpu-get-clock.o coincide com o padrão
+target-alpha/cpu.c:    env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/mem_helper.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/helper.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/helper.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/translate.c:    CPUAlphaState *env = &cpu->env;
+target-alpha/cpu.h:#include "exec/cpu-defs.h"
+target-alpha/cpu.h:#include "exec/cpu-all.h"
+target-alpha/cpu.h:#include "cpu-qom.h"
+target-alpha/cpu.h:    return &cpu->env;
+target-alpha/cpu.h:    return cpu->interrupt_request & (CPU_INTERRUPT_HARD
+target-alpha/sys_helper.c:        qemu_mod_timer(cpu->alarm_timer, expire);
+target-alpha/sys_helper.c:        qemu_del_timer(cpu->alarm_timer);
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    CPUARMState *env = &cpu->env;
+target-arm/machine.c:    cpu->cpreg_vmstate_array_len = cpu->cpreg_array_len;
+target-arm/machine.c:    memcpy(cpu->cpreg_vmstate_indexes, cpu->cpreg_indexes,
+target-arm/machine.c:           cpu->cpreg_array_len * sizeof(uint64_t));
+target-arm/machine.c:    memcpy(cpu->cpreg_vmstate_values, cpu->cpreg_values,
+target-arm/machine.c:           cpu->cpreg_array_len * sizeof(uint64_t));
+target-arm/machine.c:    for (i = 0, v = 0; i < cpu->cpreg_array_len
+target-arm/machine.c:             && v < cpu->cpreg_vmstate_array_len; i++) {
+target-arm/machine.c:        if (cpu->cpreg_vmstate_indexes[v] > cpu->cpreg_indexes[i]) {
+target-arm/machine.c:        if (cpu->cpreg_vmstate_indexes[v] < cpu->cpreg_indexes[i]) {
+target-arm/machine.c:        cpu->cpreg_values[i] = cpu->cpreg_vmstate_values[v];
+target-arm/cpu.c:        ri->resetfn(&cpu->env, ri);
+target-arm/cpu.c:        CPREG_FIELD64(&cpu->env, ri) = ri->resetvalue;
+target-arm/cpu.c:        CPREG_FIELD32(&cpu->env, ri) = ri->resetvalue;
+target-arm/cpu.c:    CPUARMState *env = &cpu->env;
+target-arm/cpu.c:    g_hash_table_foreach(cpu->cp_regs, cp_reg_reset, cpu);
+target-arm/cpu.c:    env->vfp.xregs[ARM_VFP_FPSID] = cpu->reset_fpsid;
+target-arm/cpu.c:    env->vfp.xregs[ARM_VFP_MVFR0] = cpu->mvfr0;
+target-arm/cpu.c:    env->vfp.xregs[ARM_VFP_MVFR1] = cpu->mvfr1;
+target-arm/cpu.c:    cs->env_ptr = &cpu->env;
+target-arm/cpu.c:    cpu_exec_init(&cpu->env);
+target-arm/cpu.c:    cpu->cp_regs = g_hash_table_new_full(g_int_hash, g_int_equal,
+target-arm/cpu.c:    g_hash_table_destroy(cpu->cp_regs);
+target-arm/cpu.c:    CPUARMState *env = &cpu->env;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_TEST_CLEAN);
+target-arm/cpu.c:    cpu->midr = 0x41069265;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x41011090;
+target-arm/cpu.c:    cpu->ctr = 0x1dd20d2;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00090078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_MPU);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    cpu->midr = 0x41059461;
+target-arm/cpu.c:    cpu->ctr = 0x0f004006;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_AUXCR);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_TEST_CLEAN);
+target-arm/cpu.c:    cpu->midr = 0x4106a262;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410110a0;
+target-arm/cpu.c:    cpu->ctr = 0x1dd20d2;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00090078;
+target-arm/cpu.c:    cpu->reset_auxcr = 1;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V6);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_DIRTY_REG);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_BLOCK_OPS);
+target-arm/cpu.c:    cpu->midr = 0x4107b362;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410120b4;
+target-arm/cpu.c:    cpu->mvfr0 = 0x11111111;
+target-arm/cpu.c:    cpu->mvfr1 = 0x00000000;
+target-arm/cpu.c:    cpu->ctr = 0x1dd20d2;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00050078;
+target-arm/cpu.c:    cpu->id_pfr0 = 0x111;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x1;
+target-arm/cpu.c:    cpu->id_dfr0 = 0x2;
+target-arm/cpu.c:    cpu->id_afr0 = 0x3;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x01130003;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x10030302;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01222110;
+target-arm/cpu.c:    cpu->id_isar0 = 0x00140011;
+target-arm/cpu.c:    cpu->id_isar1 = 0x12002111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x11231111;
+target-arm/cpu.c:    cpu->id_isar3 = 0x01102131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x141;
+target-arm/cpu.c:    cpu->reset_auxcr = 7;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V6K);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V6);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_DIRTY_REG);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_BLOCK_OPS);
+target-arm/cpu.c:    cpu->midr = 0x4117b363;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410120b4;
+target-arm/cpu.c:    cpu->mvfr0 = 0x11111111;
+target-arm/cpu.c:    cpu->mvfr1 = 0x00000000;
+target-arm/cpu.c:    cpu->ctr = 0x1dd20d2;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00050078;
+target-arm/cpu.c:    cpu->id_pfr0 = 0x111;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x1;
+target-arm/cpu.c:    cpu->id_dfr0 = 0x2;
+target-arm/cpu.c:    cpu->id_afr0 = 0x3;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x01130003;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x10030302;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01222110;
+target-arm/cpu.c:    cpu->id_isar0 = 0x00140011;
+target-arm/cpu.c:    cpu->id_isar1 = 0x12002111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x11231111;
+target-arm/cpu.c:    cpu->id_isar3 = 0x01102131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x141;
+target-arm/cpu.c:    cpu->reset_auxcr = 7;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V6K);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VAPA);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_DIRTY_REG);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_CACHE_BLOCK_OPS);
+target-arm/cpu.c:    cpu->midr = 0x410fb767;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410120b5;
+target-arm/cpu.c:    cpu->mvfr0 = 0x11111111;
+target-arm/cpu.c:    cpu->mvfr1 = 0x00000000;
+target-arm/cpu.c:    cpu->ctr = 0x1dd20d2;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00050078;
+target-arm/cpu.c:    cpu->id_pfr0 = 0x111;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x11;
+target-arm/cpu.c:    cpu->id_dfr0 = 0x33;
+target-arm/cpu.c:    cpu->id_afr0 = 0;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x01130003;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x10030302;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01222100;
+target-arm/cpu.c:    cpu->id_isar0 = 0x0140011;
+target-arm/cpu.c:    cpu->id_isar1 = 0x12002111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x11231121;
+target-arm/cpu.c:    cpu->id_isar3 = 0x01102131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x01141;
+target-arm/cpu.c:    cpu->reset_auxcr = 7;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V6K);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VAPA);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_MPIDR);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    cpu->midr = 0x410fb022;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410120b4;
+target-arm/cpu.c:    cpu->mvfr0 = 0x11111111;
+target-arm/cpu.c:    cpu->mvfr1 = 0x00000000;
+target-arm/cpu.c:    cpu->ctr = 0x1d192992; /* 32K icache 32K dcache */
+target-arm/cpu.c:    cpu->id_pfr0 = 0x111;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x1;
+target-arm/cpu.c:    cpu->id_dfr0 = 0;
+target-arm/cpu.c:    cpu->id_afr0 = 0x2;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x01100103;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x10020302;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01222000;
+target-arm/cpu.c:    cpu->id_isar0 = 0x00100011;
+target-arm/cpu.c:    cpu->id_isar1 = 0x12002111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x11221011;
+target-arm/cpu.c:    cpu->id_isar3 = 0x01102131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x141;
+target-arm/cpu.c:    cpu->reset_auxcr = 1;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_M);
+target-arm/cpu.c:    cpu->midr = 0x410fc231;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP3);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_NEON);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_THUMB2EE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    cpu->midr = 0x410fc080;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410330c0;
+target-arm/cpu.c:    cpu->mvfr0 = 0x11110222;
+target-arm/cpu.c:    cpu->mvfr1 = 0x00011100;
+target-arm/cpu.c:    cpu->ctr = 0x82048004;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00c50078;
+target-arm/cpu.c:    cpu->id_pfr0 = 0x1031;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x11;
+target-arm/cpu.c:    cpu->id_dfr0 = 0x400;
+target-arm/cpu.c:    cpu->id_afr0 = 0;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x31100003;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x20000000;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01202000;
+target-arm/cpu.c:    cpu->id_mmfr3 = 0x11;
+target-arm/cpu.c:    cpu->id_isar0 = 0x00101111;
+target-arm/cpu.c:    cpu->id_isar1 = 0x12112111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x21232031;
+target-arm/cpu.c:    cpu->id_isar3 = 0x11112131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x00111142;
+target-arm/cpu.c:    cpu->clidr = (1 << 27) | (2 << 24) | 3;
+target-arm/cpu.c:    cpu->ccsidr[0] = 0xe007e01a; /* 16k L1 dcache. */
+target-arm/cpu.c:    cpu->ccsidr[1] = 0x2007e01a; /* 16k L1 icache. */
+target-arm/cpu.c:    cpu->ccsidr[2] = 0xf0000000; /* No L2 icache. */
+target-arm/cpu.c:    cpu->reset_auxcr = 2;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP3);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP_FP16);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_NEON);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_THUMB2EE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7MP);
+target-arm/cpu.c:    cpu->midr = 0x410fc090;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x41033090;
+target-arm/cpu.c:    cpu->mvfr0 = 0x11110222;
+target-arm/cpu.c:    cpu->mvfr1 = 0x01111111;
+target-arm/cpu.c:    cpu->ctr = 0x80038003;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00c50078;
+target-arm/cpu.c:    cpu->id_pfr0 = 0x1031;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x11;
+target-arm/cpu.c:    cpu->id_dfr0 = 0x000;
+target-arm/cpu.c:    cpu->id_afr0 = 0;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x00100103;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x20000000;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01230000;
+target-arm/cpu.c:    cpu->id_mmfr3 = 0x00002111;
+target-arm/cpu.c:    cpu->id_isar0 = 0x00101111;
+target-arm/cpu.c:    cpu->id_isar1 = 0x13112111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x21232041;
+target-arm/cpu.c:    cpu->id_isar3 = 0x11112131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x00111142;
+target-arm/cpu.c:    cpu->clidr = (1 << 27) | (1 << 24) | 3;
+target-arm/cpu.c:    cpu->ccsidr[0] = 0xe00fe015; /* 16k L1 dcache. */
+target-arm/cpu.c:    cpu->ccsidr[1] = 0x200fe015; /* 16k L1 icache. */
+target-arm/cpu.c:            .opc2 = 0, .access = PL1_R|PL3_W, .resetvalue = cpu->reset_cbar,
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP4);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP_FP16);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_NEON);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_THUMB2EE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_ARM_DIV);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_GENERIC_TIMER);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_LPAE);
+target-arm/cpu.c:    cpu->midr = 0x412fc0f1;
+target-arm/cpu.c:    cpu->reset_fpsid = 0x410430f0;
+target-arm/cpu.c:    cpu->mvfr0 = 0x10110222;
+target-arm/cpu.c:    cpu->mvfr1 = 0x11111111;
+target-arm/cpu.c:    cpu->ctr = 0x8444c004;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00c50078;
+target-arm/cpu.c:    cpu->id_pfr0 = 0x00001131;
+target-arm/cpu.c:    cpu->id_pfr1 = 0x00011011;
+target-arm/cpu.c:    cpu->id_dfr0 = 0x02010555;
+target-arm/cpu.c:    cpu->id_afr0 = 0x00000000;
+target-arm/cpu.c:    cpu->id_mmfr0 = 0x10201105;
+target-arm/cpu.c:    cpu->id_mmfr1 = 0x20000000;
+target-arm/cpu.c:    cpu->id_mmfr2 = 0x01240000;
+target-arm/cpu.c:    cpu->id_mmfr3 = 0x02102211;
+target-arm/cpu.c:    cpu->id_isar0 = 0x02101110;
+target-arm/cpu.c:    cpu->id_isar1 = 0x13112111;
+target-arm/cpu.c:    cpu->id_isar2 = 0x21232041;
+target-arm/cpu.c:    cpu->id_isar3 = 0x11112131;
+target-arm/cpu.c:    cpu->id_isar4 = 0x10011142;
+target-arm/cpu.c:    cpu->clidr = 0x0a200023;
+target-arm/cpu.c:    cpu->ccsidr[0] = 0x701fe00a; /* 32K L1 dcache */
+target-arm/cpu.c:    cpu->ccsidr[1] = 0x201fe00a; /* 32K L1 icache */
+target-arm/cpu.c:    cpu->ccsidr[2] = 0x711fe07a; /* 4096K L2 unified cache */
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V4T);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_OMAPCP);
+target-arm/cpu.c:    cpu->midr = ARM_CPUID_TI925T;
+target-arm/cpu.c:    cpu->ctr = 0x5109149;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000070;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_STRONGARM);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    cpu->midr = 0x4401A11B;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000070;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_STRONGARM);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_DUMMY_C15_REGS);
+target-arm/cpu.c:    cpu->midr = 0x6901B119;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000070;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    cpu->midr = 0x69052100;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    cpu->midr = 0x69052d00;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    cpu->midr = 0x69052903;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    cpu->midr = 0x69052d05;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    cpu->midr = 0x69052d06;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_IWMMXT);
+target-arm/cpu.c:    cpu->midr = 0x69054110;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_IWMMXT);
+target-arm/cpu.c:    cpu->midr = 0x69054111;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_IWMMXT);
+target-arm/cpu.c:    cpu->midr = 0x69054112;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_IWMMXT);
+target-arm/cpu.c:    cpu->midr = 0x69054113;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_IWMMXT);
+target-arm/cpu.c:    cpu->midr = 0x69054114;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V5);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_XSCALE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_IWMMXT);
+target-arm/cpu.c:    cpu->midr = 0x69054117;
+target-arm/cpu.c:    cpu->ctr = 0xd172172;
+target-arm/cpu.c:    cpu->reset_sctlr = 0x00000078;
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP4);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_VFP_FP16);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_NEON);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_THUMB2EE);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_ARM_DIV);
+target-arm/cpu.c:    set_feature(&cpu->env, ARM_FEATURE_V7MP);
+target-arm/cpu.c:    cpu->midr = 0xffffffff;
+target-arm/helper.c:    /* Write the coprocessor state from cpu->env to the (index,value) list. */
+target-arm/helper.c:    for (i = 0; i < cpu->cpreg_array_len; i++) {
+target-arm/helper.c:        uint32_t regidx = kvm_to_cpreg_id(cpu->cpreg_indexes[i]);
+target-arm/helper.c:        if (!read_raw_cp_reg(&cpu->env, ri, &v)) {
+target-arm/helper.c:        cpu->cpreg_values[i] = v;
+target-arm/helper.c:    for (i = 0; i < cpu->cpreg_array_len; i++) {
+target-arm/helper.c:        uint32_t regidx = kvm_to_cpreg_id(cpu->cpreg_indexes[i]);
+target-arm/helper.c:        uint64_t v = cpu->cpreg_values[i];
+target-arm/helper.c:        if (!write_raw_cp_reg(&cpu->env, ri, v) ||
+target-arm/helper.c:            !read_raw_cp_reg(&cpu->env, ri, &readback) ||
+target-arm/helper.c:        cpu->cpreg_indexes[cpu->cpreg_array_len] = cpreg_to_kvm_id(regidx);
+target-arm/helper.c:        cpu->cpreg_array_len++;
+target-arm/helper.c:        cpu->cpreg_array_len++;
+target-arm/helper.c:    keys = g_hash_table_get_keys(cpu->cp_regs);
+target-arm/helper.c:    cpu->cpreg_array_len = 0;
+target-arm/helper.c:    arraylen = cpu->cpreg_array_len;
+target-arm/helper.c:    cpu->cpreg_indexes = g_new(uint64_t, arraylen);
+target-arm/helper.c:    cpu->cpreg_values = g_new(uint64_t, arraylen);
+target-arm/helper.c:    cpu->cpreg_vmstate_indexes = g_new(uint64_t, arraylen);
+target-arm/helper.c:    cpu->cpreg_vmstate_values = g_new(uint64_t, arraylen);
+target-arm/helper.c:    cpu->cpreg_vmstate_array_len = cpu->cpreg_array_len;
+target-arm/helper.c:    cpu->cpreg_array_len = 0;
+target-arm/helper.c:    assert(cpu->cpreg_array_len == arraylen);
+target-arm/helper.c:    *value = cpu->ccsidr[env->cp15.c0_cssel];
+target-arm/helper.c:    CPUARMState *env = &cpu->env;
+target-arm/helper.c:              .resetvalue = cpu->id_pfr0 },
+target-arm/helper.c:              .resetvalue = cpu->id_pfr1 },
+target-arm/helper.c:              .resetvalue = cpu->id_dfr0 },
+target-arm/helper.c:              .resetvalue = cpu->id_afr0 },
+target-arm/helper.c:              .resetvalue = cpu->id_mmfr0 },
+target-arm/helper.c:              .resetvalue = cpu->id_mmfr1 },
+target-arm/helper.c:              .resetvalue = cpu->id_mmfr2 },
+target-arm/helper.c:              .resetvalue = cpu->id_mmfr3 },
+target-arm/helper.c:              .resetvalue = cpu->id_isar0 },
+target-arm/helper.c:              .resetvalue = cpu->id_isar1 },
+target-arm/helper.c:              .resetvalue = cpu->id_isar2 },
+target-arm/helper.c:              .resetvalue = cpu->id_isar3 },
+target-arm/helper.c:              .resetvalue = cpu->id_isar4 },
+target-arm/helper.c:              .resetvalue = cpu->id_isar5 },
+target-arm/helper.c:            .access = PL0_RW, .resetvalue = cpu->midr & 0xff000000,
+target-arm/helper.c:            .access = PL1_R, .type = ARM_CP_CONST, .resetvalue = cpu->clidr
+target-arm/helper.c:              .access = PL1_R, .resetvalue = cpu->midr,
+target-arm/helper.c:              .access = PL1_R, .type = ARM_CP_CONST, .resetvalue = cpu->ctr },
+target-arm/helper.c:            .resetvalue = cpu->reset_auxcr
+target-arm/helper.c:            .writefn = sctlr_write, .resetvalue = cpu->reset_sctlr,
+target-arm/helper.c:    env = &cpu->env;
+target-arm/helper.c:    CPUARMState *env = &cpu->env;
+target-arm/helper.c:                    oldreg = g_hash_table_lookup(cpu->cp_regs, key);
+target-arm/helper.c:                g_hash_table_insert(cpu->cp_regs, key, r2);
+target-arm/helper.c:    return g_hash_table_lookup(cpu->cp_regs, &encoded_cp);
+target-arm/helper.c:    CPUARMState *env = &cpu->env;
+target-arm/helper.c:    CPUARMState *env = &cpu->env;
+target-arm/helper.c:    CPUARMState *env = &cpu->env;
+target-arm/translate.c:    CPUARMState *env = &cpu->env;
+target-arm/translate.c:    CPUARMState *env = &cpu->env;
+target-arm/cpu.h:#include "exec/cpu-defs.h"
+target-arm/cpu.h:#include "cpu-qom.h"
+target-arm/cpu.h:        return &cpu->env;
+target-arm/cpu.h:#include "exec/cpu-all.h"
+target-arm/cpu.h:    return cpu->interrupt_request &
+target-arm/kvm.c:    return cpu->cpu_index;
+target-arm/kvm.c:    cpu->cpreg_indexes = g_renew(uint64_t, cpu->cpreg_indexes, arraylen);
+target-arm/kvm.c:    cpu->cpreg_values = g_renew(uint64_t, cpu->cpreg_values, arraylen);
+target-arm/kvm.c:    cpu->cpreg_vmstate_indexes = g_renew(uint64_t, cpu->cpreg_vmstate_indexes,
+target-arm/kvm.c:    cpu->cpreg_vmstate_values = g_renew(uint64_t, cpu->cpreg_vmstate_values,
+target-arm/kvm.c:    cpu->cpreg_array_len = arraylen;
+target-arm/kvm.c:    cpu->cpreg_vmstate_array_len = arraylen;
+target-arm/kvm.c:        cpu->cpreg_indexes[arraylen] = regidx;
+target-arm/kvm.c:    assert(cpu->cpreg_array_len == arraylen);
+target-arm/kvm.c:    cpu->cpreg_reset_values = g_memdup(cpu->cpreg_values,
+target-arm/kvm.c:                                       cpu->cpreg_array_len *
+target-arm/kvm.c:                                       sizeof(cpu->cpreg_values[0]));
+target-arm/kvm.c:    for (i = 0; i < cpu->cpreg_array_len; i++) {
+target-arm/kvm.c:        uint64_t regidx = cpu->cpreg_indexes[i];
+target-arm/kvm.c:                cpu->cpreg_values[i] = v32;
+target-arm/kvm.c:            r.addr = (uintptr_t)(cpu->cpreg_values + i);
+target-arm/kvm.c:    for (i = 0; i < cpu->cpreg_array_len; i++) {
+target-arm/kvm.c:        uint64_t regidx = cpu->cpreg_indexes[i];
+target-arm/kvm.c:            v32 = cpu->cpreg_values[i];
+target-arm/kvm.c:            r.addr = (uintptr_t)(cpu->cpreg_values + i);
+target-arm/kvm.c:    CPUARMState *env = &cpu->env;
+target-arm/kvm.c:    CPUARMState *env = &cpu->env;
+target-arm/kvm.c:    memmove(cpu->cpreg_values, cpu->cpreg_reset_values,
+target-arm/kvm.c:            cpu->cpreg_array_len * sizeof(cpu->cpreg_values[0]));
+target-cris/cpu.c:    CPUCRISState *env = &cpu->env;
+target-cris/cpu.c:    CPUCRISState *env = &cpu->env;
+target-cris/helper.c:    CPUCRISState *env = &cpu->env;
+target-cris/helper.c:              __func__, r, cpu->interrupt_request, address, res.phy,
+target-cris/helper.c:    CPUCRISState *env = &cpu->env;
+target-cris/helper.c:    CPUCRISState *env = &cpu->env;
+target-cris/translate.c:    /* Store the direct jmp state into the cpu-state.  */
+target-cris/translate.c:       the cpu-state to be able to re-execute the jmp.  */
+target-cris/translate.c:       the cpu-state to be able to re-execute the jmp.  */
+target-cris/translate.c:       the cpu-state to be able to re-execute the jmp.  */
+target-cris/translate.c:    CPUCRISState *env = &cpu->env;
+target-cris/translate.c:    CPUCRISState *env = &cpu->env;
+target-cris/translate_v10.c:       the cpu-state to be able to re-execute the jmp.  */
+target-cris/cpu.h:#include "exec/cpu-defs.h"
+target-cris/cpu.h:#include "cpu-qom.h"
+target-cris/cpu.h:    return &cpu->env;
+target-cris/cpu.h:#include "exec/cpu-all.h"
+target-cris/cpu.h:    return cpu->interrupt_request & (CPU_INTERRUPT_HARD | CPU_INTERRUPT_NMI);
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    return cpu->env.async_pf_en_msr != 0;
+target-i386/machine.c:    return cpu->env.pv_eoi_en_msr != 0;
+target-i386/machine.c:    return cpu->steal_time_msr != 0;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/machine.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    visit_type_uint32(v, &cpu->env.cpuid_level, name, errp);
+target-i386/cpu.c:    visit_type_uint32(v, &cpu->env.cpuid_level, name, errp);
+target-i386/cpu.c:    visit_type_uint32(v, &cpu->env.cpuid_xlevel, name, errp);
+target-i386/cpu.c:    visit_type_uint32(v, &cpu->env.cpuid_xlevel, name, errp);
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    value = cpu->env.tsc_khz * 1000;
+target-i386/cpu.c:    cpu->env.tsc_khz = value / 1000;
+target-i386/cpu.c:    int64_t value = cpu->env.cpuid_apic_id;
+target-i386/cpu.c:    if ((value != cpu->env.cpuid_apic_id) && cpu_exists(value)) {
+target-i386/cpu.c:    cpu->env.cpuid_apic_id = value;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:        cpu->filtered_features[w] = requested_features & ~env->features[w];
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    return cpu_get_apic_base(cpu->env.apic_state) & MSR_IA32_APICBASE_BSP;
+target-i386/cpu.c:    CPUX86State *cenv = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    if (cpu->env.features[FEAT_1_EDX] & CPUID_APIC || smp_cpus > 1) {
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:                        NULL, NULL, (void *)cpu->filtered_features, NULL);
+target-i386/cpu.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.c:    return cpu->env.cr[0] & CR0_PG_MASK;
+target-i386/misc_helper.c:    CPUX86State *env = &cpu->env;
+target-i386/helper.c:    CPUX86State *env = &cpu->env;
+target-i386/helper.c:    CPUX86State *env = &cpu->env;
+target-i386/helper.c:    CPUX86State *cenv = &params->cpu->env;
+target-i386/helper.c:                           cpu->cpu_index);
+target-i386/helper.c:                           cpu->cpu_index, params->bank);
+target-i386/helper.c:                           cpu->cpu_index);
+target-i386/helper.c:    CPUX86State *cenv = &cpu->env;
+target-i386/helper.c:    CPUX86State *env = &cpu->env;
+target-i386/helper.c:    CPUX86State *env = &cpu->env;
+target-i386/seg_helper.c:    CPUX86State *env = &cpu->env;
+target-i386/seg_helper.c:    CPUX86State *env = &cpu->env;
+target-i386/svm_helper.c:#include "exec/cpu-all.h"
+target-i386/translate.c:    CPUX86State *env = &cpu->env;
+target-i386/arch_memory_mapping.c:#include "exec/cpu-all.h"
+target-i386/arch_memory_mapping.c:    CPUX86State *env = &cpu->env;
+target-i386/cpu.h:#include "exec/cpu-defs.h"
+target-i386/cpu.h:#include "cpu-qom.h"
+target-i386/cpu.h:    CPUX86State *env = &cpu->env;
+target-i386/cpu.h:/* cpu-exec.c */
+target-i386/cpu.h:    return &cpu->env;
+target-i386/cpu.h:#include "exec/cpu-all.h"
+target-i386/cpu.h:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    if ((cpu->env.mcg_cap & MCG_SER_P) && addr && code == BUS_MCEERR_AO) {
+target-i386/kvm.c:            !kvm_physical_memory_addr_from_host(first_cpu->kvm_state,
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    return cpu->env.cpuid_apic_id;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    struct kvm_mp_state mp_state = { .mp_state = cpu->env.mp_state };
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &x86_cpu->env;
+target-i386/kvm.c:    if (cpu->interrupt_request & CPU_INTERRUPT_NMI) {
+target-i386/kvm.c:        cpu->interrupt_request &= ~CPU_INTERRUPT_NMI;
+target-i386/kvm.c:        if (cpu->interrupt_request &
+target-i386/kvm.c:            cpu->exit_request = 1;
+target-i386/kvm.c:            (cpu->interrupt_request & CPU_INTERRUPT_HARD) &&
+target-i386/kvm.c:            cpu->interrupt_request &= ~CPU_INTERRUPT_HARD;
+target-i386/kvm.c:        if ((cpu->interrupt_request & CPU_INTERRUPT_HARD)) {
+target-i386/kvm.c:    CPUX86State *env = &x86_cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/kvm.c:    CPUX86State *env = &cpu->env;
+target-i386/arch_dump.c:#include "exec/cpu-all.h"
+target-i386/arch_dump.c:    bool lma = !!(first_x86_cpu->env.hflags & HF_LMA_MASK);
+target-i386/arch_dump.c:        ret = x86_64_write_elf64_note(f, &cpu->env, cpuid, opaque);
+target-i386/arch_dump.c:        ret = x86_write_elf64_note(f, &cpu->env, cpuid, opaque);
+target-i386/arch_dump.c:    x86_fill_elf_prstatus(&prstatus, &cpu->env, cpuid);
+target-i386/arch_dump.c:    return cpu_write_qemu_note(f, &cpu->env, opaque, 1);
+target-i386/arch_dump.c:    return cpu_write_qemu_note(f, &cpu->env, opaque, 0);
+target-i386/arch_dump.c:    lma = !!(first_x86_cpu->env.hflags & HF_LMA_MASK);
+target-i386/smm_helper.c:    CPUX86State *env = &cpu->env;
+target-lm32/cpu.c:    CPULM32State *env = &cpu->env;
+target-lm32/cpu.c:    CPULM32State *env = &cpu->env;
+target-lm32/helper.c:    CPULM32State *env = &cpu->env;
+target-lm32/helper.c:    env = &cpu->env;
+target-lm32/translate.c:    CPULM32State *env = &cpu->env;
+target-lm32/translate.c:    CPULM32State *env = &cpu->env;
+target-lm32/cpu.h:#include "exec/cpu-defs.h"
+target-lm32/cpu.h:#include "cpu-qom.h"
+target-lm32/cpu.h:    return &cpu->env;
+target-lm32/cpu.h:#include "exec/cpu-all.h"
+target-lm32/cpu.h:    return cpu->interrupt_request & CPU_INTERRUPT_HARD;
+target-m68k/op_helper.c:    CPUM68KState *env = &cpu->env;
+target-m68k/op_helper.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.c:    CPUM68KState *env = &cpu->env;
+target-m68k/helper.c:    env = &cpu->env;
+target-m68k/helper.c:    CPUM68KState *env = &cpu->env;
+target-m68k/helper.c:    CPUM68KState *env = &cpu->env;
+target-m68k/translate.c:    CPUM68KState *env = &cpu->env;
+target-m68k/translate.c:    CPUM68KState *env = &cpu->env;
+target-m68k/cpu.h:#include "exec/cpu-defs.h"
+target-m68k/cpu.h:#include "cpu-qom.h"
+target-m68k/cpu.h:    return &cpu->env;
+target-m68k/cpu.h:#include "exec/cpu-all.h"
+target-m68k/cpu.h:    return cpu->interrupt_request & CPU_INTERRUPT_HARD;
+target-microblaze/op_helper.c:    env = &cpu->env;
+target-microblaze/cpu.c:    CPUMBState *env = &cpu->env;
+target-microblaze/cpu.c:    CPUMBState *env = &cpu->env;
+target-microblaze/helper.c:    CPUMBState *env = &cpu->env;
+target-microblaze/helper.c:    CPUMBState *env = &cpu->env;
+target-microblaze/helper.c:            env->sregs[SR_PC] = cpu->base_vectors + 0x20;
+target-microblaze/helper.c:            env->sregs[SR_PC] = cpu->base_vectors + 0x20;
+target-microblaze/helper.c:            env->sregs[SR_PC] = cpu->base_vectors + 0x10;
+target-microblaze/helper.c:                env->sregs[SR_PC] = cpu->base_vectors + 0x18;
+target-microblaze/translate.c:    CPUMBState *env = &cpu->env;
+target-microblaze/translate.c:    CPUMBState *env = &cpu->env;
+target-microblaze/cpu.h:#include "exec/cpu-defs.h"
+target-microblaze/cpu.h:#include "cpu-qom.h"
+target-microblaze/cpu.h:    return &cpu->env;
+target-microblaze/cpu.h:#include "exec/cpu-all.h"
+target-microblaze/cpu.h:    return cpu->interrupt_request & (CPU_INTERRUPT_HARD | CPU_INTERRUPT_NMI);
+target-mips/op_helper.c:    return cpu->halted && mips_vpe_active(env);
+target-mips/op_helper.c:    CPUMIPSState *c = &cpu->env;
+target-mips/op_helper.c:    CPUMIPSState *c = &cpu->env;
+target-mips/op_helper.c:    return &cpu->env;
+target-mips/op_helper.c:    uint32_t v = cpu->CP0_Status;
+target-mips/op_helper.c:    if (tc == cpu->current_tc) {
+target-mips/op_helper.c:        tcst = &cpu->active_tc.CP0_TCStatus;
+target-mips/op_helper.c:        tcst = &cpu->tcs[tc].CP0_TCStatus;
+target-mips/op_helper.c:    cpu->CP0_Status &= ~mask;
+target-mips/op_helper.c:    cpu->CP0_Status |= status;
+target-mips/op_helper.c:    cpu->CP0_EntryHi &= ~0xff;
+target-mips/op_helper.c:    cpu->CP0_EntryHi = tasid;
+target-mips/op_helper.c:    uint32_t asid, v = cpu->CP0_EntryHi;
+target-mips/op_helper.c:    if (tc == cpu->current_tc) {
+target-mips/op_helper.c:        tcst = &cpu->active_tc.CP0_TCStatus;
+target-mips/op_helper.c:        tcst = &cpu->tcs[tc].CP0_TCStatus;
+target-mips/op_helper.c:    uint32_t old = cpu->CP0_Cause;
+target-mips/op_helper.c:    if (cpu->insn_flags & ISA_MIPS32R2) {
+target-mips/op_helper.c:    cpu->CP0_Cause = (cpu->CP0_Cause & ~mask) | (arg1 & mask);
+target-mips/op_helper.c:    if ((old ^ cpu->CP0_Cause) & (1 << CP0Ca_DC)) {
+target-mips/op_helper.c:        if (cpu->CP0_Cause & (1 << CP0Ca_DC)) {
+target-mips/op_helper.c:        if ((old ^ cpu->CP0_Cause) & (1 << (CP0Ca_IP + i))) {
+target-mips/op_helper.c:            cpu_mips_soft_irq(cpu, i, cpu->CP0_Cause & (1 << (CP0Ca_IP + i)));
+target-mips/op_helper.c:        if (&other_cpu->env != env) {
+target-mips/op_helper.c:            other_cpu->env.mvp->CP0_MVPControl &= ~(1 << CP0MVPCo_EVP);
+target-mips/op_helper.c:        if (&other_cpu->env != env
+target-mips/op_helper.c:            other_cpu->env.mvp->CP0_MVPControl |= (1 << CP0MVPCo_EVP);
+target-mips/op_helper.c:    CPUMIPSState *env = &cpu->env;
+target-mips/cpu.c:    CPUMIPSState *env = &cpu->env;
+target-mips/cpu.c:    CPUMIPSState *env = &cpu->env;
+target-mips/helper.c:    CPUMIPSState *env = &cpu->env;
+target-mips/translate.c:    CPUMIPSState *env = &cpu->env;
+target-mips/translate.c:    CPUMIPSState *env = &cpu->env;
+target-mips/translate.c:    env = &cpu->env;
+target-mips/cpu.h:#include "exec/cpu-defs.h"
+target-mips/cpu.h:#include "cpu-qom.h"
+target-mips/cpu.h:#include "exec/cpu-all.h"
+target-mips/cpu.h:    return &cpu->env;
+target-mips/cpu.h:    if ((cpu->interrupt_request & CPU_INTERRUPT_HARD) &&
+target-mips/cpu.h:        if (cpu->interrupt_request & CPU_INTERRUPT_WAKE) {
+target-moxie/cpu.c:    CPUMoxieState *env = &cpu->env;
+target-moxie/cpu.c:    cs->env_ptr = &cpu->env;
+target-moxie/cpu.c:    cpu_exec_init(&cpu->env);
+target-moxie/cpu.c:    cpu->env.cpu_model_str = cpu_model;
+target-moxie/helper.c:    CPUMoxieState *env = &cpu->env;
+target-moxie/translate.c:    CPUMoxieState *env = &cpu->env;
+target-moxie/translate.c:    CPUMoxieState *env = &cpu->env;
+target-moxie/translate.c:    CPUMoxieState *env = &cpu->env;
+target-moxie/cpu.h:#include "exec/cpu-defs.h"
+target-moxie/cpu.h:    return &cpu->env;
+target-moxie/cpu.h:#include "exec/cpu-all.h"
+target-moxie/cpu.h:    return cpu->interrupt_request & CPU_INTERRUPT_HARD;
+target-openrisc/exception.c:    cpu->env.exception_index = excp;
+target-openrisc/exception.c:    cpu_loop_exit(&cpu->env);
+target-openrisc/cpu.c:    memset(&cpu->env, 0, offsetof(CPUOpenRISCState, breakpoints));
+target-openrisc/cpu.c:    tlb_flush(&cpu->env, 1);
+target-openrisc/cpu.c:    /*tb_flush(&cpu->env);    FIXME: Do we need it?  */
+target-openrisc/cpu.c:    cpu->env.pc = 0x100;
+target-openrisc/cpu.c:    cpu->env.sr = SR_FO | SR_SM;
+target-openrisc/cpu.c:    cpu->env.exception_index = -1;
+target-openrisc/cpu.c:    cpu->env.upr = UPR_UP | UPR_DMP | UPR_IMP | UPR_PICP | UPR_TTP;
+target-openrisc/cpu.c:    cpu->env.cpucfgr = CPUCFGR_OB32S | CPUCFGR_OF32S;
+target-openrisc/cpu.c:    cpu->env.dmmucfgr = (DMMUCFGR_NTW & (0 << 2)) | (DMMUCFGR_NTS & (6 << 2));
+target-openrisc/cpu.c:    cpu->env.immucfgr = (IMMUCFGR_NTW & (0 << 2)) | (IMMUCFGR_NTS & (6 << 2));
+target-openrisc/cpu.c:    cpu->env.picmr = 0x00000000;
+target-openrisc/cpu.c:    cpu->env.picsr = 0x00000000;
+target-openrisc/cpu.c:    cpu->env.ttmr = 0x00000000;
+target-openrisc/cpu.c:    cpu->env.ttcr = 0x00000000;
+target-openrisc/cpu.c:    cpu->feature |= feature;
+target-openrisc/cpu.c:    cpu->env.cpucfgr = cpu->feature;
+target-openrisc/cpu.c:    cs->env_ptr = &cpu->env;
+target-openrisc/cpu.c:    cpu_exec_init(&cpu->env);
+target-openrisc/cpu.c:    cpu->env.cpu_model_str = cpu_model;
+target-openrisc/fpu_helper.c:            cpu->env.fpcsr |= FPCSR_IVF;
+target-openrisc/fpu_helper.c:            cpu->env.fpcsr |= FPCSR_OVF;
+target-openrisc/fpu_helper.c:            cpu->env.fpcsr |= FPCSR_UNF;
+target-openrisc/fpu_helper.c:            cpu->env.fpcsr |= FPCSR_DZF;
+target-openrisc/fpu_helper.c:            cpu->env.fpcsr |= FPCSR_IXF;
+target-openrisc/fpu_helper.c:                              get_float_exception_flags(&cpu->env.fp_status));
+target-openrisc/fpu_helper.c:    SET_FP_CAUSE(cpu->env.fpcsr, tmp);
+target-openrisc/fpu_helper.c:    if ((GET_FP_ENABLE(cpu->env.fpcsr) & tmp) &&
+target-openrisc/fpu_helper.c:        (cpu->env.fpcsr & FPCSR_FPEE)) {
+target-openrisc/fpu_helper.c:        helper_exception(&cpu->env, EXCP_FPE);
+target-openrisc/fpu_helper.c:        UPDATE_FP_FLAGS(cpu->env.fpcsr, tmp);
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    itofd = int32_to_float64(val, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    itofs = int32_to_float32(val, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    ftoid = float32_to_int64(val, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    ftois = float32_to_int32(val, &cpu->env.fp_status);
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    result = float64_ ## name(fdt0, fdt1, &cpu->env.fp_status);           \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    result = float32_ ## name(fdt0, fdt1, &cpu->env.fp_status);           \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    result = float64_ ## name1(fdt0, fdt1, &cpu->env.fp_status);          \
+target-openrisc/fpu_helper.c:    result = float64_ ## name2(result, temp, &cpu->env.fp_status);        \
+target-openrisc/fpu_helper.c:    cpu->env.fpmaddlo = val2;                                             \
+target-openrisc/fpu_helper.c:    cpu->env.fpmaddhi = val1;                                             \
+target-openrisc/fpu_helper.c:    hi = cpu->env.fpmaddhi;                                               \
+target-openrisc/fpu_helper.c:    lo = cpu->env.fpmaddlo;                                               \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    result = float64_ ## name1(fdt0, fdt1, &cpu->env.fp_status);          \
+target-openrisc/fpu_helper.c:    result = float64_ ## name2(result, temp, &cpu->env.fp_status);        \
+target-openrisc/fpu_helper.c:    cpu->env.fpmaddlo = val2;                                             \
+target-openrisc/fpu_helper.c:    cpu->env.fpmaddhi = val1;                                             \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = float64_ ## name(fdt0, fdt1, &cpu->env.fp_status);              \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = float32_ ## name(fdt0, fdt1, &cpu->env.fp_status);              \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = !float64_eq_quiet(fdt0, fdt1, &cpu->env.fp_status);             \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = !float32_eq_quiet(fdt0, fdt1, &cpu->env.fp_status);             \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = !float64_le(fdt0, fdt1, &cpu->env.fp_status);                   \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = !float32_le(fdt0, fdt1, &cpu->env.fp_status);                   \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = !float64_lt(fdt0, fdt1, &cpu->env.fp_status);                   \
+target-openrisc/fpu_helper.c:    set_float_exception_flags(0, &cpu->env.fp_status);                    \
+target-openrisc/fpu_helper.c:    res = !float32_lt(fdt0, fdt1, &cpu->env.fp_status);                   \
+target-openrisc/translate.c:    insn = cpu_ldl_code(&cpu->env, dc->pc);
+target-openrisc/translate.c:    if (unlikely(!QTAILQ_EMPTY(&cpu->env.breakpoints))) {
+target-openrisc/translate.c:        QTAILQ_FOREACH(bp, &cpu->env.breakpoints, entry) {
+target-openrisc/translate.c:    dc->flags = cpu->env.cpucfgr;
+target-openrisc/translate.c:    dc->mem_idx = cpu_mmu_index(&cpu->env);
+target-openrisc/translate.c:    dc->singlestep_enabled = cpu->env.singlestep_enabled;
+target-openrisc/translate.c:             && !cpu->env.singlestep_enabled
+target-openrisc/translate.c:    if (unlikely(cpu->env.singlestep_enabled)) {
+target-openrisc/translate.c:        log_target_disas(&cpu->env, pc_start, dc->pc - pc_start, 0);
+target-openrisc/translate.c:    CPUOpenRISCState *env = &cpu->env;
+target-openrisc/mmu.c:    if ((cpu->env.tlb->itlb[0][idx].mr >> TARGET_PAGE_BITS) != vpn) {
+target-openrisc/mmu.c:    if (!(cpu->env.tlb->itlb[0][idx].mr & 1)) {
+target-openrisc/mmu.c:    if (cpu->env.sr & SR_SM) { /* supervisor mode */
+target-openrisc/mmu.c:        if (cpu->env.tlb->itlb[0][idx].tr & SXE) {
+target-openrisc/mmu.c:        if (cpu->env.tlb->itlb[0][idx].tr & UXE) {
+target-openrisc/mmu.c:    *physical = (cpu->env.tlb->itlb[0][idx].tr & TARGET_PAGE_MASK) |
+target-openrisc/mmu.c:    if ((cpu->env.tlb->dtlb[0][idx].mr >> TARGET_PAGE_BITS) != vpn) {
+target-openrisc/mmu.c:    if (!(cpu->env.tlb->dtlb[0][idx].mr & 1)) {
+target-openrisc/mmu.c:    if (cpu->env.sr & SR_SM) { /* supervisor mode */
+target-openrisc/mmu.c:        if (cpu->env.tlb->dtlb[0][idx].tr & SRE) {
+target-openrisc/mmu.c:        if (cpu->env.tlb->dtlb[0][idx].tr & SWE) {
+target-openrisc/mmu.c:        if (cpu->env.tlb->dtlb[0][idx].tr & URE) {
+target-openrisc/mmu.c:        if (cpu->env.tlb->dtlb[0][idx].tr & UWE) {
+target-openrisc/mmu.c:    *physical = (cpu->env.tlb->dtlb[0][idx].tr & TARGET_PAGE_MASK) |
+target-openrisc/mmu.c:    if (address < 0x2000 && (cpu->env.sr & SR_SM)) {
+target-openrisc/mmu.c:        ret = cpu->env.tlb->cpu_openrisc_map_address_code(cpu, physical,
+target-openrisc/mmu.c:        ret = cpu->env.tlb->cpu_openrisc_map_address_data(cpu, physical,
+target-openrisc/mmu.c:    cpu->env.exception_index = exception;
+target-openrisc/mmu.c:    cpu->env.eear = address;
+target-openrisc/mmu.c:    cpu->env.tlb = g_malloc0(sizeof(CPUOpenRISCTLBContext));
+target-openrisc/mmu.c:    cpu->env.tlb->cpu_openrisc_map_address_code = &cpu_openrisc_get_phys_nommu;
+target-openrisc/mmu.c:    cpu->env.tlb->cpu_openrisc_map_address_data = &cpu_openrisc_get_phys_nommu;
+target-openrisc/interrupt_helper.c:    int need_flush_tlb = (cpu->env.sr & (SR_SM | SR_IME | SR_DME)) ^
+target-openrisc/interrupt_helper.c:                         (cpu->env.esr & (SR_SM | SR_IME | SR_DME));
+target-openrisc/interrupt_helper.c:    cpu->env.pc = cpu->env.epcr;
+target-openrisc/interrupt_helper.c:    cpu->env.npc = cpu->env.epcr;
+target-openrisc/interrupt_helper.c:    cpu->env.sr = cpu->env.esr;
+target-openrisc/interrupt_helper.c:    if (cpu->env.sr & SR_DME) {
+target-openrisc/interrupt_helper.c:        cpu->env.tlb->cpu_openrisc_map_address_data =
+target-openrisc/interrupt_helper.c:        cpu->env.tlb->cpu_openrisc_map_address_data =
+target-openrisc/interrupt_helper.c:    if (cpu->env.sr & SR_IME) {
+target-openrisc/interrupt_helper.c:        cpu->env.tlb->cpu_openrisc_map_address_code =
+target-openrisc/interrupt_helper.c:        cpu->env.tlb->cpu_openrisc_map_address_code =
+target-openrisc/interrupt_helper.c:        tlb_flush(&cpu->env, 1);
+target-openrisc/cpu.h:#include "exec/cpu-defs.h"
+target-openrisc/cpu.h:        return &cpu->env;
+target-openrisc/cpu.h:#include "exec/cpu-all.h"
+target-openrisc/cpu.h:    return cpu->interrupt_request & (CPU_INTERRUPT_HARD |
+target-openrisc/interrupt.c:    CPUOpenRISCState *env = &cpu->env;
+target-openrisc/int_helper.c:    cpu->env.sr |= (SR_OV | SR_CY);
+target-openrisc/int_helper.c:    if (cpu->env.sr & SR_OVE) {
+target-ppc/excp_helper.c:    CPUPPCState *env = &cpu->env;
+target-ppc/excp_helper.c:    CPUPPCState *env = &cpu->env;
+target-ppc/excp_helper.c:    CPUPPCState *env = &cpu->env;
+target-ppc/excp_helper.c:        CPUPPCState *cenv = &cpu->env;
+target-ppc/translate.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate.c:    t1 = cpu->env.opcodes;
+target-ppc/translate.c:    CPUPPCState *env = &cpu->env;
+target-ppc/Makefile.objs:obj-y += cpu-models.o
+target-ppc/translate_init.c:#include "cpu-models.h"
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate_init.c:    env = &cpu->env;
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/translate_init.c:    CPUPPCState *env = &cpu->env;
+target-ppc/cpu.h:#include "exec/cpu-defs.h"
+target-ppc/cpu.h:#include "cpu-qom.h"
+target-ppc/cpu.h:    return &cpu->env;
+target-ppc/cpu.h:#include "exec/cpu-all.h"
+target-ppc/cpu.h:    CPUPPCState *env = &ppc_cpu->env;
+target-ppc/cpu.h:    return msr_ee && (cpu->interrupt_request & CPU_INTERRUPT_HARD);
+target-ppc/kvm.c:    CPUPPCState *cenv = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    return cpu->cpu_index;
+target-ppc/kvm.c:    CPUPPCState *cenv = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/kvm.c:    CPUPPCState *env = &cpu->env;
+target-ppc/cpu-models.c:#include "cpu-models.h"
+target-s390x/cpu.c:    CPUS390XState *env = &cpu->env;
+target-s390x/cpu.c:    CPUS390XState *env = &cpu->env;
+target-s390x/helper.c:    CPUS390XState *env = &cpu->env;
+target-s390x/helper.c:    CPUS390XState *env = &cpu->env;
+target-s390x/helper.c:    env = &cpu->env;
+target-s390x/helper.c:    CPUS390XState *env = &cpu->env;
+target-s390x/helper.c:    CPUS390XState *env = &cpu->env;
+target-s390x/translate.c:    CPUS390XState *env = &cpu->env;
+target-s390x/translate.c:    CPUS390XState *env = &cpu->env;
+target-s390x/cpu.h:#include "exec/cpu-defs.h"
+target-s390x/cpu.h:#include "exec/cpu-all.h"
+target-s390x/cpu.h:#include "cpu-qom.h"
+target-s390x/cpu.h:    CPUS390XState *env = &cpu->env;
+target-s390x/cpu.h:    CPUS390XState *env = &cpu->env;
+target-s390x/cpu.h:    CPUS390XState *env = &cpu->env;
+target-s390x/cpu.h:    CPUS390XState *env = &s390_cpu->env;
+target-s390x/cpu.h:    return (cpu->interrupt_request & CPU_INTERRUPT_HARD) &&
+target-s390x/interrupt.c:    CPUS390XState *env = &dummy_cpu->env;
+target-s390x/kvm.c:    return cpu->cpu_index;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    dprintf("DONE: SIGP cpu restart: %p\n", &cpu->env);
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-s390x/kvm.c:    target_env = &target_cpu->env;
+target-s390x/kvm.c:    CPUS390XState *env = &cpu->env;
+target-sh4/cpu.c:    CPUSH4State *env = &cpu->env;
+target-sh4/cpu.c:    env = &cpu->env;
+target-sh4/cpu.c:    CPUSH4State *env = &cpu->env;
+target-sh4/cpu.c:    CPUSH4State *env = &cpu->env;
+target-sh4/cpu.c:    CPUSH4State *env = &cpu->env;
+target-sh4/cpu.c:    CPUSH4State *env = &cpu->env;
+target-sh4/helper.c:    CPUSH4State *env = &cpu->env;
+target-sh4/helper.c:    CPUSH4State *env = &cpu->env;
+target-sh4/translate.c:    CPUSH4State *env = &cpu->env;
+target-sh4/translate.c:    CPUSH4State *env = &cpu->env;
+target-sh4/cpu.h:#include "exec/cpu-defs.h"
+target-sh4/cpu.h:#include "cpu-qom.h"
+target-sh4/cpu.h:    return &cpu->env;
+target-sh4/cpu.h:#include "exec/cpu-all.h"
+target-sh4/cpu.h:    return cpu->interrupt_request & CPU_INTERRUPT_HARD;
+target-sparc/cpu.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/cpu.c:    env = &cpu->env;
+target-sparc/cpu.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/cpu.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/cpu.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/ldst_helper.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/ldst_helper.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/int32_helper.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/translate.c:    CPUSPARCState *env = &cpu->env;
+target-sparc/cpu.h:#include "exec/cpu-defs.h"
+target-sparc/cpu.h:#include "cpu-qom.h"
+target-sparc/cpu.h:/* cpu-exec.c */
+target-sparc/cpu.h:/* cpu-exec.c */
+target-sparc/cpu.h:    return &cpu->env;
+target-sparc/cpu.h:#include "exec/cpu-all.h"
+target-sparc/cpu.h:    CPUSPARCState *env1 = &sparc_cpu->env;
+target-sparc/cpu.h:    return (cpu->interrupt_request & CPU_INTERRUPT_HARD) &&
+target-sparc/int64_helper.c:    CPUSPARCState *env = &cpu->env;
+target-unicore32/cpu.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/cpu.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/cpu.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/helper.c:    env = &cpu->env;
+target-unicore32/helper.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/translate.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/translate.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/softmmu.c:    CPUUniCore32State *env = &cpu->env;
+target-unicore32/cpu.h:#include "exec/cpu-defs.h"
+target-unicore32/cpu.h:#include "exec/cpu-all.h"
+target-unicore32/cpu.h:#include "cpu-qom.h"
+target-unicore32/cpu.h:    return cpu->interrupt_request &
+target-xtensa/op_helper.c:    cpu->halted = 1;
+target-xtensa/cpu.c:    CPUXtensaState *env = &cpu->env;
+target-xtensa/cpu.c:    CPUXtensaState *env = &cpu->env;
+target-xtensa/helper.c:    env = &cpu->env;
+target-xtensa/helper.c:    CPUXtensaState *env = &cpu->env;
+target-xtensa/translate.c:    CPUXtensaState *env = &cpu->env;
+target-xtensa/translate.c:    CPUXtensaState *env = &cpu->env;
+target-xtensa/cpu.h:#include "exec/cpu-defs.h"
+target-xtensa/cpu.h:#include "cpu-qom.h"
+target-xtensa/cpu.h:    return &cpu->env;
+target-xtensa/cpu.h:#include "exec/cpu-all.h"
+thread-pool.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+thread-pool.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+thread-pool.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+thread-pool.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+thread-pool.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+thread-pool.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+thread-pool.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+thread-pool.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário thread-pool.o coincide com o padrão
+translate-all.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+translate-all.c:        CPUArchState *env = cpu->env_ptr;
+translate-all.c:    for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+translate-all.c:        CPUArchState *env = cpu->env_ptr;
+translate-all.c:        env = cpu->env_ptr;
+translate-all.c:                saved_tb = cpu->current_tb;
+translate-all.c:                cpu->current_tb = NULL;
+translate-all.c:                cpu->current_tb = saved_tb;
+translate-all.c:                if (cpu->interrupt_request && cpu->current_tb) {
+translate-all.c:                    cpu_interrupt(cpu, cpu->interrupt_request);
+translate-all.c:        cpu->current_tb = NULL;
+translate-all.c:        env = cpu->env_ptr;
+translate-all.c:        cpu->current_tb = NULL;
+translate-all.c:    CPUArchState *env = cpu->env_ptr;
+translate-all.c:    old_mask = cpu->interrupt_request;
+translate-all.c:    cpu->interrupt_request |= mask;
+translate-all.c:        cpu->tcg_exit_req = 1;
+translate-all.c:    cpu->interrupt_request |= mask;
+translate-all.c:    cpu->tcg_exit_req = 1;
+user-exec.c:    env = current_cpu->env_ptr;
+util/qemu-config.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+util/qemu-config.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+util/fifo8.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+util/fifo8.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+vl.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+vl.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+vl.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+vl.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+vl.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+vl.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+vl.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+vl.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário vl.o coincide com o padrão
+x86_64-softmmu/kvm-all.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/kvm-all.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/kvm-all.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/kvm-all.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/kvm-all.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/kvm-all.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/kvm-all.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/kvm-all.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/cpu-exec.o coincide com o padrão
+x86_64-softmmu/qmp-commands-old.h:.name       = "cpu-add",
+x86_64-softmmu/qmp-commands-old.h:.args_type  = "command-line:s,cpu-index:i?",
+x86_64-softmmu/qmp-commands-old.h:.name       = "query-cpu-definitions",
+x86_64-softmmu/cpus.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/cpus.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/cpus.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/cpus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/cpus.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/cpus.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/cpus.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/cpus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/translate-all.o coincide com o padrão
+x86_64-softmmu/translate-all.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/translate-all.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/translate-all.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/translate-all.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/translate-all.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/translate-all.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/translate-all.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/translate-all.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/arch_init.o coincide com o padrão
+Arquivo binário x86_64-softmmu/ioport.o coincide com o padrão
+Arquivo binário x86_64-softmmu/qtest.o coincide com o padrão
+Arquivo binário x86_64-softmmu/memory_mapping.o coincide com o padrão
+Arquivo binário x86_64-softmmu/cpus.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/seg_helper.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/helper.o coincide com o padrão
+x86_64-softmmu/target-i386/machine.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/machine.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/machine.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/machine.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/machine.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/machine.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/machine.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/machine.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/seg_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/seg_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/seg_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/seg_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/seg_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/seg_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/seg_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/seg_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/target-i386/kvm.o coincide com o padrão
+x86_64-softmmu/target-i386/excp_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/excp_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/excp_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/excp_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/excp_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/excp_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/excp_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/excp_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/int_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/int_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/int_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/int_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/int_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/int_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/int_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/int_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/target-i386/cc_helper.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/hyperv.o coincide com o padrão
+x86_64-softmmu/target-i386/svm_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/svm_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/svm_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/svm_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/svm_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/svm_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/svm_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/svm_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/target-i386/mem_helper.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/translate.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/int_helper.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/cpu.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/machine.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/arch_memory_mapping.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/smm_helper.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/arch_dump.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/excp_helper.o coincide com o padrão
+x86_64-softmmu/target-i386/mem_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/mem_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/mem_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/mem_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/mem_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/mem_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/mem_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/mem_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/cpu.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/cpu.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/cpu.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/cpu.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/cpu.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/cpu.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/cpu.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/cpu.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/kvm.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/kvm.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/kvm.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/kvm.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/kvm.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/kvm.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/kvm.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/kvm.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/cc_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/cc_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/cc_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/cc_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/cc_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/cc_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/cc_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/cc_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/target-i386/misc_helper.o coincide com o padrão
+x86_64-softmmu/target-i386/arch_memory_mapping.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/arch_memory_mapping.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/arch_memory_mapping.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/arch_memory_mapping.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/arch_memory_mapping.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/arch_memory_mapping.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/arch_memory_mapping.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/arch_memory_mapping.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/translate.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/translate.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/translate.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/translate.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/translate.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/translate.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/translate.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/translate.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/misc_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/misc_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/misc_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/misc_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/misc_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/misc_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/misc_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/misc_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/smm_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/smm_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/smm_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/smm_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/smm_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/smm_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/smm_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/smm_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/hyperv.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/hyperv.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/hyperv.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/hyperv.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/hyperv.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/hyperv.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/hyperv.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/hyperv.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/target-i386/arch_dump.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/arch_dump.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/arch_dump.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/arch_dump.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/arch_dump.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/arch_dump.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/arch_dump.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/arch_dump.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/target-i386/fpu_helper.o coincide com o padrão
+Arquivo binário x86_64-softmmu/target-i386/svm_helper.o coincide com o padrão
+x86_64-softmmu/target-i386/fpu_helper.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/target-i386/fpu_helper.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/target-i386/fpu_helper.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/target-i386/fpu_helper.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/target-i386/fpu_helper.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/target-i386/fpu_helper.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/target-i386/fpu_helper.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/target-i386/fpu_helper.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/monitor.o coincide com o padrão
+Arquivo binário x86_64-softmmu/memory.o coincide com o padrão
+x86_64-softmmu/arch_init.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/arch_init.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/arch_init.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/arch_init.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/arch_init.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/arch_init.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/arch_init.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/arch_init.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/qtest.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/qtest.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/qtest.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/qtest.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/qtest.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/qtest.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/qtest.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/qtest.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/memory.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/memory.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/memory.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/memory.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/memory.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/memory.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/memory.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/memory.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/gdbstub.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/gdbstub.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/gdbstub.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/gdbstub.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/gdbstub.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/gdbstub.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/gdbstub.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/gdbstub.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/disas.o coincide com o padrão
+Arquivo binário x86_64-softmmu/dump.o coincide com o padrão
+Arquivo binário x86_64-softmmu/xen-stub.o coincide com o padrão
+x86_64-softmmu/xen-stub.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/xen-stub.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/xen-stub.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/xen-stub.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/xen-stub.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/xen-stub.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/xen-stub.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/xen-stub.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/cputlb.o coincide com o padrão
+x86_64-softmmu/cputlb.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/cputlb.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/cputlb.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/cputlb.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/cputlb.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/cputlb.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/cputlb.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/cputlb.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/cpu-exec.d:cpu-exec.o: /home/bona/qemu/qemu/cpu-exec.c \
+x86_64-softmmu/cpu-exec.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/cpu-exec.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/cpu-exec.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/cpu-exec.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/cpu-exec.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/cpu-exec.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/cpu-exec.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/cpu-exec.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/balloon.o coincide com o padrão
+x86_64-softmmu/monitor.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/monitor.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/monitor.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/monitor.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/monitor.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/monitor.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/monitor.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/monitor.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/kvm-all.o coincide com o padrão
+Arquivo binário x86_64-softmmu/savevm.o coincide com o padrão
+x86_64-softmmu/memory_mapping.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/memory_mapping.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/memory_mapping.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/memory_mapping.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/memory_mapping.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/memory_mapping.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/memory_mapping.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/memory_mapping.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/exec.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/exec.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/exec.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/exec.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/exec.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/exec.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/exec.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/exec.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/savevm.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/savevm.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/savevm.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/savevm.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/savevm.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/savevm.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/savevm.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/savevm.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/isa/lpc_ich9.o coincide com o padrão
+x86_64-softmmu/hw/isa/lpc_ich9.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/isa/lpc_ich9.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/isa/lpc_ich9.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/isa/lpc_ich9.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/isa/lpc_ich9.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/isa/lpc_ich9.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/isa/lpc_ich9.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/isa/lpc_ich9.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/net/virtio-net.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/net/virtio-net.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/net/virtio-net.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/net/virtio-net.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/net/virtio-net.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/net/virtio-net.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/net/virtio-net.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/net/virtio-net.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/net/vhost_net.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/net/virtio-net.o coincide com o padrão
+x86_64-softmmu/hw/net/vhost_net.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/net/vhost_net.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/net/vhost_net.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/net/vhost_net.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/net/vhost_net.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/net/vhost_net.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/net/vhost_net.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/net/vhost_net.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/char/virtio-serial-bus.o coincide com o padrão
+x86_64-softmmu/hw/char/virtio-serial-bus.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/char/virtio-serial-bus.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/char/virtio-serial-bus.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/char/virtio-serial-bus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/char/virtio-serial-bus.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/char/virtio-serial-bus.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/char/virtio-serial-bus.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/char/virtio-serial-bus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/cpu/icc_bus.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/cpu/icc_bus.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/cpu/icc_bus.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/cpu/icc_bus.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/cpu/icc_bus.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/cpu/icc_bus.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/cpu/icc_bus.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/cpu/icc_bus.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/cpu/icc_bus.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/display/vga.o coincide com o padrão
+x86_64-softmmu/hw/display/vga.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/display/vga.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/display/vga.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/display/vga.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/display/vga.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/display/vga.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/display/vga.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/display/vga.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/intc/apic_common.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/intc/apic_common.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/intc/apic_common.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/intc/apic_common.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/intc/apic_common.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/intc/apic_common.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/intc/apic_common.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/intc/apic_common.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/intc/apic.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/intc/apic.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/intc/apic.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/intc/apic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/intc/apic.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/intc/apic.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/intc/apic.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/intc/apic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/intc/apic.o coincide com o padrão
+x86_64-softmmu/hw/intc/ioapic.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/intc/ioapic.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/intc/ioapic.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/intc/ioapic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/intc/ioapic.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/intc/ioapic.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/intc/ioapic.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/intc/ioapic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/intc/apic_common.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/intc/ioapic.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/virtio/virtio.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/virtio/vhost.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/virtio/virtio-balloon.o coincide com o padrão
+x86_64-softmmu/hw/virtio/virtio.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/virtio/virtio.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/virtio/virtio.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/virtio/virtio.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/virtio/virtio.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/virtio/virtio.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/virtio/virtio.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/virtio/virtio.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/virtio/virtio-balloon.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/virtio/virtio-balloon.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/virtio/virtio-balloon.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/virtio/virtio-balloon.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/virtio/virtio-balloon.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/virtio/virtio-balloon.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/virtio/virtio-balloon.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/virtio/virtio-balloon.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/virtio/vhost.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/virtio/vhost.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/virtio/vhost.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/virtio/vhost.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/virtio/vhost.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/virtio/vhost.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/virtio/vhost.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/virtio/vhost.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/scsi/vhost-scsi.o coincide com o padrão
+x86_64-softmmu/hw/scsi/virtio-scsi.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/scsi/virtio-scsi.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/scsi/virtio-scsi.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/scsi/virtio-scsi.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/scsi/virtio-scsi.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/scsi/virtio-scsi.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/scsi/virtio-scsi.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/scsi/virtio-scsi.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/scsi/virtio-scsi.o coincide com o padrão
+x86_64-softmmu/hw/scsi/vhost-scsi.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/scsi/vhost-scsi.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/scsi/vhost-scsi.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/scsi/vhost-scsi.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/scsi/vhost-scsi.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/scsi/vhost-scsi.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/scsi/vhost-scsi.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/scsi/vhost-scsi.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/block/virtio-blk.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/block/dataplane/virtio-blk.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/block/dataplane/ioq.o coincide com o padrão
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/block/dataplane/virtio-blk.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/block/dataplane/ioq.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/block/dataplane/ioq.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/block/dataplane/ioq.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/block/dataplane/ioq.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/block/dataplane/ioq.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/block/dataplane/ioq.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/block/dataplane/ioq.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/block/dataplane/ioq.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/block/virtio-blk.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/block/virtio-blk.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/block/virtio-blk.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/block/virtio-blk.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/block/virtio-blk.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/block/virtio-blk.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/block/virtio-blk.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/block/virtio-blk.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/timer/mc146818rtc.o coincide com o padrão
+x86_64-softmmu/hw/timer/mc146818rtc.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/timer/mc146818rtc.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/timer/mc146818rtc.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/timer/mc146818rtc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/timer/mc146818rtc.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/timer/mc146818rtc.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/timer/mc146818rtc.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/timer/mc146818rtc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/misc/vfio.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/misc/vmport.o coincide com o padrão
+x86_64-softmmu/hw/misc/pvpanic.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/misc/pvpanic.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/misc/pvpanic.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/misc/pvpanic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/misc/pvpanic.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/misc/pvpanic.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/misc/pvpanic.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/misc/pvpanic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/misc/vfio.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/misc/vfio.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/misc/vfio.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/misc/vfio.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/misc/vfio.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/misc/vfio.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/misc/vfio.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/misc/vfio.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/misc/ivshmem.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/misc/pvpanic.o coincide com o padrão
+x86_64-softmmu/hw/misc/vmport.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/misc/vmport.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/misc/vmport.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/misc/vmport.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/misc/vmport.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/misc/vmport.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/misc/vmport.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/misc/vmport.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/misc/ivshmem.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/misc/ivshmem.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/misc/ivshmem.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/misc/ivshmem.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/misc/ivshmem.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/misc/ivshmem.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/misc/ivshmem.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/misc/ivshmem.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/pc.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/i386/pc_q35.o coincide com o padrão
+x86_64-softmmu/hw/i386/multiboot.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/multiboot.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/multiboot.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/multiboot.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/multiboot.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/multiboot.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/multiboot.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/multiboot.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/i386/kvmvapic.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvmvapic.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvmvapic.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvmvapic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvmvapic.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvmvapic.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvmvapic.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvmvapic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/i386/pc_piix.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/pc_piix.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/pc_piix.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/pc_piix.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/pc_piix.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/pc_piix.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/pc_piix.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/pc_piix.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/i386/pc_q35.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/pc_q35.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/pc_q35.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/pc_q35.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/pc_q35.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/pc_q35.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/pc_q35.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/pc_q35.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/pc_piix.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/i386/kvmvapic.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/i386/kvm/i8254.o coincide com o padrão
+x86_64-softmmu/hw/i386/kvm/i8254.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvm/i8254.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvm/i8254.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvm/i8254.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvm/i8254.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvm/i8254.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvm/i8254.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvm/i8254.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/kvm/pci-assign.o coincide com o padrão
+x86_64-softmmu/hw/i386/kvm/apic.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvm/apic.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvm/apic.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvm/apic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvm/apic.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvm/apic.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvm/apic.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvm/apic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/kvm/apic.o coincide com o padrão
+x86_64-softmmu/hw/i386/kvm/ioapic.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvm/ioapic.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvm/ioapic.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvm/ioapic.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvm/ioapic.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvm/ioapic.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvm/ioapic.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvm/ioapic.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/kvm/clock.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/i386/kvm/i8259.o coincide com o padrão
+x86_64-softmmu/hw/i386/kvm/pci-assign.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvm/pci-assign.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvm/pci-assign.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvm/pci-assign.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvm/pci-assign.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvm/pci-assign.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvm/pci-assign.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvm/pci-assign.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/kvm/ioapic.o coincide com o padrão
+x86_64-softmmu/hw/i386/kvm/clock.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvm/clock.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvm/clock.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvm/clock.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvm/clock.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvm/clock.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvm/clock.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvm/clock.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/i386/kvm/i8259.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/kvm/i8259.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/kvm/i8259.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/kvm/i8259.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/kvm/i8259.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/kvm/i8259.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/kvm/i8259.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/kvm/i8259.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/hw/i386/smbios.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/smbios.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/smbios.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/smbios.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/smbios.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/smbios.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/smbios.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/smbios.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/hw/i386/multiboot.o coincide com o padrão
+Arquivo binário x86_64-softmmu/hw/i386/smbios.o coincide com o padrão
+x86_64-softmmu/hw/i386/pc.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/hw/i386/pc.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/hw/i386/pc.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/hw/i386/pc.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/hw/i386/pc.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/hw/i386/pc.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/hw/i386/pc.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/hw/i386/pc.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/tcg/tcg.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/tcg/tcg.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/tcg/tcg.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/tcg/tcg.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/tcg/tcg.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/tcg/tcg.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/tcg/tcg.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/tcg/tcg.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/tcg/tcg.o coincide com o padrão
+x86_64-softmmu/tcg/optimize.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/tcg/optimize.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/tcg/optimize.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/tcg/optimize.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/tcg/optimize.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/tcg/optimize.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/tcg/optimize.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/tcg/optimize.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/tcg/optimize.o coincide com o padrão
+Arquivo binário x86_64-softmmu/exec.o coincide com o padrão
+x86_64-softmmu/ioport.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/ioport.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/ioport.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/ioport.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/ioport.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/ioport.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/ioport.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/ioport.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/disas.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/disas.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/disas.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/disas.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/disas.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/disas.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/disas.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/disas.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/qemu-system-x86_64 coincide com o padrão
+x86_64-softmmu/balloon.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/balloon.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/balloon.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/balloon.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/balloon.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/balloon.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/balloon.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/balloon.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+x86_64-softmmu/dump.d: /home/bona/qemu/qemu/include/exec/cpu-defs.h \
+x86_64-softmmu/dump.d: /home/bona/qemu/qemu/target-i386/cpu-qom.h \
+x86_64-softmmu/dump.d: /home/bona/qemu/qemu/include/exec/cpu-all.h \
+x86_64-softmmu/dump.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+x86_64-softmmu/dump.d:/home/bona/qemu/qemu/include/exec/cpu-defs.h:
+x86_64-softmmu/dump.d:/home/bona/qemu/qemu/target-i386/cpu-qom.h:
+x86_64-softmmu/dump.d:/home/bona/qemu/qemu/include/exec/cpu-all.h:
+x86_64-softmmu/dump.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
+Arquivo binário x86_64-softmmu/gdbstub.o coincide com o padrão
+xbzrle.d: /home/bona/qemu/qemu/include/exec/cpu-common.h \
+xbzrle.d:/home/bona/qemu/qemu/include/exec/cpu-common.h:
