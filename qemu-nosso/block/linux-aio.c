@@ -15,6 +15,11 @@
 
 #include <libaio.h>
 
+
+#include "hw/kvm/clock.h"
+#include "include/sysemu/cpus.h"
+
+
 /*
  * Queue size (per-device).
  *
@@ -37,15 +42,37 @@ struct qemu_laiocb {
 };
 
 struct qemu_laio_state {
+    QTAILQ_ENTRY(qemu_laio_state) node;
     io_context_t ctx;
     EventNotifier e;
     int count;
 };
 
+static QTAILQ_HEAD(, qemu_laio_state) simtime_laio_state=QTAILQ_HEAD_INITIALIZER(simtime_laio_state);
+
+
 static inline ssize_t io_event_ret(struct io_event *ev)
 {
     return (ssize_t)(((uint64_t)ev->res2 << 32) | ev->res);
 }
+
+
+/*
+ * Check AIO count
+ */
+bool laio_pending(void)
+{
+        struct qemu_laio_state* s;
+        QTAILQ_FOREACH(s, &simtime_laio_state, node){
+                if (s->count > 0)
+                {
+                 //fprintf(stderr, ":%d", s->count);
+                 return true;
+                }
+        }
+        return false;
+}
+
 
 /*
  * Completes an AIO request (calls the callback and frees the ACB).
@@ -54,6 +81,8 @@ static void qemu_laio_process_completion(struct qemu_laio_state *s,
     struct qemu_laiocb *laiocb)
 {
     int ret;
+
+    //MYTRACE fprintf(stderr, ":LAIO_COMPLETION_A");
 
     s->count--;
 
@@ -74,6 +103,8 @@ static void qemu_laio_process_completion(struct qemu_laio_state *s,
         laiocb->common.cb(laiocb->common.opaque, ret);
     }
 
+    //MYTRACE fprintf(stderr, ":LAIO_COMPLETION_B");
+
     qemu_aio_release(laiocb);
 }
 
@@ -81,6 +112,7 @@ static void qemu_laio_completion_cb(EventNotifier *e)
 {
     struct qemu_laio_state *s = container_of(e, struct qemu_laio_state, e);
 
+    //MYTRACE fprintf(stderr, ":LAIO_COMPLETION_CB_A");
     while (event_notifier_test_and_clear(&s->e)) {
         struct io_event events[MAX_EVENTS];
         struct timespec ts = { 0 };
@@ -91,6 +123,7 @@ static void qemu_laio_completion_cb(EventNotifier *e)
         } while (nevents == -EINTR);
 
         for (i = 0; i < nevents; i++) {
+        //for (i = nevents-1; i >= 0; i--) {
             struct iocb *iocb = events[i].obj;
             struct qemu_laiocb *laiocb =
                     container_of(iocb, struct qemu_laiocb, iocb);
@@ -99,6 +132,7 @@ static void qemu_laio_completion_cb(EventNotifier *e)
             qemu_laio_process_completion(s, laiocb);
         }
     }
+    //MYTRACE fprintf(stderr, ":LAIO_COMPLETION_CB_B");
 }
 
 static int qemu_laio_flush_cb(EventNotifier *e)
@@ -176,6 +210,7 @@ BlockDriverAIOCB *laio_submit(BlockDriverState *bs, void *aio_ctx, int fd,
                         __func__, type);
         goto out_free_aiocb;
     }
+    fprintf(stderr, ":SUBMIT");
     io_set_eventfd(&laiocb->iocb, event_notifier_get_fd(&s->e));
     s->count++;
 
@@ -202,6 +237,8 @@ void *laio_init(void)
     if (io_setup(MAX_EVENTS, &s->ctx) != 0) {
         goto out_close_efd;
     }
+
+    QTAILQ_INSERT_HEAD(&simtime_laio_state, s, node);
 
     qemu_aio_set_event_notifier(&s->e, qemu_laio_completion_cb,
                                 qemu_laio_flush_cb);

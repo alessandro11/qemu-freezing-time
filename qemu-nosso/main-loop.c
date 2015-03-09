@@ -28,6 +28,12 @@
 #include "slirp/libslirp.h"
 #include "qemu/main-loop.h"
 #include "block/aio.h"
+#include "block/raw-aio.h"
+
+#include "include/block/block.h"
+#include "hw/kvm/clock.h"
+#include  "include/sysemu/cpus.h"
+#include  "qom/cpu.h"
 
 #ifndef _WIN32
 
@@ -224,6 +230,7 @@ static int os_host_main_loop_wait(uint32_t timeout)
         spin_counter++;
     }
 
+    /* região não critica */
     ret = g_poll((GPollFD *)gpollfds->data, gpollfds->len, timeout);
 
     if (timeout > 0) {
@@ -445,6 +452,9 @@ static int os_host_main_loop_wait(uint32_t timeout)
 }
 #endif
 
+int loop_count=0;
+
+/* ISTO AQUI E` a IOTHREAD */
 int main_loop_wait(int nonblocking)
 {
     int ret;
@@ -463,7 +473,52 @@ int main_loop_wait(int nonblocking)
 #endif
     qemu_iohandler_fill(gpollfds);
     ret = os_host_main_loop_wait(timeout);
+
+	/* ultra gambearra do loop, porque quando esta bootando em algum
+	momento nao funciona fazer meus pause e stars, deve ser algum estado
+	que deveria ser verificado. Para evitar "um tempo" para a maquina
+	estar em um estado onde posso tratar esses eventos */
+
+    loop_count++;
+/*    if (loop_count>=145000){
+        kvmclock_set();
+        kvmclock_stop();
+        pause_all_vcpus();
+        //cpu_synchronize_all_states();
+        qemu_barrier_init();
+
+    }
+*/
     qemu_iohandler_poll(gpollfds, ret);
+/*
+    if (loop_count>145000){
+        bdrv_drain_all();
+        resume_all_vcpus();
+        qemu_mutex_unlock_iothread();
+        qemu_barrier_wait();
+        qemu_barrier_destroy();
+        qemu_up_vcpu_sem();
+        qemu_mutex_lock_iothread();
+    }*/
+
+    //fprintf(stderr, "%d\n", loop_count);
+  /*   if (laio_pending() && (loop_count > 85000))
+    {
+        pause_all_vcpus();  isso é do KVM mesmo bem como resume 
+	kvmclock_set(); diz que vamos parar o relogio e coleta o tempo 
+	qemu_barrier_init();  dá para reaproveitar a barreira sem init? 
+	bdrv_drain_all();  faz de fato os flushs/drain o flush garante passar a escrita tb 
+	bdrv_flush_all();
+        resume_all_vcpus();  reinicia as VCPUS 
+	 aqui para baixo é só para sincronizar ver kvm_all.c*
+	qemu_mutex_unlock_iothread();
+        qemu_barrier_wait();
+        qemu_up_vcpu_sem();
+        qemu_barrier_destroy();
+	 o stop desliga o bool que avisa que estava com o relogio parado e sincronizando 
+	kvmclock_stop();
+	qemu_mutex_lock_iothread();
+     }*/
 #ifdef CONFIG_SLIRP
     slirp_pollfds_poll(gpollfds, (ret < 0));
 #endif

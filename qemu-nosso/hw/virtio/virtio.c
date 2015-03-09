@@ -1067,6 +1067,7 @@ EventNotifier *virtio_queue_get_guest_notifier(VirtQueue *vq)
 static void virtio_queue_host_notifier_read(EventNotifier *n)
 {
     VirtQueue *vq = container_of(n, VirtQueue, host_notifier);
+	//MYTRACE    fprintf(stderr, ":VIRTIO_READ");
     if (event_notifier_test_and_clear(n)) {
         virtio_queue_notify_vq(vq);
     }

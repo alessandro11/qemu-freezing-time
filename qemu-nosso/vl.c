@@ -29,6 +29,7 @@
 #include <sys/time.h>
 #include <zlib.h>
 #include "qemu/bitmap.h"
+#include "hw/kvm/clock.h"
 
 /* Needed early for CONFIG_BSD etc. */
 #include "config-host.h"

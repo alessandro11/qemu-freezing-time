@@ -26,8 +26,86 @@ typedef struct KVMClockState {
     SysBusDevice busdev;
     uint64_t clock;
     bool clock_valid;
+    bool clock_armed;
+    bool need_pause;  
 } KVMClockState;
 
+KVMClockState *kvm_clock=0;
+
+bool kvmclock(void) 
+{
+     if (kvm_clock == 0 ) return false;
+     return kvm_clock->need_pause;
+}
+
+inline void kvmclock_start(void)
+{
+        struct kvm_clock_data data;
+        int ret;
+
+	if (! kvm_clock->clock_armed) return;
+        // kvm_clock->need_pause = false;
+        kvm_clock->clock_armed = false;
+        kvm_clock->clock_valid = false;
+        data.clock = kvm_clock->clock ; //+ 10000000; 
+        data.flags = 0;
+
+         ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
+
+	// fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
+        if (ret < 0) {
+            fprintf(stderr, "KVM_SET_CLOCK failed: %s\n", strerror(ret));
+            abort();
+        }
+
+}
+
+inline int kvmclock_elapsed(void)
+{
+
+	struct kvm_clock_data data;
+        data.clock = kvm_clock->clock; 
+        data.flags = 0;
+	kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
+
+	kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
+	fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
+	return data.clock-kvm_clock->clock;
+}
+
+void kvmclock_set(void)
+{
+        int ret;
+	struct kvm_clock_data data;
+
+	kvm_clock->need_pause = true;
+	if (  kvm_clock->clock_armed ) return;
+        kvm_clock->clock_armed = true;
+
+        ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
+        kvm_clock->clock = data.clock; 
+        if (ret < 0) {
+            fprintf(stderr, "KVM_GET_CLOCK failed: %s\n", strerror(ret));
+            abort();
+        }
+}
+
+void kvmclock_stop(void)
+{
+        /* int ret;
+        CPUState *cpu = first_cpu;
+        for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+            ret = kvm_vcpu_ioctl(cpu, KVM_KVMCLOCK_CTRL, 0);
+            if (ret) {
+                if (ret != -EINVAL) {
+                    fprintf(stderr, "%s: %s\n", __func__, strerror(-ret));
+                }
+                return;
+            }
+        }*/
+        kvm_clock->need_pause = true;
+
+}
 
 static void kvmclock_vm_state_change(void *opaque, int running,
                                      RunState state)
@@ -88,8 +166,11 @@ static void kvmclock_vm_state_change(void *opaque, int running,
 static int kvmclock_init(SysBusDevice *dev)
 {
     KVMClockState *s = FROM_SYSBUS(KVMClockState, dev);
-
     qemu_add_vm_change_state_handler(kvmclock_vm_state_change, s);
+    kvm_clock = s;
+    s -> clock_armed = false;
+    s -> need_pause = false;
+    kvm_clock->clock = 0;
     return 0;
 }
 

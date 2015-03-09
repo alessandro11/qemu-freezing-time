@@ -461,6 +461,9 @@ DriveInfo *drive_init(QemuOpts *all_opts, BlockInterfaceType block_default_type)
     if ((buf = qemu_opt_get(opts, "aio")) != NULL) {
         if (!strcmp(buf, "native")) {
             bdrv_flags |= BDRV_O_NATIVE_AIO;
+	    } else if (!strcmp(buf, "simtime")) {
+            bdrv_flags |= BDRV_O_NATIVE_AIO;
+	        bdrv_flags |= BDRV_O_SIMTIME;
         } else if (!strcmp(buf, "threads")) {
             /* this is the default */
         } else {

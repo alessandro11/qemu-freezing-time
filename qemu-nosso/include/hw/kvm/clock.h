@@ -10,6 +10,11 @@
  * See the COPYING file in the top-level directory.
  *
  */
+void kvmclock_stop(void);
+void kvmclock_set(void);
+void kvmclock_start(void);
+int kvmclock_elapsed(void);
+bool kvmclock(void);
 
 #ifdef CONFIG_KVM
 

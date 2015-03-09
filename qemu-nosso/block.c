@@ -45,6 +45,8 @@
 #endif
 #endif
 
+#include "hw/kvm/clock.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -1414,6 +1416,21 @@ void bdrv_close_all(void)
     }
 }
 
+/* nao vai servir, eu acho 
+bool bdrv_pending_simtime_all(void)
+{
+    BlockDriverState *bs;
+
+    QTAILQ_FOREACH(bs, &bdrv_states, list) {
+	if (bs->open_flags &  BDRV_O_SIMTIME)
+        {
+		if ( bs->opaque->aio_ctx->count > 0 )	
+			return true;
+      }
+     return false;
+
+} */
+
 /*
  * Wait for pending requests to complete across all BlockDriverStates
  *
@@ -2519,9 +2536,13 @@ static int coroutine_fn bdrv_co_do_readv(BlockDriverState *bs,
             goto out;
         }
     }
-
+  
+    //AQUI PARECE QUE FICA NO YELD, MAS CHAMA CO_IO_EM_A
+    //ESTRANHO POIS PARECE QUE APARECEU DUAS VEZES EU ACHO QUE VAI AFUNDANDO em drv-> 
+    //MYTRACE  	fprintf(stderr, ":CO_DO_READ_A");
+    // vai chamar bdrv_co_readv_em
     ret = drv->bdrv_co_readv(bs, sector_num, nb_sectors, qiov);
-
+    //MYTRACE fprintf(stderr, ":CO_DO_READ_B");
 out:
     tracked_request_end(&req);
 
@@ -3732,6 +3753,8 @@ static void bdrv_aio_bh_cb(void *opaque)
 {
     BlockDriverAIOCBSync *acb = opaque;
 
+    //MYTRACE nao esta chamando isto, porque? 
+    // fprintf(stderr, ":BH_A");
     if (!acb->is_write)
         qemu_iovec_from_buf(acb->qiov, 0, acb->bounce, acb->qiov->size);
     qemu_vfree(acb->bounce);
@@ -3739,6 +3762,8 @@ static void bdrv_aio_bh_cb(void *opaque)
     qemu_bh_delete(acb->bh);
     acb->bh = NULL;
     qemu_aio_release(acb);
+    //MYTRACE 
+    // fprintf(stderr, ":BH_B");
 }
 
 static BlockDriverAIOCB *bdrv_aio_rw_vector(BlockDriverState *bs,
@@ -3758,6 +3783,7 @@ static BlockDriverAIOCB *bdrv_aio_rw_vector(BlockDriverState *bs,
     acb->bounce = qemu_blockalign(bs, qiov->size);
     acb->bh = qemu_bh_new(bdrv_aio_bh_cb, acb);
 
+    //MYTRACE NAO VEM AQUI fprintf(stderr, ":AIO_RW_VEC_A");
     if (is_write) {
         qemu_iovec_to_buf(acb->qiov, 0, acb->bounce, qiov->size);
         acb->ret = bs->drv->bdrv_write(bs, sector_num, acb->bounce, nb_sectors);
@@ -3774,6 +3800,7 @@ static BlockDriverAIOCB *bdrv_aio_readv_em(BlockDriverState *bs,
         int64_t sector_num, QEMUIOVector *qiov, int nb_sectors,
         BlockDriverCompletionFunc *cb, void *opaque)
 {
+    //MYTRACE NEM AQUI? fprintf(stderr, ":AIO_RW_VECTOR");
     return bdrv_aio_rw_vector(bs, sector_num, qiov, nb_sectors, cb, opaque, 0);
 }
 
@@ -3814,6 +3841,7 @@ static void bdrv_co_em_bh(void *opaque)
 {
     BlockDriverAIOCBCoroutine *acb = opaque;
 
+    fprintf(stderr, ":CO_EM_BH:%d", (int) acb->req.sector);
     acb->common.cb(acb->common.opaque, acb->req.error);
 
     if (acb->done) {
@@ -3829,8 +3857,11 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
 {
     BlockDriverAIOCBCoroutine *acb = opaque;
     BlockDriverState *bs = acb->common.bs;
+    int block, bobo;
 
     if (!acb->is_write) {
+        //MYTRACE 
+
         acb->req.error = bdrv_co_do_readv(bs, acb->req.sector,
             acb->req.nb_sectors, acb->req.qiov, 0);
     } else {
@@ -3838,6 +3869,17 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
             acb->req.nb_sectors, acb->req.qiov, 0);
     }
 
+    fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
+    if (kvmclock())
+    {
+	    block = acb->req.sector;
+	    for (bobo=block % 20; bobo >1; bobo=bobo-1)
+	    {
+ 		    if (block % 2 == 0 ) co_sleep_ns(vm_clock,10000000);
+ 		    if (block % 3 == 0 ) co_sleep_ns(vm_clock,15000000);
+	    }
+    }
+    fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
     acb->bh = qemu_bh_new(bdrv_co_em_bh, acb);
     qemu_bh_schedule(acb->bh);
 }
@@ -3861,7 +3903,11 @@ static BlockDriverAIOCB *bdrv_co_aio_rw_vector(BlockDriverState *bs,
     acb->done = NULL;
 
     co = qemu_coroutine_create(bdrv_co_do_rw);
+    //POR HORA MEU NIVEL MAIS ALTO, EXECUTA ATE CAI NO YIELD
+    //DE FATO EXECUTA BDRV_CO_DO_RW
+    //MYTRACE if (!acb->is_write) fprintf(stderr, ":AIO_RW_A");
     qemu_coroutine_enter(co, acb);
+    //MYTRACE if (!acb->is_write) fprintf(stderr, ":AIO_RW_B");
 
     return &acb->common;
 }
@@ -3964,8 +4010,13 @@ static void bdrv_co_io_em_complete(void *opaque, int ret)
 {
     CoroutineIOCompletion *co = opaque;
 
+    /* isto vai descouretinar
+	CO_IO_EM_B: CO_DO_READ_B:CO_DO_READ_B: DO_RW_B: */
+ 
+    //MYTRACE fprintf(stderr, ":EM_CPLT_A");
     co->ret = ret;
     qemu_coroutine_enter(co->coroutine, NULL);
+    //MYTRACE fprintf(stderr, ":EM_CPLT_B");
 }
 
 static int coroutine_fn bdrv_co_io_em(BlockDriverState *bs, int64_t sector_num,
@@ -3981,6 +4032,8 @@ static int coroutine_fn bdrv_co_io_em(BlockDriverState *bs, int64_t sector_num,
         acb = bs->drv->bdrv_aio_writev(bs, sector_num, iov, nb_sectors,
                                        bdrv_co_io_em_complete, &co);
     } else {
+        //VAI PARA O LAIO (ja que chama o driver, vai fazer o submit 
+        //MYTRACE fprintf(stderr, ":CO_IO_EM_A");
         acb = bs->drv->bdrv_aio_readv(bs, sector_num, iov, nb_sectors,
                                       bdrv_co_io_em_complete, &co);
     }
@@ -3989,8 +4042,10 @@ static int coroutine_fn bdrv_co_io_em(BlockDriverState *bs, int64_t sector_num,
     if (!acb) {
         return -EIO;
     }
+    //MYTRACE 
+    fprintf(stderr, ":YIELD");
     qemu_coroutine_yield();
-
+    //MYTRACE fprintf(stderr, ":CO_IO_EM_B");
     return co.ret;
 }
 
