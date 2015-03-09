@@ -35,6 +35,8 @@
 #include "qemu/event_notifier.h"
 #include "trace.h"
 
+#include "include/hw/kvm/clock.h"
+
 /* This check must be after config-host.h is included */
 #ifdef CONFIG_EVENTFD
 #include <sys/eventfd.h>
@@ -1611,10 +1613,13 @@ void kvm_cpu_synchronize_post_init(CPUState *cpu)
     cpu->kvm_vcpu_dirty = false;
 }
 
+int sleeping=0;
+
 int kvm_cpu_exec(CPUState *cpu)
 {
     struct kvm_run *run = cpu->kvm_run;
     int ret, run_ret;
+    bool first=true;
 
     DPRINTF("kvm_cpu_exec()\n");
 
@@ -1639,6 +1644,15 @@ int kvm_cpu_exec(CPUState *cpu)
              */
             qemu_cpu_kick_self();
         }
+
+	    /* se ficar para cima disto dá tempos negativos */
+	    if (kvmclock() && first){
+		    first=false;
+        	qemu_mutex_unlock_iothread();
+		    qemu_barrier_wait();
+		    qemu_dw_vcpu_sem();
+		    kvmclock_start();
+	    }else
         qemu_mutex_unlock_iothread();
 
         run_ret = kvm_vcpu_ioctl(cpu, KVM_RUN, 0);
@@ -1648,6 +1662,8 @@ int kvm_cpu_exec(CPUState *cpu)
 
         if (run_ret < 0) {
             if (run_ret == -EINTR || run_ret == -EAGAIN) {
+		    /* supostamente quando saiu por conta do meu pause
+				   veio parar aqui */
                 DPRINTF("io window exit\n");
                 ret = EXCP_INTERRUPT;
                 break;

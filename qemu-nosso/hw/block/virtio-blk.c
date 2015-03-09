@@ -11,6 +11,9 @@
  *
  */
 
+int blkcount=1;
+
+
 #include "qemu-common.h"
 #include "qemu/error-report.h"
 #include "trace.h"
@@ -25,6 +28,9 @@
 # include <scsi/sg.h>
 #endif
 #include "hw/virtio/virtio-bus.h"
+#include "hw/kvm/clock.h"
+#include  "include/sysemu/cpus.h"
+#include  "block/raw-aio.h"
 
 typedef struct VirtIOBlockReq
 {
@@ -47,6 +53,7 @@ static void virtio_blk_req_complete(VirtIOBlockReq *req, int status)
 
     stb_p(&req->in->status, status);
     virtqueue_push(s->vq, &req->elem, req->qiov.size + sizeof(*req->in));
+    //MYTRACE fprintf(stderr, ":VIRTIO_PUSH");
     virtio_notify(vdev, s->vq);
 }
 
@@ -81,7 +88,9 @@ static void virtio_blk_rw_complete(void *opaque, int ret)
             return;
     }
 
+    //MYTRACE fprintf(stderr, ":VIRTIO_BLK_REQ_COMPLE_A");
     virtio_blk_req_complete(req, VIRTIO_BLK_S_OK);
+    //MYTRACE fprintf(stderr, ":VIRTIO_BLK_REQ_COMPLE_B");
     bdrv_acct_done(req->dev->bs, &req->acct);
     g_free(req);
 }
@@ -324,6 +333,7 @@ static void virtio_blk_handle_read(VirtIOBlockReq *req)
     bdrv_acct_start(req->dev->bs, &req->acct, req->qiov.size, BDRV_ACCT_READ);
 
     trace_virtio_blk_handle_read(req, sector, req->qiov.size / 512);
+    fprintf(stderr, ":HANDLE_READ");
 
     if (sector & req->dev->sector_mask) {
         virtio_blk_rw_complete(req, -EIO);
@@ -333,6 +343,7 @@ static void virtio_blk_handle_read(VirtIOBlockReq *req)
         virtio_blk_rw_complete(req, -EIO);
         return;
     }
+    /* vai para o block.c */
     bdrv_aio_readv(req->dev->bs, sector, &req->qiov,
                    req->qiov.size / BDRV_SECTOR_SIZE,
                    virtio_blk_rw_complete, req);
@@ -360,6 +371,7 @@ static void virtio_blk_handle_request(VirtIOBlockReq *req,
     type = ldl_p(&req->out->type);
 
     if (type & VIRTIO_BLK_T_FLUSH) {
+	fprintf(stderr, ":VIRTIO_BLK_T_FLUSH");
         virtio_blk_handle_flush(req, mrb);
     } else if (type & VIRTIO_BLK_T_SCSI_CMD) {
         virtio_blk_handle_scsi(req);
@@ -376,10 +388,12 @@ static void virtio_blk_handle_request(VirtIOBlockReq *req,
         virtio_blk_req_complete(req, VIRTIO_BLK_S_OK);
         g_free(req);
     } else if (type & VIRTIO_BLK_T_OUT) {
+	fprintf(stderr, ":VIRTIO_BLK_T_OUT");
         qemu_iovec_init_external(&req->qiov, &req->elem.out_sg[1],
                                  req->elem.out_num - 1);
         virtio_blk_handle_write(req, mrb);
     } else if (type == VIRTIO_BLK_T_IN || type == VIRTIO_BLK_T_BARRIER) {
+	    //MYTRACE fprintf(stderr, ":VIRTIO_BLK_T_IN");
         /* VIRTIO_BLK_T_IN is 0, so we can't just & it. */
         qemu_iovec_init_external(&req->qiov, &req->elem.in_sg[0],
                                  req->elem.in_num - 1);
@@ -407,9 +421,35 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 #endif
+    if (blkcount>=1000){
+        kvmclock_set();
+        kvmclock_stop();
+	cpu_disable_ticks();
+	pause_all_vcpus();
+	cpu_synchronize_all_states();	
+        qemu_barrier_init();
+
+    }
 
     while ((req = virtio_blk_get_request(s))) {
+	    blkcount++;
+	    fprintf(stderr, "\n:HANDLE_REQUEST");	       
         virtio_blk_handle_request(req, &mrb);
+    }
+    if (blkcount>1000){
+	    fprintf(stderr, ":DRAIN");
+        bdrv_drain_all();
+	    fprintf(stderr, ":DRAINED");
+        // bdrv_flush_all();
+	    // fprintf(stderr, ":FLUSHED");
+        resume_all_vcpus();
+	    cpu_enable_ticks();
+        qemu_mutex_unlock_iothread();
+        qemu_barrier_wait();
+        qemu_barrier_destroy();
+        qemu_up_vcpu_sem();
+	    fprintf(stderr, ":UP_CPU");
+        qemu_mutex_lock_iothread();
     }
 
     virtio_submit_multiwrite(s->bs, &mrb);
