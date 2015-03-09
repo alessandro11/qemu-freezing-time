@@ -2,3 +2,4 @@ qemu-nosso/roms/seabios/
 qemu-nosso/roms/vgabios/
 *.o
 *.d
+*.raw
