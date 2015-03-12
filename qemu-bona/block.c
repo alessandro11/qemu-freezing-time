@@ -3865,15 +3865,17 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
     }
 
     fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
+    /* Aqui adiciona tempo nas requisicoes de bloco
     if (kvmclock())
     {
 	block = acb->req.sector;
-	for (bobo=block % 20; bobo >1; bobo=bobo-1)
+		for (bobo=block % 20; bobo >1; bobo=bobo-1)
 	{
  		if (block % 2 == 0 ) co_sleep_ns(vm_clock,10000000);
  		if (block % 3 == 0 ) co_sleep_ns(vm_clock,15000000);
 	}
     }
+    */
     fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
     acb->bh = qemu_bh_new(bdrv_co_em_bh, acb);
     qemu_bh_schedule(acb->bh);
