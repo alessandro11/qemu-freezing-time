@@ -1,1 +1,1 @@
-/home/bcc/apz11/git/tg1/qemu-original/Makefile.target
+/root/ae11/qemu-bona/Makefile.target
