@@ -1884,6 +1884,10 @@ QemuOptsList qemu_common_drive_opts = {
             .name = "boot",
             .type = QEMU_OPT_BOOL,
             .help = "(deprecated, ignored)",
+        },{
+			.name = "hack",
+			.type = QEMU_OPT_BOOL,
+			.help = "(test)",
         },
         { /* end of list */ }
     },
