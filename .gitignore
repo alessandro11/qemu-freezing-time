@@ -3,3 +3,5 @@ qemu-nosso/roms/vgabios/
 *.o
 *.d
 *.raw
+kvm.log
+qemu-bona/config.log

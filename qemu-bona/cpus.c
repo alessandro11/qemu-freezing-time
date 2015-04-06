@@ -928,10 +928,12 @@ static bool qemu_in_vcpu_thread(void)
 
 bool thereisbarrier = false;
 
+#include "mytrace.h"
 void qemu_up_vcpu_sem(void)
 {
 	int x;
-	for (x=1;x<=2;x++)
+	AETRACE1(" smp_cpus: %d", smp_cpus);
+	for (x=1;x<=smp_cpus;x++)
 	{
 		sem_post(&qemu_kvmclock_sem);
 	}

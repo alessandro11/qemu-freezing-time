@@ -326,6 +326,7 @@ DriveInfo *drive_init(QemuOpts *all_opts, BlockInterfaceType block_default_type)
     int max_devs;
     int index;
     int ro = 0;
+    bool hack = false;
     int bdrv_flags = 0;
     int on_read_error, on_write_error;
     const char *devaddr;
@@ -715,6 +716,10 @@ DriveInfo *drive_init(QemuOpts *all_opts, BlockInterfaceType block_default_type)
 
     if (bdrv_key_required(dinfo->bdrv))
         autostart = 0;
+
+    qemu_opt_get_bool(opts, "hack", false);
+#include "mytrace.h"
+    AETRACE1("hack= %d", hack);
 
     qemu_opts_del(opts);
 

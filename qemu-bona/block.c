@@ -21,6 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+#include "mytrace.h"
 #include "config-host.h"
 #include "qemu-common.h"
 #include "trace.h"
@@ -3846,13 +3848,16 @@ static void bdrv_co_em_bh(void *opaque)
     qemu_aio_release(acb);
 }
 
+#include <pthread.h>
+#include <sys/types.h>
 /* Invoke bdrv_co_do_readv/bdrv_co_do_writev */
 static void coroutine_fn bdrv_co_do_rw(void *opaque)
 {
     BlockDriverAIOCBCoroutine *acb = opaque;
     BlockDriverState *bs = acb->common.bs;
     int block, bobo;
-
+    
+    AETRACE("bdrv_co_do_rw()"); 
     fprintf(stderr, ":DO_RW_A:%d", (int) acb->req.sector );
     if (!acb->is_write) {
         //MYTRACE 

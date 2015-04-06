@@ -1,8 +1,12 @@
-#ifndef __MYTRACE_H__
-#define __MYTRACE_H__     1
+#ifndef __AETRACE_H__
+#define __AETRACE_H__     1
 
+#include <sys/syscall.h>
 
-#defien MYTRACE(msg) \
-    fprintf(stderr, "MYTRACE: " msg)
+#define  AETRACE1(msg, p1) \
+    fprintf(stderr, "\nAETRACE ThreadId: %ld " msg "\n", syscall(SYS_gettid), p1)
 
-#endif /* __MYTRACE_H__ */
+#define  AETRACE(msg) \
+    fprintf(stderr, "\nAETRACE ThreadId: %ld " msg "\n", syscall(SYS_gettid))
+
+#endif /* __AETRACE_H__ */

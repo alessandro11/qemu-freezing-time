@@ -424,37 +424,31 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 #endif
-    if (blkcount>=1000){
-        kvmclock_set();
-        kvmclock_stop();
+    kvmclock_set();
+	kvmclock_stop();
 	cpu_disable_ticks();
 	pause_all_vcpus();
 	cpu_synchronize_all_states();	
-        qemu_barrier_init();
-
-    }
+	qemu_barrier_init();
 
     while ((req = virtio_blk_get_request(s))) {
-	       blkcount++;
-	       fprintf(stderr, "\n:HANDLE_REQUEST");	       
-               virtio_blk_handle_request(req, &mrb);
+	   blkcount++;
+	   fprintf(stderr, "\n:HANDLE_REQUEST");
+	   virtio_blk_handle_request(req, &mrb);
     } 
-    if (blkcount>1000){
 	fprintf(stderr, ":DRAIN");
-        bdrv_drain_all();
+	bdrv_drain_all();
 	fprintf(stderr, ":DRAINED");
-        // bdrv_flush_all();
+	// bdrv_flush_all();
 	// fprintf(stderr, ":FLUSHED");
-        resume_all_vcpus();
+	resume_all_vcpus();
 	cpu_enable_ticks();
-        qemu_mutex_unlock_iothread();
-        qemu_barrier_wait();
-        qemu_barrier_destroy();
-        qemu_up_vcpu_sem();
+	qemu_mutex_unlock_iothread();
+	qemu_barrier_wait();
+	qemu_barrier_destroy();
+	qemu_up_vcpu_sem();
 	fprintf(stderr, ":UP_CPU");
-        qemu_mutex_lock_iothread();
-    }
-
+	qemu_mutex_lock_iothread();
 
     virtio_submit_multiwrite(s->bs, &mrb);
 
