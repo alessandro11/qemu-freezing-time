@@ -718,8 +718,9 @@ DriveInfo *drive_init(QemuOpts *all_opts, BlockInterfaceType block_default_type)
         autostart = 0;
 
     qemu_opt_get_bool(opts, "hack", false);
+
 #include "mytrace.h"
-    AETRACE1("hack= %d", hack);
+    AETRACE1("hack=%d", hack);
 
     qemu_opts_del(opts);
 
