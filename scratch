@@ -1,0 +1,7 @@
+Função main vl.c linha 2895
+
+virtio.h
+
+122 bool hack; // Parametro para o disco rapido
+
+blkdev.c 702 nao reconheceu hack=on

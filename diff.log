@@ -1,0 +1,778 @@
+Only in qemu-bona: 630_suvcro_tx1.jpg
+diff -r qemu-bona/aio-posix.c qemu-original/aio-posix.c
+20d19
+< #include "hw/kvm/clock.h"
+186c185
+<     if (aio_bh_poll(ctx) ) {
+---
+>     if (aio_bh_poll(ctx)) {
+206a206
+> 
+diff -r qemu-bona/async.c qemu-original/async.c
+29d28
+< #include "hw/kvm/clock.h"
+diff -r qemu-bona/block/linux-aio.c qemu-original/block/linux-aio.c
+15,16d14
+< #include "hw/kvm/clock.h"
+< #include "include/sysemu/cpus.h"
+41d38
+< 
+43d39
+<     QTAILQ_ENTRY(qemu_laio_state) node;
+49,52d44
+< 
+< 
+< static QTAILQ_HEAD(, qemu_laio_state) simtime_laio_state=QTAILQ_HEAD_INITIALIZER(simtime_laio_state);
+< 
+58,73d49
+< /* 
+<  * Check AIO count 
+<  */
+< bool laio_pending(void)
+< {
+< 	struct qemu_laio_state* s;
+< 	QTAILQ_FOREACH(s, &simtime_laio_state, node){
+< 		if (s->count > 0)
+< 		{
+< 		 //fprintf(stderr, ":%d", s->count);
+< 		 return true;	
+< 		}
+< 	} 
+< 	return false;
+< }
+< 
+82d57
+<     //MYTRACE fprintf(stderr, ":LAIO_COMPLETION_A");
+83a59
+> 
+96a73
+> 
+100d76
+<     //MYTRACE fprintf(stderr, ":LAIO_COMPLETION_B");
+108d83
+< 	//MYTRACE fprintf(stderr, ":LAIO_COMPLETION_CB_A");
+116a92
+> 
+118d93
+<         //for (i = nevents-1; i >= 0; i--) {
+127d101
+< 	//MYTRACE fprintf(stderr, ":LAIO_COMPLETION_CB_B");
+192d165
+< 
+206d178
+<     fprintf(stderr, ":SUBMIT");
+234,235d205
+<     QTAILQ_INSERT_HEAD(&simtime_laio_state, s, node);
+< 
+237a208
+> 
+246,247d216
+< 
+< 
+diff -r qemu-bona/block/raw-aio.h qemu-original/block/raw-aio.h
+51,52d50
+< bool laio_pending(void);
+< 
+diff -r qemu-bona/block/raw-posix.c qemu-original/block/raw-posix.c
+808d807
+<     BlockDriverAIOCB *ret;
+823,826c822
+< /*	    if ((bs->open_flags & BDRV_O_SIMTIME))
+< 		fprintf(stderr, "SIMTIME\n");*/
+< //MYTRACE            fprintf(stderr, ":LAIO_A");
+<             ret=laio_submit(bs, s->aio_ctx, s->fd, sector_num, qiov,
+---
+>             return laio_submit(bs, s->aio_ctx, s->fd, sector_num, qiov,
+828,829d823
+<         //MYTRACE     fprintf(stderr, ":LAIO_B");
+< 	    return ret;
+diff -r qemu-bona/block.c qemu-original/block.c
+48,49d47
+< #include "hw/kvm/clock.h"
+< 
+1419,1433d1416
+< /* nao vai servir, eu acho 
+< bool bdrv_pending_simtime_all(void)
+< {
+<     BlockDriverState *bs;
+< 
+<     QTAILQ_FOREACH(bs, &bdrv_states, list) {
+< 	if (bs->open_flags &  BDRV_O_SIMTIME)
+<         {
+< 		if ( bs->opaque->aio_ctx->count > 0 )	
+< 			return true;
+<       }
+<      return false;
+< 
+< } */
+< 
+1452a1436
+> 
+2538,2542c2522
+<  
+<     //AQUI PARECE QUE FICA NO YELD, MAS CHAMA CO_IO_EM_A
+<     //ESTRANHO POIS PARECE QUE APARECEU DUAS VEZES EU ACHO QUE VAI AFUNDANDO em drv-> 
+<     //MYTRACE  	fprintf(stderr, ":CO_DO_READ_A");
+<     // vai chamar bdrv_co_readv_em
+---
+> 
+2544c2524
+<     //MYTRACE fprintf(stderr, ":CO_DO_READ_B");
+---
+> 
+2547c2527
+< 	
+---
+> 
+2550a2531
+> 
+2632a2614
+> 
+3753,3754d3734
+<     //MYTRACE nao esta chamando isto, porque? 
+<     // fprintf(stderr, ":BH_A");
+3762,3763d3741
+<     //MYTRACE 
+<     // fprintf(stderr, ":BH_B");
+3783d3760
+<     //MYTRACE NAO VEM AQUI fprintf(stderr, ":AIO_RW_VEC_A");
+3789a3767
+> 
+3790a3769
+> 
+3798d3776
+<     //MYTRACE NEM AQUI? fprintf(stderr, ":AIO_RW_VECTOR");
+3838,3839c3816
+<  
+<     fprintf(stderr, ":CO_EM_BH:%d", (int) acb->req.sector);
+---
+> 
+3844a3822
+> 
+3854d3831
+<     int block, bobo;
+3856d3832
+<     fprintf(stderr, ":DO_RW_A:%d", (int) acb->req.sector );
+3858,3859d3833
+<         //MYTRACE 
+< 
+3867,3877d3840
+<     fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
+<     if (kvmclock())
+<     {
+< 	block = acb->req.sector;
+< 	for (bobo=block % 20; bobo >1; bobo=bobo-1)
+< 	{
+<  		if (block % 2 == 0 ) co_sleep_ns(vm_clock,10000000);
+<  		if (block % 3 == 0 ) co_sleep_ns(vm_clock,15000000);
+< 	}
+<     }
+<     fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
+3898a3862
+> 
+3900,3902d3863
+<     //POR HORA MEU NIVEL MAIS ALTO, EXECUTA ATE CAI NO YIELD
+<     //DE FATO EXECUTA BDRV_CO_DO_RW
+<     //MYTRACE if (!acb->is_write) fprintf(stderr, ":AIO_RW_A");
+3904d3864
+<     //MYTRACE if (!acb->is_write) fprintf(stderr, ":AIO_RW_B");
+4007,4010d3966
+<     /* isto vai descouretinar
+< 	CO_IO_EM_B: CO_DO_READ_B:CO_DO_READ_B: DO_RW_B: */
+<  
+<     //MYTRACE fprintf(stderr, ":EM_CPLT_A");
+4013d3968
+<     //MYTRACE fprintf(stderr, ":EM_CPLT_B");
+4029,4030d3983
+<         //VAI PARA O LAIO (ja que chama o driver, vai fazer o submit 
+<         //MYTRACE fprintf(stderr, ":CO_IO_EM_A");
+4039,4040d3991
+<     //MYTRACE 
+<     fprintf(stderr, ":YIELD");
+4042c3993
+<     //MYTRACE fprintf(stderr, ":CO_IO_EM_B");
+---
+> 
+diff -r qemu-bona/blockdev.c qemu-original/blockdev.c
+464,467d463
+< 	} else if (!strcmp(buf, "simtime")) {
+<             bdrv_flags |= BDRV_O_NATIVE_AIO;
+< 	    bdrv_flags |= BDRV_O_SIMTIME;
+< 
+Only in qemu-bona: config-all-devices.mak
+Only in qemu-bona: config-all-disas.mak
+Only in qemu-bona: config-host.mak
+Only in qemu-bona: config.log
+diff -r qemu-bona/cpus.c qemu-original/cpus.c
+45,47d44
+< #include "include/hw/kvm/clock.h"
+< 
+< 
+569d565
+< 	fprintf(stderr, "SIG");
+618,619d613
+< sem_t qemu_kvmclock_sem;
+< 
+630d623
+< 
+635,637d627
+< 
+< pthread_barrier_t our_barrier;
+< 
+646c636
+<     sem_init(&qemu_kvmclock_sem,0,0);
+---
+> 
+685a676
+> 
+700d690
+<         flush_queued_work(cpu);
+761d750
+<     	   //fprintf(stderr, ":CONTINUE %d", kvmclock_elapsed() );
+767,768c756
+< 
+< 	qemu_kvm_wait_io_event(cpu);
+---
+>         qemu_kvm_wait_io_event(cpu);
+769a758
+> 
+897d885
+<  
+899d886
+< 	/* aqui envia o sinal, somente se já não está kicked */ 
+929,970d915
+< bool thereisbarrier = false;
+< 
+< void qemu_up_vcpu_sem(void)
+< {
+< 	int x;
+< 	for (x=1;x<=2;x++)
+< 	{
+< 		sem_post(&qemu_kvmclock_sem);
+< 	}
+< }
+< 
+< void qemu_dw_vcpu_sem(void)
+< {
+< 	if ( thereisbarrier)
+< 		sem_wait(&qemu_kvmclock_sem);
+< }
+< 
+< 
+< void qemu_barrier_init(void)
+< {
+< 	pthread_barrier_init(&our_barrier,NULL,3);
+< 	thereisbarrier = true;
+< }
+< 
+< 
+< void qemu_barrier_wait(void)
+< {
+< 	if ( thereisbarrier )
+< 	{	
+< 		pthread_barrier_wait(&our_barrier);
+< 	}	
+< }
+< 
+< 
+< void qemu_barrier_destroy(void)
+< {
+< 	if ( thereisbarrier ){
+< 		pthread_barrier_destroy(&our_barrier);
+< 		thereisbarrier = false;
+< 	}
+< }
+< 
+1005,1020d949
+< void pause1_all_vcpus(void)
+< {
+<     CPUState *cpu = first_cpu;
+< 
+<     while (cpu) {
+<         cpu->stop = true;
+<         qemu_cpu_kick(cpu);
+<         cpu = cpu->next_cpu;
+<     }
+< }
+< 
+< void pause2_all_vcpus(void)
+< {
+<        qemu_cond_wait(&qemu_pause_cond, &qemu_global_mutex);
+< }
+< 
+1030a960
+> 
+1042a973
+> 
+1049c980
+<        }
+---
+>         }
+1065d995
+<     /* o resume atribui stop, stopped false e faz o broad da condição*/
+1070,1071d999
+< 	
+<    
+Only in qemu-bona: .cpus.c.swp
+Only in qemu-bona: fotos
+Only in qemu-bona: funcoes
+Only in qemu-original: .git
+Only in qemu-original: .gitignore
+Only in qemu-original: .gitmodules
+Only in qemu-bona: halt_cond
+diff -r qemu-bona/hw/block/virtio-blk.c qemu-original/hw/block/virtio-blk.c
+11,14c11,12
+<  * */
+< 
+< int blkcount=1;
+< 
+---
+>  *
+>  */
+30,32d27
+< #include "hw/kvm/clock.h"
+< #include  "include/sysemu/cpus.h"
+< #include  "block/raw-aio.h"
+50,51d44
+<  
+<     trace_virtio_blk_req_complete(req, status);
+52a46
+>     trace_virtio_blk_req_complete(req, status);
+56d49
+<     //MYTRACE fprintf(stderr, ":VIRTIO_PUSH");
+83d75
+< 
+91c83
+<     //MYTRACE fprintf(stderr, ":VIRTIO_BLK_REQ_COMPLE_A");
+---
+> 
+93d84
+<     //MYTRACE fprintf(stderr, ":VIRTIO_BLK_REQ_COMPLE_B");
+274d264
+< 
+337d326
+<     fprintf(stderr, ":HANDLE_READ");
+347d335
+<     /* vai para o block.c */
+351d338
+< 
+376d362
+< 	fprintf(stderr, ":VIRTIO_BLK_T_FLUSH");
+393d378
+< 	fprintf(stderr, ":VIRTIO_BLK_T_OUT");
+398d382
+< 	//MYTRACE fprintf(stderr, ":VIRTIO_BLK_T_IN");
+413d396
+< 
+427,435d409
+<     if (blkcount>=1000){
+<         kvmclock_set();
+<         kvmclock_stop();
+< 	cpu_disable_ticks();
+< 	pause_all_vcpus();
+< 	cpu_synchronize_all_states();	
+<         qemu_barrier_init();
+< 
+<     }
+438,455c412
+< 	       blkcount++;
+< 	       fprintf(stderr, "\n:HANDLE_REQUEST");	       
+<                virtio_blk_handle_request(req, &mrb);
+<     } 
+<     if (blkcount>1000){
+< 	fprintf(stderr, ":DRAIN");
+<         bdrv_drain_all();
+< 	fprintf(stderr, ":DRAINED");
+<         // bdrv_flush_all();
+< 	// fprintf(stderr, ":FLUSHED");
+<         resume_all_vcpus();
+< 	cpu_enable_ticks();
+<         qemu_mutex_unlock_iothread();
+<         qemu_barrier_wait();
+<         qemu_barrier_destroy();
+<         qemu_up_vcpu_sem();
+< 	fprintf(stderr, ":UP_CPU");
+<         qemu_mutex_lock_iothread();
+---
+>         virtio_blk_handle_request(req, &mrb);
+458d414
+< 
+460,461d415
+< 
+< 
+Only in qemu-bona/hw/block: .virtio-blk.c.swp
+diff -r qemu-bona/hw/i386/kvm/clock.c qemu-original/hw/i386/kvm/clock.c
+2,14c2,14
+< * QEMU KVM support, paravirtual clock device
+< *
+< * Copyright (C) 2011 Siemens AG
+< *
+< * Authors:
+< * Jan Kiszka <jan.kiszka@siemens.com>
+< *
+< * This work is licensed under the terms of the GNU GPL version 2.
+< * See the COPYING file in the top-level directory.
+< *
+< * Contributions after 2012-01-13 are licensed under the terms of the
+< * GNU GPL, version 2 or (at your option) any later version.
+< */
+---
+>  * QEMU KVM support, paravirtual clock device
+>  *
+>  * Copyright (C) 2011 Siemens AG
+>  *
+>  * Authors:
+>  *  Jan Kiszka        <jan.kiszka@siemens.com>
+>  *
+>  * This work is licensed under the terms of the GNU GPL version 2.
+>  * See the COPYING file in the top-level directory.
+>  *
+>  * Contributions after 2012-01-13 are licensed under the terms of the
+>  * GNU GPL, version 2 or (at your option) any later version.
+>  */
+29,30d28
+<     bool clock_armed;
+<     bool need_pause;  
+33,109d30
+< KVMClockState *kvm_clock=0;
+< 
+< bool kvmclock(void) 
+< {
+<      if (kvm_clock == 0 ) return false;
+<      return kvm_clock->need_pause;
+< }
+< 
+< inline void kvmclock_start(void)
+< {
+<         struct kvm_clock_data data;
+<         int ret;
+< 
+< 	if (! kvm_clock->clock_armed) return;
+<         // kvm_clock->need_pause = false;
+<         kvm_clock->clock_armed = false;
+<         kvm_clock->clock_valid = false;
+<         data.clock = kvm_clock->clock ; //+ 10000000; 
+<         data.flags = 0;
+< 
+<          ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
+< 
+< 	// fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
+<         if (ret < 0) {
+<             fprintf(stderr, "KVM_SET_CLOCK failed: %s\n", strerror(ret));
+<             abort();
+<         }
+< 
+< }
+< 
+< inline int kvmclock_elapsed(void)
+< {
+< 
+< 	struct kvm_clock_data data;
+<         data.clock = kvm_clock->clock; 
+<         data.flags = 0;
+< 	kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
+< 
+< 	kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
+< 	fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
+< 	return data.clock-kvm_clock->clock;
+< }
+< 
+< void kvmclock_set(void)
+< {
+<         int ret;
+< 	struct kvm_clock_data data;
+< 
+< 	kvm_clock->need_pause = true;
+< 	if (  kvm_clock->clock_armed ) return;
+<         kvm_clock->clock_armed = true;
+< 
+<         ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
+<         kvm_clock->clock = data.clock; 
+<         if (ret < 0) {
+<             fprintf(stderr, "KVM_GET_CLOCK failed: %s\n", strerror(ret));
+<             abort();
+<         }
+< }
+< 
+< 
+< void kvmclock_stop(void)
+< {
+<         /* int ret;
+<         CPUState *cpu = first_cpu;
+<         for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
+<             ret = kvm_vcpu_ioctl(cpu, KVM_KVMCLOCK_CTRL, 0);
+<             if (ret) {
+<                 if (ret != -EINVAL) {
+<                     fprintf(stderr, "%s: %s\n", __func__, strerror(-ret));
+<                 }
+<                 return;
+<             }
+<         }*/
+<         kvm_clock->need_pause = true;
+< 
+< }
+135d55
+< 
+160,163c80,83
+< * If the VM is stopped, declare the clock state valid to
+< * avoid re-reading it on next vmsave (which would return
+< * a different value). Will be reset when the VM is continued.
+< */
+---
+>          * If the VM is stopped, declare the clock state valid to
+>          * avoid re-reading it on next vmsave (which would return
+>          * a different value). Will be reset when the VM is continued.
+>          */
+170a91
+> 
+172,175d92
+<     kvm_clock = s;
+<     s -> clock_armed = false;
+<     s -> need_pause = false;
+<     kvm_clock->clock = 0;
+201,202c118,119
+<     .name = "kvmclock",
+<     .parent = TYPE_SYS_BUS_DEVICE,
+---
+>     .name          = "kvmclock",
+>     .parent        = TYPE_SYS_BUS_DEVICE,
+204c121
+<     .class_init = kvmclock_class_init,
+---
+>     .class_init    = kvmclock_class_init,
+diff -r qemu-bona/hw/pci/msix.c qemu-original/hw/pci/msix.c
+2d1
+< 
+diff -r qemu-bona/hw/virtio/virtio.c qemu-original/hw/virtio/virtio.c
+760d759
+< 
+782c781
+<      if (!vring_notify(vdev, vq)) {
+---
+>     if (!vring_notify(vdev, vq)) {
+784a784
+> 
+1070d1069
+< 	//MYTRACE    fprintf(stderr, ":VIRTIO_READ");
+diff -r qemu-bona/hw/virtio/virtio-pci.c qemu-original/hw/virtio/virtio-pci.c
+116d115
+<     { 
+118d116
+<     }
+120d117
+<     {
+122d118
+<     }
+diff -r qemu-bona/include/block/block.h qemu-original/include/block/block.h
+78,79d77
+< #define BDRV_O_SIMTIME	   0x8000  /* simulate device time */
+< 
+diff -r qemu-bona/include/hw/kvm/clock.h qemu-original/include/hw/kvm/clock.h
+13,17d12
+< void kvmclock_stop(void);
+< void kvmclock_set(void);
+< void kvmclock_start(void);
+< int kvmclock_elapsed(void);
+< bool kvmclock(void);
+19a15
+> 
+diff -r qemu-bona/include/qemu/main-loop.h qemu-original/include/qemu/main-loop.h
+28d27
+< 
+diff -r qemu-bona/include/qom/cpu.h qemu-original/include/qom/cpu.h
+482,488d481
+< void qemu_barrier_init(void);
+< void qemu_barrier_wait(void);
+< void qemu_barrier_destroy(void);
+< void qemu_up_vcpu_sem(void);
+< void qemu_dw_vcpu_sem(void);
+< 
+< 
+diff -r qemu-bona/include/sysemu/cpus.h qemu-original/include/sysemu/cpus.h
+8,9d7
+< void pause1_all_vcpus(void);
+< void pause2_all_vcpus(void);
+diff -r qemu-bona/iohandler.c qemu-original/iohandler.c
+133d132
+< 	    //MYTRACE
+Only in qemu-bona: .iohandler.c.swp
+diff -r qemu-bona/kvm-all.c qemu-original/kvm-all.c
+38,39d37
+< #include "include/hw/kvm/clock.h"
+< 
+1616,1617d1613
+< int sleeping=0;
+< 
+1622d1617
+< bool first=true;
+1626,1627d1620
+< 
+<     //MYTRACE
+1633,1634d1625
+<     
+< 
+1636d1626
+< 	
+1649c1639
+<              */ 
+---
+>              */
+1652,1661c1642
+< 
+< 	/* se ficar para cima disto dá tempos negativos */
+< 	if (kvmclock() && first){
+< 		first=false;
+<         	qemu_mutex_unlock_iothread();
+< 		qemu_barrier_wait();
+< 		qemu_dw_vcpu_sem();
+< 		kvmclock_start();
+< 	}else{
+<         	qemu_mutex_unlock_iothread();}
+---
+>         qemu_mutex_unlock_iothread();
+1663a1645
+> 
+1665a1648
+> 
+1668,1669d1650
+< 		/* supostamente quando saiu por conta do meu pause
+< 				   veio parar aqui */
+1671c1652
+< 		ret = EXCP_INTERRUPT;
+---
+>                 ret = EXCP_INTERRUPT;
+1677a1659
+> 
+Only in qemu-bona: .kvm-all.c.swo
+Only in qemu-bona: .kvm-all.c.swp
+Only in qemu-bona/linux-headers: asm
+Only in qemu-bona: .lixo5.swp
+Only in qemu-bona: .lixo_drain.swp
+diff -r qemu-bona/main-loop.c qemu-original/main-loop.c
+31d30
+< #include "block/raw-aio.h"
+33,36d31
+< #include "include/block/block.h"
+< #include "hw/kvm/clock.h"
+< #include  "include/sysemu/cpus.h"
+< #include  "qom/cpu.h"
+204d198
+< 
+207d200
+< 
+223a217
+>         timeout = 1;
+226d219
+< 
+230d222
+< 
+235d226
+<     /* região não critica */
+240a232
+> 
+456,458d447
+< int loop_count=0;
+< 
+< /* ISTO AQUI E` a IOTHREAD */
+468,469d456
+< 
+< 
+473d459
+<  
+477c463
+< #endif 
+---
+> #endif
+479,480d464
+< 
+< 
+482,497d465
+< 
+< 	/* ultra gambearra do loop, porque quando esta bootando em algum
+< 	momento nao funciona fazer meus pause e stars, deve ser algum estado
+< 	que deveria ser verificado. Para evitar "um tempo" para a maquina
+< 	estar em um estado onde posso tratar esses eventos */
+< 
+<     loop_count++;
+< /*    if (loop_count>=145000){
+<         kvmclock_set();
+<         kvmclock_stop();
+<         pause_all_vcpus();
+<         //cpu_synchronize_all_states();
+<         qemu_barrier_init();
+< 
+<     }
+< */
+499,527d466
+< /*
+<     if (loop_count>145000){
+<         bdrv_drain_all();
+<         resume_all_vcpus();
+<         qemu_mutex_unlock_iothread();
+<         qemu_barrier_wait();
+<         qemu_barrier_destroy();
+<         qemu_up_vcpu_sem();
+<         qemu_mutex_lock_iothread();
+<     }*/
+< 
+<     //fprintf(stderr, "%d\n", loop_count);
+<   /*   if (laio_pending() && (loop_count > 85000))
+<     {
+<         pause_all_vcpus();  isso é do KVM mesmo bem como resume 
+< 	kvmclock_set(); diz que vamos parar o relogio e coleta o tempo 
+< 	qemu_barrier_init();  dá para reaproveitar a barreira sem init? 
+< 	bdrv_drain_all();  faz de fato os flushs/drain o flush garante passar a escrita tb 
+< 	bdrv_flush_all();
+<         resume_all_vcpus();  reinicia as VCPUS 
+< 	 aqui para baixo é só para sincronizar ver kvm_all.c*
+< 	qemu_mutex_unlock_iothread();
+<         qemu_barrier_wait();
+<         qemu_up_vcpu_sem();
+<         qemu_barrier_destroy();
+< 	 o stop desliga o bool que avisa que estava com o relogio parado e sincronizando 
+< 	kvmclock_stop();
+< 	qemu_mutex_lock_iothread();
+<      }*/
+567d505
+< 
+Only in qemu-bona: original
+Only in qemu-bona/pc-bios/optionrom: kvmvapic.asm
+Only in qemu-bona/pc-bios/optionrom: linuxboot.asm
+Only in qemu-bona/pc-bios/optionrom: multiboot.asm
+Only in qemu-bona: qemu.1
+Only in qemu-bona: qemu-doc.html
+Only in qemu-bona: qemu-img.1
+Only in qemu-bona: qemu-img-cmds.texi
+Only in qemu-bona: qemu-monitor.texi
+Only in qemu-bona: qemu-nbd.8
+Only in qemu-bona: qemu-options.texi
+Only in qemu-bona: qemu-tech.html
+Only in qemu-bona/QMP: qmp-commands.txt
+Only in qemu-bona/roms/seabios: config.mak
+Only in qemu-bona/roms/vgabios: config.mak
+Only in qemu-bona/scripts: ordereddict.pyc
+Only in qemu-bona/scripts: qapi.pyc
+Only in qemu-bona/scripts/tracetool/backend: dtrace.pyc
+Only in qemu-bona/scripts/tracetool/backend: events.pyc
+Only in qemu-bona/scripts/tracetool/backend: ftrace.pyc
+Only in qemu-bona/scripts/tracetool/backend: __init__.pyc
+Only in qemu-bona/scripts/tracetool/backend: simple.pyc
+Only in qemu-bona/scripts/tracetool/backend: stderr.pyc
+Only in qemu-bona/scripts/tracetool/backend: ust.pyc
+Only in qemu-bona/scripts/tracetool/format: c.pyc
+Only in qemu-bona/scripts/tracetool/format: events_c.pyc
+Only in qemu-bona/scripts/tracetool/format: events_h.pyc
+Only in qemu-bona/scripts/tracetool/format: h.pyc
+Only in qemu-bona/scripts/tracetool/format: __init__.pyc
+Only in qemu-bona/scripts/tracetool: __init__.pyc
+Only in qemu-bona: testes
+diff -r qemu-bona/thread-pool.c qemu-original/thread-pool.c
+253a254
+> 
+diff -r qemu-bona/vl.c qemu-original/vl.c
+32d31
+< #include "hw/kvm/clock.h"
+2092d2090
+< 
+Only in qemu-bona: .vl.c.swp
+Only in qemu-bona: x86_64-softmmu
