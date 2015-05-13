@@ -70,3 +70,4 @@ kvm.log
 .cproject
 .project
 
+.fuse*
