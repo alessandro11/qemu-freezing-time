@@ -71,3 +71,4 @@ kvm.log
 .project
 
 .fuse*
+/Debug/
