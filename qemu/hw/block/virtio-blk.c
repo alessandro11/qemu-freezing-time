@@ -11,6 +11,8 @@
  *
  */
 
+int blkcount=1;
+
 #include "qemu-common.h"
 #include "qemu/iov.h"
 #include "qemu/error-report.h"
@@ -27,6 +29,9 @@
 #endif
 #include "hw/virtio/virtio-bus.h"
 #include "hw/virtio/virtio-access.h"
+#include "hw/kvm/clock.h"
+#include "include/sysemu/cpus.h"
+#include "block/raw-aio.h"
 
 VirtIOBlockReq *virtio_blk_alloc_request(VirtIOBlock *s)
 {
@@ -601,8 +606,30 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 
+    bool hack =vdev->hack;
+    if (hack) {
+		kvmclock_set();
+		kvmclock_stop();
+		cpu_disable_ticks();
+		pause_all_vcpus();
+		cpu_synchronize_all_states();
+		qemu_barrier_init();
+    }
+
     while ((req = virtio_blk_get_request(s))) {
         virtio_blk_handle_request(req, &mrb);
+    }
+
+    bdrv_drain_all();
+    if (hack) {
+    		resume_all_vcpus();
+    		cpu_enable_ticks();
+    		qemu_mutex_unlock_iothread();
+    		qemu_barrier_wait();
+    		qemu_barrier_destroy();
+    		qemu_up_vcpu_sem();
+    		fprintf(stderr, ":UP_CPU");
+    		qemu_mutex_lock_iothread();
     }
 
     if (mrb.num_reqs) {

@@ -7,11 +7,14 @@
  * This work is licensed under the terms of the GNU GPL, version 2 or later.
  * See the COPYING file in the top-level directory.
  */
+
 #include "qemu-common.h"
 #include "block/aio.h"
 #include "qemu/queue.h"
 #include "block/raw-aio.h"
 #include "qemu/event_notifier.h"
+#include "hw/kvm/clock.h"
+#include "include/sysemu/cpus.h"
 
 #include <libaio.h>
 
@@ -46,6 +49,7 @@ typedef struct {
 } LaioQueue;
 
 struct qemu_laio_state {
+	QTAILQ_ENTRY(qemu_laio_state) node;
     io_context_t ctx;
     EventNotifier e;
 
@@ -57,7 +61,10 @@ struct qemu_laio_state {
     struct io_event events[MAX_EVENTS];
     int event_idx;
     int event_max;
+    int count;
 };
+
+static QTAILQ_HEAD(, qemu_laio_state) simtime_laio_state=QTAILQ_HEAD_INITIALIZER(simtime_laio_state);
 
 static void ioq_submit(struct qemu_laio_state *s);
 
@@ -65,6 +72,25 @@ static inline ssize_t io_event_ret(struct io_event *ev)
 {
     return (ssize_t)(((uint64_t)ev->res2 << 32) | ev->res);
 }
+
+
+/*
+ * Check AIO count
+ */
+bool laio_pending(void)
+{
+	struct qemu_laio_state* s;
+	QTAILQ_FOREACH(s, &simtime_laio_state, node){
+		if (s->count > 0)
+		{
+			//fprintf(stderr, ":%d", s->count);
+			return true;
+		}
+	}
+	return false;
+}
+
+
 
 /*
  * Completes an AIO request (calls the callback and frees the ACB).
@@ -311,6 +337,8 @@ void *laio_init(void)
     if (io_setup(MAX_EVENTS, &s->ctx) != 0) {
         goto out_close_efd;
     }
+
+    QTAILQ_INSERT_HEAD(&simtime_laio_state, s, node);
 
     ioq_init(&s->io_q);
 

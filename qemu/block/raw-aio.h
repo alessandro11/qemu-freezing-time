@@ -59,4 +59,5 @@ void win32_aio_attach_aio_context(QEMUWin32AIOState *aio,
                                   AioContext *new_context);
 #endif
 
+bool laio_pending(void);
 #endif /* QEMU_RAW_AIO_H */

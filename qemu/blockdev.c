@@ -405,6 +405,9 @@ static BlockBackend *blockdev_init(const char *file, QDict *bs_opts,
     if ((buf = qemu_opt_get(opts, "aio")) != NULL) {
         if (!strcmp(buf, "native")) {
             bdrv_flags |= BDRV_O_NATIVE_AIO;
+        } else if (!strcmp(buf, "simtime")) {
+        	bdrv_flags |= BDRV_O_NATIVE_AIO;
+        	bdrv_flags |= BDRV_O_SIMTIME;
         } else if (!strcmp(buf, "threads")) {
             /* this is the default */
         } else {
@@ -3024,6 +3027,10 @@ QemuOptsList qemu_common_drive_opts = {
             .name = "detect-zeroes",
             .type = QEMU_OPT_STRING,
             .help = "try to optimize zero writes (off, on, unmap)",
+        },{
+        		.name = "hack",
+        		.type = QEMU_OPT_BOOL,
+        		.help = "(test)",
         },
         { /* end of list */ }
     },

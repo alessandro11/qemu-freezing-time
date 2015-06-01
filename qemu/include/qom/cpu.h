@@ -671,6 +671,12 @@ void cpu_watchpoint_remove_all(CPUState *cpu, int mask);
 void QEMU_NORETURN cpu_abort(CPUState *cpu, const char *fmt, ...)
     GCC_FMT_ATTR(2, 3);
 
+void qemu_barrier_init(void);
+void qemu_barrier_wait(void);
+void qemu_barrier_destroy(void);
+void qemu_up_vcpu_sem(void);
+void qemu_dw_vcpu_sem(void);
+
 #ifdef CONFIG_SOFTMMU
 extern const struct VMStateDescription vmstate_cpu_common;
 #else

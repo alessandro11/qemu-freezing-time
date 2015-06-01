@@ -38,6 +38,8 @@
 #include "qemu/event_notifier.h"
 #include "trace.h"
 
+#include "include/hw/kvm/clock.h"
+
 #include "hw/boards.h"
 
 /* This check must be after config-host.h is included */
@@ -1777,6 +1779,7 @@ int kvm_cpu_exec(CPUState *cpu)
 {
     struct kvm_run *run = cpu->kvm_run;
     int ret, run_ret;
+    bool first=true;
 
     DPRINTF("kvm_cpu_exec()\n");
 
@@ -1801,7 +1804,15 @@ int kvm_cpu_exec(CPUState *cpu)
              */
             qemu_cpu_kick_self();
         }
-        qemu_mutex_unlock_iothread();
+        /* se ficar para cima disto dá tempos negativos */
+        if (kvmclock() && first){
+        	first=false;
+        	qemu_mutex_unlock_iothread();
+        	qemu_barrier_wait();
+        	qemu_dw_vcpu_sem();
+        	kvmclock_start();
+        }else
+        	qemu_mutex_unlock_iothread();
 
         run_ret = kvm_vcpu_ioctl(cpu, KVM_RUN, 0);
 
