@@ -3028,9 +3028,9 @@ QemuOptsList qemu_common_drive_opts = {
             .type = QEMU_OPT_STRING,
             .help = "try to optimize zero writes (off, on, unmap)",
         },{
-        		.name = "hack",
-        		.type = QEMU_OPT_BOOL,
-        		.help = "(test)",
+        	.name = "hack",
+        	.type = QEMU_OPT_BOOL,
+        	.help = "(test)",
         },
         { /* end of list */ }
     },

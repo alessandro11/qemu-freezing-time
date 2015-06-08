@@ -14,22 +14,10 @@
 #include "block/block_int.h"
 #include "sysemu/blockdev.h"
 #include "qapi-event.h"
+#include "block/block-backend.h"
 
 /* Number of coroutines to reserve per attached device model */
 #define COROUTINE_POOL_RESERVATION 64
-
-struct BlockBackend {
-    char *name;
-    int refcnt;
-    BlockDriverState *bs;
-    DriveInfo *legacy_dinfo;    /* null unless created by drive_new() */
-    QTAILQ_ENTRY(BlockBackend) link; /* for blk_backends */
-
-    void *dev;                  /* attached device model, if any */
-    /* TODO change to DeviceState when all users are qdevified */
-    const BlockDevOps *dev_ops;
-    void *dev_opaque;
-};
 
 typedef struct BlockBackendAIOCB {
     BlockAIOCB common;

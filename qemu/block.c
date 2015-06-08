@@ -36,7 +36,11 @@
 #include "qmp-commands.h"
 #include "qemu/timer.h"
 #include "qapi-event.h"
+#include "hw/virtio/virtio.h"
+
+#include "block/block-backend.h"
 #include "hw/kvm/clock.h"
+
 
 #ifdef CONFIG_BSD
 #include <sys/types.h>
@@ -4846,7 +4850,7 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
 {
     BlockAIOCBCoroutine *acb = opaque;
     BlockDriverState *bs = acb->common.bs;
-    int block, bobo;
+    //int block, bobo;
 
     if (!acb->is_write) {
         acb->req.error = bdrv_co_do_readv(bs, acb->req.sector,
@@ -4858,16 +4862,13 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
 
     fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
 
-    /*
-    MultiwriteCB * b_mwcb = acb->opaque;
-    VirtIOBlock * hack_viob = hack_viobr->dev;
-    VirtIODevice hack_viod = hack_viob->parent_obj;
-    bool hack = hack_viod.hack;
+
+    _Bool hack = ((VirtIODevice *)bs->blk->dev_opaque)->hack;
 
     if (kvmclock() && hack)
-    {*/
+    {
     	co_aio_sleep_ns(bdrv_get_aio_context(bs),QEMU_CLOCK_VIRTUAL,10000000);
-    //}
+    }
     fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
 
     acb->bh = aio_bh_new(bdrv_get_aio_context(bs), bdrv_co_em_bh, acb);
