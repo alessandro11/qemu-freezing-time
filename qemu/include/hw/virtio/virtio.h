@@ -84,6 +84,7 @@ struct VirtIODevice
     VMChangeStateEntry *vmstate;
     char *bus_name;
     uint8_t device_endian;
+    bool hack;
 };
 
 typedef struct VirtioDeviceClass {
