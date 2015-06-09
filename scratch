@@ -5,3 +5,14 @@ virtio.h
 122 bool hack; // Parametro para o disco rapido
 
 blkdev.c 702 nao reconheceu hack=on
+
+
+Parse command line:
+ - Parsing -drive in
+  opts_do_parse(...) qemu-option.c:753
+
+
+
+Seems the values of parameters are set in here.
+drive_new() bockdev.c:674
+blockdev_init() bockdev.c:374
