@@ -1,6 +1,7 @@
 *.o
 *.d
 *.raw
+*.qcow2
 qemu/config-all-devices.mak
 qemu/config-all-disas.mak
 *.o
