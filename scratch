@@ -18,6 +18,7 @@ vlc.c:4026
 drive_new() bockdev.c:674
 blockdev_init() bockdev.c:374
 blockdev.c:974 blockdev_init
+
 qemu-option.c:893 qemu_opts_from_qdict_1(... set value for options in legacy
 
 
@@ -26,6 +27,7 @@ qemu-option.c
     It creates the structure via g_malloc0 (some memomy managment system)
     and there assign value to parameters in:
     479 :qemu_opt_parse
+    qemu/include/option_int.h:32 union has value, where the value of parameter is stored.
 
 obj_new(...
 qdev-monitor.c:544
