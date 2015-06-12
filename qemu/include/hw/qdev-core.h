@@ -163,6 +163,7 @@ struct DeviceState {
     int num_child_bus;
     int instance_id_alias;
     int alias_required_for_version;
+    bool hack;
 };
 
 struct DeviceListener {
