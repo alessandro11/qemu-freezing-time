@@ -31,3 +31,11 @@ qemu-option.c
 
 obj_new(...
 qdev-monitor.c:544
+
+
+
+
+>>> PROBLEMA <<<
+
+virtio-blk.c:618-641
+problema na parada de relogio das coisas do bona
