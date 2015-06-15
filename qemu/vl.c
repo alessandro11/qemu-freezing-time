@@ -2729,14 +2729,6 @@ static void set_memory_options(uint64_t *ram_slots, ram_addr_t *maxram_size)
     }
 }
 
-void set_hacklist(QemuOptsList opts) {
-	BlockBackend *blk;
-	QemuOpts *list = opts->head->tqh_first;
-
-	//if( list->head->tqh_first->str == "")
-	//for( aux=opts)
-}
-
 int main(int argc, char **argv, char **envp)
 {
     int i;
@@ -4253,8 +4245,6 @@ int main(int argc, char **argv, char **envp)
     /* init generic devices */
     if (qemu_opts_foreach(qemu_find_opts("device"), device_init_func, NULL, 1) != 0)
         exit(1);
-
-    set_hacklist(qemu_drive_opts);
 
     /* Did we create any drives that we failed to create a device for? */
     drive_check_orphaned();
