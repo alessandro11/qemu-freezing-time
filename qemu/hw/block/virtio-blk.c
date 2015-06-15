@@ -32,6 +32,9 @@ int blkcount=1;
 #include "hw/kvm/clock.h"
 #include "include/sysemu/cpus.h"
 #include "block/raw-aio.h"
+#include "block/hack.h"
+#include "block/block-backend.h"
+#include "block/block_int.h"
 
 VirtIOBlockReq *virtio_blk_alloc_request(VirtIOBlock *s)
 {
@@ -597,6 +600,9 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     VirtIOBlock *s = VIRTIO_BLK(vdev);
     VirtIOBlockReq *req;
     MultiReqBuffer mrb = {};
+    bool hack;
+    HackList *tmp;
+    extern HackList *hacklist;
 
     /* Some guests kick before setting VIRTIO_CONFIG_S_DRIVER_OK so start
      * dataplane here instead of waiting for .set_status().
@@ -606,7 +612,9 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 
-    bool hack =vdev->hack;
+	for (tmp=hacklist; tmp != NULL; tmp=tmp->next)
+		hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
+
     if (hack) {
 		kvmclock_set();
 		kvmclock_stop();

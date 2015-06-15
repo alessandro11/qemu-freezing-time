@@ -127,7 +127,7 @@ int main(int argc, char **argv)
 #include "qapi-event.h"
 #include "block/block-backend.h"
 #include "qemu/option_int.h"
-
+#include "block/hack.h"
 
 
 #define DEFAULT_RAM_SIZE 128
@@ -522,6 +522,8 @@ static void res_free(void)
         boot_splash_filedata = NULL;
     }
 }
+
+HackList *hacklist = NULL;
 
 static int default_driver_check(QemuOpts *opts, void *opaque)
 {
@@ -2738,17 +2740,22 @@ static void set_memory_options(uint64_t *ram_slots, ram_addr_t *maxram_size)
 }
 void meu(QemuOptsList *qemu_drive_opts) {
 	QemuOpts *opts;
-	const char *nome;
+	HackList *tmp;
 
 	QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
 
 		if (qemu_opt_get(opts,"hack")) {
-			nome = qemu_opt_get(opts,"file");
+			if( hacklist == NULL) {
+				hacklist = calloc(1,sizeof(HackList));
+				hacklist->name = qemu_opt_get(opts,"file");
+			}
+			else {
+				for (tmp=hacklist; tmp->next != NULL; tmp=tmp->next);
+				tmp->next = calloc(1,sizeof(HackList));
+				tmp->next->name = qemu_opt_get(opts,"file");
+			}
 		}
 	}
-
-
-	return;
 }
 
 int main(int argc, char **argv, char **envp)
@@ -4268,20 +4275,8 @@ int main(int argc, char **argv, char **envp)
     if (qemu_opts_foreach(qemu_find_opts("device"), device_init_func, NULL, 1) != 0)
         exit(1);
 
-   // QemuOptsList *
-    //QemuOpts *b,*c;
-    //char *x;
-    //qemu_opts_foreach(qemu_find_opts("drive"), meu, NULL, 1);
-    //((opts) = ((&list->head)->tqh_first);
-    //b = (qemu_drive_opts).head.tqh_first;
-    //c = (&b->next)->tqe_next;
-    //x = (char *)b->id;
-    //c = ((QemuOpts *)(&qemu_drive_opts)->head.tqh_first).next->tqe_next;
     meu(&qemu_drive_opts);
-    BlockBackend *blk;
-    int kkk=0;
-    for (blk = blk_next(NULL); blk; blk = blk_next(blk))
-    	kkk++;
+
     /* Did we create any drives that we failed to create a device for? */
     drive_check_orphaned();
 

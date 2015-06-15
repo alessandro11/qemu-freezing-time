@@ -40,7 +40,7 @@
 
 #include "block/block-backend.h"
 #include "hw/kvm/clock.h"
-
+#include "block/hack.h"
 
 #ifdef CONFIG_BSD
 #include <sys/types.h>
@@ -4850,7 +4850,9 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
 {
     BlockAIOCBCoroutine *acb = opaque;
     BlockDriverState *bs = acb->common.bs;
-    //int block, bobo;
+    bool hack;
+    HackList *tmp;
+    extern HackList *hacklist;
 
     if (!acb->is_write) {
         acb->req.error = bdrv_co_do_readv(bs, acb->req.sector,
@@ -4862,8 +4864,8 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
 
     fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
 
-
-    _Bool hack = ((VirtIODevice *)bs->blk->dev_opaque)->hack;
+	for (tmp=hacklist; tmp != NULL; tmp=tmp->next)
+		hack = (strcmp(bs->filename, tmp->name) == 0);
 
     if (kvmclock() && hack)
     {
