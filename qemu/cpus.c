@@ -1126,7 +1126,7 @@ bool thereisbarrier = false;
 void qemu_up_vcpu_sem(void)
 {
 	int x;
-	for (x=1;x<=2;x++)
+	for (x=1;x<=smp_cpus;x++)
 	{
 		sem_post(&qemu_kvmclock_sem);
 	}
@@ -1141,7 +1141,7 @@ void qemu_dw_vcpu_sem(void)
 
 void qemu_barrier_init(void)
 {
-	pthread_barrier_init(&our_barrier,NULL,3);
+	pthread_barrier_init(&our_barrier,NULL,smp_cpus);
 	thereisbarrier = true;
 }
 
