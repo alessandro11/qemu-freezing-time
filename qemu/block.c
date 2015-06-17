@@ -4869,7 +4869,8 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
 
     if (kvmclock() && hack)
     {
-    	co_aio_sleep_ns(bdrv_get_aio_context(bs),QEMU_CLOCK_VIRTUAL,10000000);
+    	//co_aio_sleep_ns(bdrv_get_aio_context(bs),QEMU_CLOCK_VIRTUAL,10000000);
+    	co_aio_sleep_ns(bdrv_get_aio_context(bs),QEMU_CLOCK_VIRTUAL,0);
     }
     fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
 

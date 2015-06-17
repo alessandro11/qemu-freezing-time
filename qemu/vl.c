@@ -222,6 +222,9 @@ static int default_cdrom = 1;
 static int default_sdcard = 1;
 static int default_vga = 1;
 
+sem_t qemu_kvmclock_sem;
+HackList *hacklist = NULL;
+
 static struct {
     const char *driver;
     int *flag;
@@ -522,8 +525,6 @@ static void res_free(void)
         boot_splash_filedata = NULL;
     }
 }
-
-HackList *hacklist = NULL;
 
 static int default_driver_check(QemuOpts *opts, void *opaque)
 {
@@ -2741,6 +2742,8 @@ static void set_memory_options(uint64_t *ram_slots, ram_addr_t *maxram_size)
 void meu(QemuOptsList *qemu_drive_opts) {
 	QemuOpts *opts;
 	HackList *tmp;
+
+    sem_init(&qemu_kvmclock_sem,0,smp_cpus);
 
 	QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
 

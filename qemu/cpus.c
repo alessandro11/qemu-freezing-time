@@ -68,6 +68,7 @@
 static CPUState *next_cpu;
 int64_t max_delay;
 int64_t max_advance;
+extern sem_t qemu_kvmclock_sem;
 
 bool cpu_is_stopped(CPUState *cpu)
 {
@@ -778,7 +779,6 @@ static void qemu_tcg_init_cpu_signals(void)
 #endif /* _WIN32 */
 
 static QemuMutex qemu_global_mutex;
-sem_t qemu_kvmclock_sem;
 static QemuCond qemu_io_proceeded_cond;
 static unsigned iothread_requesting_mutex;
 
@@ -802,7 +802,6 @@ void qemu_init_cpu_loop(void)
     qemu_cond_init(&qemu_work_cond);
     qemu_cond_init(&qemu_io_proceeded_cond);
     qemu_mutex_init(&qemu_global_mutex);
-    sem_init(&qemu_kvmclock_sem,0,0);
 
     qemu_thread_get_self(&io_thread);
 }
@@ -1125,17 +1124,26 @@ bool thereisbarrier = false;
 
 void qemu_up_vcpu_sem(void)
 {
-	int x;
+	//return;
+	int x,y;
+	sem_getvalue(&qemu_kvmclock_sem,&y);
 	for (x=1;x<=smp_cpus;x++)
 	{
 		sem_post(&qemu_kvmclock_sem);
+		sem_getvalue(&qemu_kvmclock_sem,&y);
 	}
 }
 
 void qemu_dw_vcpu_sem(void)
 {
-	if ( thereisbarrier)
+	int y;
+	return;
+	sem_getvalue(&qemu_kvmclock_sem,&y);
+	//if ( thereisbarrier) {
+	//if (y != 0)
 		sem_wait(&qemu_kvmclock_sem);
+	//}
+	sem_getvalue(&qemu_kvmclock_sem,&y);
 }
 
 
@@ -1148,6 +1156,9 @@ void qemu_barrier_init(void)
 
 void qemu_barrier_wait(void)
 {
+	int y;
+	int *a = &y;
+
 	if ( thereisbarrier )
 	{
 		pthread_barrier_wait(&our_barrier);
@@ -1157,7 +1168,17 @@ void qemu_barrier_wait(void)
 
 void qemu_barrier_destroy(void)
 {
-	if ( thereisbarrier ){
+	int y;
+	sem_getvalue(&qemu_kvmclock_sem,&y);
+	thereisbarrier = false;
+	return;
+	/*thereisbarrier = false;
+	return;
+
+	do
+		sem_getvalue(&qemu_kvmclock_sem,&y);
+	while (thereisbarrier && y != 0);
+	*/if ( thereisbarrier ){
 		pthread_barrier_destroy(&our_barrier);
 		thereisbarrier = false;
 	}
