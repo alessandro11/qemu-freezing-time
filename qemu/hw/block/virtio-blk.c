@@ -603,6 +603,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     bool hack;
     HackList *tmp;
     extern HackList *hacklist;
+    extern bool kvm_cpu;
 
     /* Some guests kick before setting VIRTIO_CONFIG_S_DRIVER_OK so start
      * dataplane here instead of waiting for .set_status().
@@ -615,13 +616,17 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 	for (tmp=hacklist; tmp != NULL; tmp=tmp->next)
 		hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
 
-    if (hack) {
+	if (hack) {
 		kvmclock_set();
 		kvmclock_stop();
 		cpu_disable_ticks();
 		pause_all_vcpus();
 		cpu_synchronize_all_states();
-		qemu_barrier_init();
+		if (kvm_cpu)
+			qemu_barrier_init(smp_cpus);
+		else
+			qemu_barrier_init(smp_cpus+1);
+		meu_qemu_mutex_init();
     }
 
     while ((req = virtio_blk_get_request(s))) {
@@ -629,20 +634,22 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     }
 
     bdrv_drain_all();
-    if (hack) {
-    		resume_all_vcpus();
-    		cpu_enable_ticks();
-    		qemu_mutex_unlock_iothread();
-    		qemu_barrier_wait();
-    		qemu_barrier_destroy();
-    		qemu_up_vcpu_sem();
-    		fprintf(stderr, ":UP_CPU");
-    		qemu_mutex_lock_iothread();
-    }
 
     if (mrb.num_reqs) {
         virtio_blk_submit_multireq(s->blk, &mrb);
     }
+
+    if (hack) {
+        		resume_all_vcpus();
+        		cpu_enable_ticks();
+        		qemu_mutex_unlock_iothread();
+        		qemu_barrier_wait();
+        		qemu_barrier_destroy();
+        		qemu_mutex_lock_iothread();
+        		qemu_up_vcpu_sem();
+        		fprintf(stderr, ":UP_CPU");
+
+        }
 }
 
 static void virtio_blk_dma_restart_bh(void *opaque)

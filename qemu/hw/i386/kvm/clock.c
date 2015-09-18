@@ -50,8 +50,11 @@ inline void kvmclock_start(void)
 {
 	struct kvm_clock_data data;
 	int ret;
-
-	if (! kvm_clock->clock_armed) return;
+	meu_qemu_mutex_lock();
+	if (! kvm_clock->clock_armed) {
+		meu_qemu_mutex_unlock();
+		return;
+	}
 	// kvm_clock->need_pause = false;
 	kvm_clock->clock_armed = false;
 	kvm_clock->clock_valid = false;
@@ -65,7 +68,7 @@ inline void kvmclock_start(void)
 		fprintf(stderr, "KVM_SET_CLOCK failed: %s\n", strerror(ret));
 		abort();
 	}
-
+	meu_qemu_mutex_unlock();
 }
 
 inline int kvmclock_elapsed(void)
@@ -79,6 +82,12 @@ inline int kvmclock_elapsed(void)
 	kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
 	fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
 	return data.clock-kvm_clock->clock;
+}
+
+void meu_kvmclock_set(void){
+	int ret;
+	struct kvm_clock_data data;
+	ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
 }
 
 void kvmclock_set(void)
