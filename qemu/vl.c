@@ -2739,29 +2739,29 @@ static void set_memory_options(uint64_t *ram_slots, ram_addr_t *maxram_size)
         exit(EXIT_FAILURE);
     }
 }
+
+void meu(QemuOptsList *qemu_drive_opts);
 void meu(QemuOptsList *qemu_drive_opts) {
 	QemuOpts *opts;
 	HackList *tmp;
-	QemuOpt  *opt;
-	const char *str = NULL;
+	const char *status;
 
     sem_init(&qemu_kvmclock_sem,0,smp_cpus);
 
-	QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
-		if( (str = qemu_opt_get(opts,"hack")) ) {
-			if( strcmp(str, "on") == 0 ) {
-				if( hacklist == NULL) {
-					hacklist = calloc(1,sizeof(HackList));
-					hacklist->name = qemu_opt_get(opts,"file");
-				}
-				else {
-					for (tmp=hacklist; tmp->next != NULL; tmp=tmp->next);
-					tmp->next = calloc(1,sizeof(HackList));
-					tmp->next->name = qemu_opt_get(opts,"file");
-				}
-			}
-		}
-	}
+    QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
+        status = qemu_opt_get(opts,"hack");
+        if( status && strcmp(status, "on") == 0 ) {
+            if( hacklist == NULL) {
+                hacklist = calloc(1,sizeof(HackList));
+                hacklist->name = qemu_opt_get(opts,"file");
+            }
+            else {
+                for (tmp=hacklist; tmp->next != NULL; tmp=tmp->next);
+                tmp->next = calloc(1,sizeof(HackList));
+                tmp->next->name = qemu_opt_get(opts,"file");
+            }
+        }
+    }
 }
 
 int main(int argc, char **argv, char **envp)

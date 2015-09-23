@@ -602,8 +602,10 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     MultiReqBuffer mrb = {};
     bool hack;
     HackList *tmp;
+#pragma GCC diagnostic ignored "-Wnested-externs"
     extern HackList *hacklist;
     extern bool kvm_cpu;
+#pragma GCC diagnostic warning "-Wnested-externs"
 
     /* Some guests kick before setting VIRTIO_CONFIG_S_DRIVER_OK so start
      * dataplane here instead of waiting for .set_status().

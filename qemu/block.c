@@ -4852,7 +4852,9 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
     BlockDriverState *bs = acb->common.bs;
     bool hack;
     HackList *tmp;
+#pragma GCC diagnostic ignored "-Wnested-externs"
     extern HackList *hacklist;
+#pragma GCC diagnostic warning "-Wnested-externs"
 
     if (!acb->is_write) {
         acb->req.error = bdrv_co_do_readv(bs, acb->req.sector,

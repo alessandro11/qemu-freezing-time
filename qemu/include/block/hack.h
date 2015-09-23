@@ -9,7 +9,7 @@
 #define QEMU_INCLUDE_BLOCK_HACK_H_
 
 typedef struct HackList {
-	char *name;
+	const char *name;
 	struct HackList *next;
 }HackList;
 
