@@ -595,6 +595,7 @@ void virtio_blk_handle_request(VirtIOBlockReq *req, MultiReqBuffer *mrb)
     }
 }
 
+extern void meu_qemu_mutex_init(void);
 static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 {
     VirtIOBlock *s = VIRTIO_BLK(vdev);

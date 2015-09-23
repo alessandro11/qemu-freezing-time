@@ -1158,8 +1158,8 @@ void qemu_barrier_init(int size)
 
 void qemu_barrier_wait(void)
 {
-	int y;
-	int *a = &y;
+	//int y;
+	//int *a = &y;
 
 	if ( thereisbarrier )
 	{
@@ -1171,7 +1171,7 @@ void qemu_barrier_wait(void)
 
 void qemu_barrier_destroy(void)
 {
-	int y;
+	//int y;
 	//sem_getvalue(&qemu_kvmclock_sem,&y);
 	thereisbarrier = false;
 	return;
@@ -1182,16 +1182,22 @@ void qemu_barrier_destroy(void)
 		sem_getvalue(&qemu_kvmclock_sem,&y);
 	while (thereisbarrier && y != 0);
 	*/if ( thereisbarrier ){
-		y=pthread_barrier_destroy(&our_barrier);
+		pthread_barrier_destroy(&our_barrier);
 
 		thereisbarrier = false;
 	}
 }
 
-void meu_qemu_mutex_init(void){
+void meu_qemu_mutex_init(void);
+void meu_qemu_mutex_lock(void);
+void meu_qemu_mutex_unlock(void);
+void meu_qemu_mutex_destroy(void);
+
+void meu_qemu_mutex_init(void) {
 	pthread_mutex_init(&our_mutex,NULL);
 }
-void meu_qemu_mutex_lock(void){
+
+void meu_qemu_mutex_lock(void) {
 	pthread_mutex_lock(&our_mutex);
 	thereismutex = true;
 }
