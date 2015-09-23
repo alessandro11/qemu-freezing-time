@@ -4862,8 +4862,9 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
             acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
     }
 
-	for (tmp=hacklist; tmp != NULL; tmp=tmp->next)
+	for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
 		hack = (strcmp(bs->filename, tmp->name) == 0);
+	}
 
     if (kvmclock() && hack)
     {

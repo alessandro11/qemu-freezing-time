@@ -613,8 +613,13 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 
-	for (tmp=hacklist; tmp != NULL; tmp=tmp->next)
+#include "mytrace.h"
+	for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
 		hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
+		eprintf("...bs->filename=%s\n" \
+				"\t  tmp->name=%s\n"
+				"hack=%s", s->blk->bs->filename, tmp->name, hack ? "true" : "false");
+	}
 
 	if (hack) {
 		kvmclock_set();
@@ -647,7 +652,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         		qemu_barrier_destroy();
         		qemu_mutex_lock_iothread();
         		qemu_up_vcpu_sem();
-        		fprintf(stderr, ":UP_CPU");
+        		fprintf(stderr, ":UP_CPU\n");
 
         }
 }
