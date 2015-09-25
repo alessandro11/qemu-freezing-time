@@ -22,11 +22,11 @@
 
 #else
 
-eprintf  (void)0
-AETRACE  (void)0
-AETRACE1 (void)0
-AETRACE2 (void)0
-AETRACE3 (void)0
+#define eprintf(fmt, ...)  ((void)0)
+#define AETRACE  ((void)0)
+#define AETRACE1 ((void)0)
+#define AETRACE2 ((void)0)
+#define AETRACE3 ((void)0)
 
 #endif /* AE_NODEBUG */
 

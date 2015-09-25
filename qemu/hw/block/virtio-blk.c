@@ -616,6 +616,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 
+#define AE_NODEBUG	1
 #include "mytrace.h"
 	for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
 		hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
@@ -655,7 +656,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         		qemu_barrier_destroy();
         		qemu_mutex_lock_iothread();
         		qemu_up_vcpu_sem();
-        		fprintf(stderr, ":UP_CPU\n");
+        		//fprintf(stderr, ":UP_CPU\n");
 
         }
 }
