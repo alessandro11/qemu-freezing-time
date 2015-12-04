@@ -1812,6 +1812,7 @@ int kvm_cpu_exec(CPUState *cpu)
         	qemu_barrier_wait();
         	qemu_dw_vcpu_sem();
         	kvmclock_start();
+        	//kvmclock_check();
         }else
         	qemu_mutex_unlock_iothread();
 

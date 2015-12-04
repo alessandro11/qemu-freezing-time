@@ -63,7 +63,7 @@ inline void kvmclock_start(void)
 
 	ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
 
-	// fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
+	//fprintf (stdout, ": %lu\n" , (uint64) data.clock);
 	if (ret < 0) {
 		fprintf(stderr, "KVM_SET_CLOCK failed: %s\n", strerror(ret));
 		abort();
@@ -104,6 +104,19 @@ void kvmclock_set(void)
 	if (ret < 0) {
 		fprintf(stderr, "KVM_GET_CLOCK failed: %s\n", strerror(ret));
 		abort();
+	}
+}
+
+void kvmclock_check(void) {
+	struct kvm_clock_data data;
+	int ret;
+	ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
+	if (ret < 0) {
+			fprintf(stderr, "KVM_GET_CLOCK failed: %s\n", strerror(ret));
+			abort();
+	}
+	if (kvm_clock->clock != data.clock) {
+		fprintf(stdout, "KVM CLOCK = %10lu CURRENT = %10lu\n",(uint64) kvm_clock->clock,(uint64) data.clock);
 	}
 }
 
