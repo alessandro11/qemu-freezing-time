@@ -4862,7 +4862,7 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
             acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
     }
 
-    fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
+    //fprintf(stderr, ":DO_RW_B:%d", (int) acb->req.sector );
 
 	for (tmp=hacklist; tmp != NULL; tmp=tmp->next)
 		hack = (strcmp(bs->filename, tmp->name) == 0);
@@ -4872,7 +4872,7 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
     	//co_aio_sleep_ns(bdrv_get_aio_context(bs),QEMU_CLOCK_VIRTUAL,10000000);
     	co_aio_sleep_ns(bdrv_get_aio_context(bs),QEMU_CLOCK_VIRTUAL,0);
     }
-    fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
+    //fprintf(stderr, ":DO_RW_C:%d", (int) acb->req.sector );
 
     acb->bh = aio_bh_new(bdrv_get_aio_context(bs), bdrv_co_em_bh, acb);
     qemu_bh_schedule(acb->bh);
