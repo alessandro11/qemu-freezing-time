@@ -607,6 +607,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     extern HackList *hacklist;
     extern bool kvm_cpu;
 #pragma GCC diagnostic warning "-Wnested-externs"
+    static long count = 0;
 
     /* Some guests kick before setting VIRTIO_CONFIG_S_DRIVER_OK so start
      * dataplane here instead of waiting for .set_status().
@@ -616,13 +617,13 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         return;
     }
 
-#define AE_NODEBUG	1
+//#define AE_NODEBUG	1
 #include "mytrace.h"
 	for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
 		hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
-		eprintf("...bs->filename=%s\n" \
-				"\t  tmp->name=%s\n"
-				"hack=%s", s->blk->bs->filename, tmp->name, hack ? "true" : "false");
+		eprintf("%ld:...bs->filename=%s\n" \
+				"\t  tmp->name=%s\n" \
+				"hack=%s", count++, s->blk->bs->filename, tmp->name, hack ? "true" : "false");
 	}
 
 	if (hack) {
