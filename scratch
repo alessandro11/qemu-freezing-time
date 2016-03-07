@@ -1,41 +1,4 @@
-Função main vl.c linha 2895
+- olhar nos traces pq o tempo fica com valores muito grandes (negativos?), olhar cada etapa do IO
+- plotar um grafico da amostra para facilitar a visualizacao
+- pode ser um bug do blktrace ja que ele nunca espera que o IO possa ter tempos negativos, olhar o fonte
 
-virtio.h
-
-122 bool hack; // Parametro para o disco rapido
-
-blkdev.c 702 nao reconheceu hack=on
-
-
-Parse command line:
- - Parsing -drive in
-  opts_do_parse(...) qemu-option.c:753
-
-
-
-Seems the values of parameters are set in here.
-vlc.c:4026
-drive_new() bockdev.c:674
-blockdev_init() bockdev.c:374
-blockdev.c:974 blockdev_init
-
-qemu-option.c:893 qemu_opts_from_qdict_1(... set value for options in legacy
-
-
-qemu-option.c
-    521: opt_set()
-    It creates the structure via g_malloc0 (some memomy managment system)
-    and there assign value to parameters in:
-    479 :qemu_opt_parse
-    qemu/include/option_int.h:32 union has value, where the value of parameter is stored.
-
-obj_new(...
-qdev-monitor.c:544
-
-
-
-
->>> PROBLEMA <<<
-
-virtio-blk.c:618-641
-problema na parada de relogio das coisas do bona

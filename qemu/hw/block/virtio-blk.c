@@ -627,11 +627,12 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 	}
 
 	if (hack) {
-		kvmclock_set();
+		//cpu_disable_ticks();
 		kvmclock_stop();
-		cpu_disable_ticks();
 		pause_all_vcpus();
-		cpu_synchronize_all_states();
+		kvmclock_set();
+		//cpu_synchronize_all_states();
+
 		if (kvm_cpu)
 			qemu_barrier_init(smp_cpus);
 		else
@@ -650,16 +651,15 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     }
 
     if (hack) {
-        		resume_all_vcpus();
-        		cpu_enable_ticks();
-        		qemu_mutex_unlock_iothread();
-        		qemu_barrier_wait();
-        		qemu_barrier_destroy();
-        		qemu_mutex_lock_iothread();
-        		qemu_up_vcpu_sem();
-        		//fprintf(stderr, ":UP_CPU\n");
-
-        }
+    	resume_all_vcpus();
+		cpu_enable_ticks();
+		qemu_mutex_unlock_iothread();
+		qemu_barrier_wait();
+		qemu_barrier_destroy();
+		qemu_mutex_lock_iothread();
+		qemu_up_vcpu_sem();
+		//fprintf(stderr, ":UP_CPU\n");
+    }
 }
 
 static void virtio_blk_dma_restart_bh(void *opaque)
