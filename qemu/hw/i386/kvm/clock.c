@@ -17,7 +17,7 @@
 #include "qemu/host-utils.h"
 #include "sysemu/sysemu.h"
 #include "sysemu/kvm.h"
-#include "sysemu/cpus.h"
+#include "kvm_i386.h"
 #include "hw/sysbus.h"
 #include "hw/kvm/clock.h"
 
@@ -34,110 +34,7 @@ typedef struct KVMClockState {
 
     uint64_t clock;
     bool clock_valid;
-    bool clock_armed;
-    bool need_pause;
 } KVMClockState;
-
-KVMClockState *kvm_clock=0;
-
-bool kvmclock(void)
-{
-	if (kvm_clock == 0 ) return false;
-	return kvm_clock->need_pause;
-}
-
-inline void kvmclock_start(void)
-{
-	struct kvm_clock_data data;
-	int ret;
-	meu_qemu_mutex_lock();
-	if (! kvm_clock->clock_armed) {
-		meu_qemu_mutex_unlock();
-		return;
-	}
-	// kvm_clock->need_pause = false;
-	kvm_clock->clock_armed = false;
-	kvm_clock->clock_valid = false;
-	data.clock = kvm_clock->clock + 1000000000 ; //+ 10000000;
-	data.flags = 0;
-
-    printf(">> time %lld\n", data.clock);
-
-	ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
-
-	//fprintf (stdout, ": %lu\n" , (uint64) data.clock);
-	if (ret < 0) {
-		fprintf(stderr, "KVM_SET_CLOCK failed: %s\n", strerror(ret));
-		abort();
-	}
-	meu_qemu_mutex_unlock();
-}
-
-inline int kvmclock_elapsed(void)
-{
-
-	struct kvm_clock_data data;
-	data.clock = kvm_clock->clock;
-	data.flags = 0;
-	kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
-
-	kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
-	fprintf (stderr, ": %" PRId64 , (uint64) data.clock);
-	return data.clock-kvm_clock->clock;
-}
-
-void meu_kvmclock_set(void){
-	int ret;
-	struct kvm_clock_data data;
-	ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
-}
-
-void kvmclock_set(void)
-{
-	int ret;
-	struct kvm_clock_data data;
-
-	kvm_clock->need_pause = true;
-	if ( kvm_clock->clock_armed ) return;
-	kvm_clock->clock_armed = true;
-
-	ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
-	kvm_clock->clock = data.clock;
-	if (ret < 0) {
-		fprintf(stderr, "KVM_GET_CLOCK failed: %s\n", strerror(ret));
-		abort();
-	}
-}
-
-void kvmclock_check(void) {
-	struct kvm_clock_data data;
-	int ret;
-	ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
-	if (ret < 0) {
-			fprintf(stderr, "KVM_GET_CLOCK failed: %s\n", strerror(ret));
-			abort();
-	}
-	if (kvm_clock->clock != data.clock) {
-		fprintf(stdout, "KVM CLOCK = %10lu CURRENT = %10lu\n",(uint64) kvm_clock->clock,(uint64) data.clock);
-	}
-}
-
-void kvmclock_stop(void)
-{
-	/* int ret;
-	CPUState *cpu = first_cpu;
-	for (cpu = first_cpu; cpu != NULL; cpu = cpu->next_cpu) {
-		ret = kvm_vcpu_ioctl(cpu, KVM_KVMCLOCK_CTRL, 0);
-		if (ret) {
-			if (ret != -EINVAL) {
-				fprintf(stderr, "%s: %s\n", __func__, strerror(-ret));
-			}
-		return;
-		}
-	}*/
-	kvm_clock->need_pause = true;
-
-}
 
 struct pvclock_vcpu_time_info {
     uint32_t   version;
@@ -228,21 +125,7 @@ static void kvmclock_vm_state_change(void *opaque, int running,
             return;
         }
 
-        cpu_synchronize_all_states();
-        /* In theory, the cpu_synchronize_all_states() call above wouldn't
-         * affect the rest of the code, as the VCPU state inside CPUState
-         * is supposed to always match the VCPU state on the kernel side.
-         *
-         * In practice, calling cpu_synchronize_state() too soon will load the
-         * kernel-side APIC state into X86CPU.apic_state too early, APIC state
-         * won't be reloaded later because CPUState.vcpu_dirty==true, and
-         * outdated APIC state may be migrated to another host.
-         *
-         * The real fix would be to make sure outdated APIC state is read
-         * from the kernel again when necessary. While this is not fixed, we
-         * need the cpu_clean_all_dirty() call below.
-         */
-        cpu_clean_all_dirty();
+        kvm_synchronize_all_tsc();
 
         ret = kvm_vm_ioctl(kvm_state, KVM_GET_CLOCK, &data);
         if (ret < 0) {
@@ -265,10 +148,6 @@ static void kvmclock_realize(DeviceState *dev, Error **errp)
     KVMClockState *s = KVM_CLOCK(dev);
 
     qemu_add_vm_change_state_handler(kvmclock_vm_state_change, s);
-    kvm_clock = s;
-    s -> clock_armed = false;
-    s -> need_pause = false;
-    kvm_clock->clock = 0;
 }
 
 static const VMStateDescription kvmclock_vmsd = {

@@ -30,13 +30,6 @@
 #include "qemu/main-loop.h"
 #include "block/aio.h"
 
-#include "block/raw-aio.h"
-
-#include "include/block/block.h"
-#include "hw/kvm/clock.h"
-#include "include/sysemu/cpus.h"
-#include "qom/cpu.h"
-
 #ifndef _WIN32
 
 #include "qemu/compatfd.h"
@@ -107,8 +100,7 @@ static int qemu_signal_init(void)
 
     fcntl_setfl(sigfd, O_NONBLOCK);
 
-    qemu_set_fd_handler2(sigfd, NULL, sigfd_handler, NULL,
-                         (void *)(intptr_t)sigfd);
+    qemu_set_fd_handler(sigfd, sigfd_handler, NULL, (void *)(intptr_t)sigfd);
 
     return 0;
 }
@@ -122,6 +114,14 @@ static int qemu_signal_init(void)
 #endif
 
 static AioContext *qemu_aio_context;
+static QEMUBH *qemu_notify_bh;
+
+static void notify_event_cb(void *opaque)
+{
+    /* No need to do anything; this bottom half is only used to
+     * kick the kernel out of ppoll/poll/WaitForMultipleObjects.
+     */
+}
 
 AioContext *qemu_get_aio_context(void)
 {
@@ -133,7 +133,7 @@ void qemu_notify_event(void)
     if (!qemu_aio_context) {
         return;
     }
-    aio_notify(qemu_aio_context);
+    qemu_bh_schedule(qemu_notify_bh);
 }
 
 static GArray *gpollfds;
@@ -152,12 +152,16 @@ int qemu_init_main_loop(Error **errp)
     }
 
     qemu_aio_context = aio_context_new(&local_error);
+    qemu_notify_bh = qemu_bh_new(notify_event_cb, NULL);
     if (!qemu_aio_context) {
         error_propagate(errp, local_error);
         return -EMFILE;
     }
     gpollfds = g_array_new(FALSE, FALSE, sizeof(GPollFD));
     src = aio_get_g_source(qemu_aio_context);
+    g_source_attach(src, NULL);
+    g_source_unref(src);
+    src = iohandler_get_g_source();
     g_source_attach(src, NULL);
     g_source_unref(src);
     return 0;
@@ -226,7 +230,7 @@ static int os_host_main_loop_wait(int64_t timeout)
     if (!timeout && (spin_counter > MAX_MAIN_LOOP_SPIN)) {
         static bool notified;
 
-        if (!notified && !qtest_enabled()) {
+        if (!notified && !qtest_driver()) {
             fprintf(stderr,
                     "main-loop: WARNING: I/O thread spun for %d iterations\n",
                     MAX_MAIN_LOOP_SPIN);
@@ -470,9 +474,6 @@ static int os_host_main_loop_wait(int64_t timeout)
 }
 #endif
 
-int loop_count=0;
-
-/* ISTO AQUI E` a IOTHREAD */
 int main_loop_wait(int nonblocking)
 {
     int ret;
@@ -489,7 +490,6 @@ int main_loop_wait(int nonblocking)
 #ifdef CONFIG_SLIRP
     slirp_pollfds_fill(gpollfds, &timeout);
 #endif
-    qemu_iohandler_fill(gpollfds);
 
     if (timeout == UINT32_MAX) {
         timeout_ns = -1;
@@ -502,59 +502,13 @@ int main_loop_wait(int nonblocking)
                                           &main_loop_tlg));
 
     ret = os_host_main_loop_wait(timeout_ns);
-
-    /* ultra gambearra do loop, porque quando esta bootando em algum
-    momento nao funciona fazer meus pause e stars, deve ser algum estado
-    que deveria ser verificado. Para evitar "um tempo" para a maquina
-    estar em um estado onde posso tratar esses eventos */
-
-    loop_count++;
-    /* if (loop_count>=145000){
-    	kvmclock_set();
-    	kvmclock_stop();
-    	pause_all_vcpus();
-    	//cpu_synchronize_all_states();
-    	qemu_barrier_init();
-
-    }
-    */
-
-    qemu_iohandler_poll(gpollfds, ret);
-
-    /*
-    if (loop_count>145000){
-    	bdrv_drain_all();
-    	resume_all_vcpus();
-    	qemu_mutex_unlock_iothread();
-    	qemu_barrier_wait();
-    	qemu_barrier_destroy();
-    	qemu_up_vcpu_sem();
-    	qemu_mutex_lock_iothread();
-    }*/
-
-    //fprintf(stderr, "%d\n", loop_count);
-    /* if (laio_pending() && (loop_count > 85000))
-    {
-    	pause_all_vcpus(); isso é do KVM mesmo bem como resume
-    	kvmclock_set(); diz que vamos parar o relogio e coleta o tempo
-    	qemu_barrier_init(); dá para reaproveitar a barreira sem init?
-    	bdrv_drain_all(); faz de fato os flushs/drain o flush garante passar a escrita tb
-    	bdrv_flush_all();
-    	resume_all_vcpus(); reinicia as VCPUS
-    	aqui para baixo é só para sincronizar ver kvm_all.c*
-    	qemu_mutex_unlock_iothread();
-    	qemu_barrier_wait();
-    	qemu_up_vcpu_sem();
-    	qemu_barrier_destroy();
-    	o stop desliga o bool que avisa que estava com o relogio parado e sincronizando
-    	kvmclock_stop();
-    	qemu_mutex_lock_iothread();
-    }*/
-
 #ifdef CONFIG_SLIRP
     slirp_pollfds_poll(gpollfds, (ret < 0));
 #endif
 
+    /* CPU thread can infinitely wait for event after
+       missing the warp */
+    qemu_clock_warp(QEMU_CLOCK_VIRTUAL);
     qemu_clock_run_all_timers();
 
     return ret;
