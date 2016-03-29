@@ -58,8 +58,10 @@ inline void kvmclock_start(void)
 	// kvm_clock->need_pause = false;
 	kvm_clock->clock_armed = false;
 	kvm_clock->clock_valid = false;
-	data.clock = kvm_clock->clock ; //+ 10000000;
+	data.clock = kvm_clock->clock + 1000000000 ; //+ 10000000;
 	data.flags = 0;
+
+    printf(">> time %lld\n", data.clock);
 
 	ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
 
