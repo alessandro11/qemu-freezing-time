@@ -604,8 +604,10 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 
     bool hack;
     HackList *tmp;
+#pragma GCC diagnostic ignored "-Wnested-externs"
     extern HackList *hacklist;
     extern KVMClockState *kvm_clock;
+#pragma GCC diagnostic warning "-Wnested-externs"
 
     struct kvm_clock_data data;
 
