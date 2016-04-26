@@ -78,6 +78,8 @@ static unsigned int throttle_percentage;
 #define CPU_THROTTLE_PCT_MAX 99
 #define CPU_THROTTLE_TIMESLICE_NS 10000000
 
+int all_vcpus_paused(void);
+
 bool cpu_is_stopped(CPUState *cpu)
 {
     return cpu->stopped || !runstate_is_running();
@@ -868,7 +870,7 @@ static void qemu_kvm_init_cpu_signals(CPUState *cpu)
 }
 #endif /* _WIN32 */
 
-static QemuMutex qemu_global_mutex;
+QemuMutex qemu_global_mutex;
 static QemuCond qemu_io_proceeded_cond;
 static unsigned iothread_requesting_mutex;
 
@@ -877,7 +879,7 @@ static QemuThread io_thread;
 /* cpu creation */
 static QemuCond qemu_cpu_cond;
 /* system init */
-static QemuCond qemu_pause_cond;
+QemuCond qemu_pause_cond;
 static QemuCond qemu_work_cond;
 
 void qemu_init_cpu_loop(void)
@@ -1242,7 +1244,7 @@ void qemu_mutex_unlock_iothread(void)
     qemu_mutex_unlock(&qemu_global_mutex);
 }
 
-static int all_vcpus_paused(void)
+int all_vcpus_paused(void)
 {
     CPUState *cpu;
 

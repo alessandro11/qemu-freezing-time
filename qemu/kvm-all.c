@@ -40,6 +40,8 @@
 
 #include "hw/boards.h"
 
+#include "hack/hack.h"
+
 /* This check must be after config-host.h is included */
 #ifdef CONFIG_EVENTFD
 #include <sys/eventfd.h>
@@ -1774,6 +1776,13 @@ int kvm_cpu_exec(CPUState *cpu)
     struct kvm_run *run = cpu->kvm_run;
     int ret, run_ret;
 
+#pragma GCC diagnostic ignored "-Wnested-externs"
+    extern KVMClockState *kvm_clock;
+    extern bool meu_pause;
+#pragma GCC diagnostic warning "-Wnested-externs"
+
+    struct kvm_clock_data data;
+
     DPRINTF("kvm_cpu_exec()\n");
 
     if (kvm_arch_process_async_events(cpu)) {
@@ -1802,7 +1811,16 @@ int kvm_cpu_exec(CPUState *cpu)
             qemu_cpu_kick_self();
         }
 
+        if(kvmclock(kvm_clock)) {
+        	qemu_barrier_wait();
+        }
+
         run_ret = kvm_vcpu_ioctl(cpu, KVM_RUN, 0);
+
+        if(meu_pause) {
+        	kvm_vm_ioctl(kvm_state,KVM_GET_CLOCK, &data);
+        	kvm_clock->clock = data.clock;
+        }
 
         attrs = kvm_arch_post_run(cpu, run);
 

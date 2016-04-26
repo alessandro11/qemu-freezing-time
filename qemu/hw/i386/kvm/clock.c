@@ -24,17 +24,10 @@
 #include <linux/kvm.h>
 #include <linux/kvm_para.h>
 
+#include "hack/hack.h"
+
 #define TYPE_KVM_CLOCK "kvmclock"
 #define KVM_CLOCK(obj) OBJECT_CHECK(KVMClockState, (obj), TYPE_KVM_CLOCK)
-
-typedef struct KVMClockState {
-    /*< private >*/
-    SysBusDevice busdev;
-    /*< public >*/
-
-    uint64_t clock;
-    bool clock_valid;
-} KVMClockState;
 
 struct pvclock_vcpu_time_info {
     uint32_t   version;
@@ -145,6 +138,11 @@ static void kvmclock_vm_state_change(void *opaque, int running,
 
 static void kvmclock_realize(DeviceState *dev, Error **errp)
 {
+#pragma GCC diagnostic ignored "-Wnested-externs"
+	extern KVMClockState *kvm_clock;
+#pragma GCC diagnostic warning "-Wnested-externs"
+	kvm_clock = KVM_CLOCK(dev);
+
     KVMClockState *s = KVM_CLOCK(dev);
 
     qemu_add_vm_change_state_handler(kvmclock_vm_state_change, s);

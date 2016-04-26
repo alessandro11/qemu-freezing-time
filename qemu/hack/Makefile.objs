@@ -1,0 +1,2 @@
+#hack-obj-y += hack.o
+block-obj-y += hack.o

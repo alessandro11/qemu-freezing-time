@@ -125,6 +125,10 @@ int main(int argc, char **argv)
 #include "sysemu/replay.h"
 #include "qapi/qmp/qerror.h"
 
+#include "qemu/option_int.h"
+
+#include "hack/hack.h"
+
 #define MAX_VIRTIO_CONSOLES 1
 #define MAX_SCLP_CONSOLES 1
 
@@ -4558,6 +4562,8 @@ int main(int argc, char **argv, char **envp)
                           device_init_func, NULL, NULL)) {
         exit(1);
     }
+
+    initialize_hack(&qemu_drive_opts);
 
     /* Did we create any drives that we failed to create a device for? */
     drive_check_orphaned();

@@ -3978,7 +3978,11 @@ QemuOptsList qemu_common_drive_opts = {
             .type = QEMU_OPT_BOOL,
             .help = "whether to account for failed I/O operations "
                     "in the statistics",
-        },
+        },{
+            .name = "hack",
+            .type = QEMU_OPT_BOOL,
+            .help = "(test)",
+         },
         { /* end of list */ }
     },
 };

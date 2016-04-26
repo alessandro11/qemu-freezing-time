@@ -11,6 +11,11 @@
  *
  */
 
+#include "hw/sysbus.h"
+#include <linux/kvm.h>
+
+
+
 #ifdef CONFIG_KVM
 
 void kvmclock_create(void);

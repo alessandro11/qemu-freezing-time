@@ -28,6 +28,11 @@
 #include "hw/virtio/virtio-bus.h"
 #include "hw/virtio/virtio-access.h"
 
+#include "block/block-backend.h"
+#include "sysemu/cpus.h"
+
+#include "hack/hack.h"
+
 VirtIOBlockReq *virtio_blk_alloc_request(VirtIOBlock *s)
 {
     VirtIOBlockReq *req = g_new(VirtIOBlockReq, 1);
@@ -597,6 +602,13 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     VirtIOBlockReq *req;
     MultiReqBuffer mrb = {};
 
+    bool hack;
+    HackList *tmp;
+    extern HackList *hacklist;
+    extern KVMClockState *kvm_clock;
+
+    struct kvm_clock_data data;
+
     /* Some guests kick before setting VIRTIO_CONFIG_S_DRIVER_OK so start
      * dataplane here instead of waiting for .set_status().
      */
@@ -607,12 +619,44 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 
     blk_io_plug(s->blk);
 
+    for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
+        hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
+    }
+
+    if (hack) {
+    	meu_qemu_mutex_lock();
+    	cpu_disable_ticks();
+
+    	pause_all_vcpus_hacked(&data);
+    	data.clock = data.clock - (75000 * smp_cpus);
+    	kvm_clock->clock_armed = true;
+
+    	qemu_barrier_init(smp_cpus+1);
+    }
+
     while ((req = virtio_blk_get_request(s))) {
         virtio_blk_handle_request(req, &mrb);
     }
 
     if (mrb.num_reqs) {
         virtio_blk_submit_multireq(s->blk, &mrb);
+    }
+
+    if (hack){
+    	bdrv_drain_all();
+
+    	cpu_enable_ticks();
+    	resume_all_vcpus();
+
+    	kvm_clock->clock=data.clock;
+    	kvmclock_start(kvm_clock);
+
+    	qemu_mutex_unlock_iothread();
+    	qemu_barrier_destroy();
+    	qemu_mutex_lock_iothread();
+    	qemu_barrier_wait_inc();
+
+    	meu_qemu_mutex_unlock();
     }
 
     blk_io_unplug(s->blk);
