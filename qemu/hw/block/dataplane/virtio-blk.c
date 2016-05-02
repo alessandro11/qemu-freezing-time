@@ -25,6 +25,8 @@
 #include "block/aio.h"
 #include "hw/virtio/virtio-bus.h"
 #include "qom/object_interfaces.h"
+#include "hack/hack.h"
+#include "sysemu/cpus.h"
 
 struct VirtIOBlockDataPlane {
     bool started;
@@ -92,9 +94,20 @@ static void handle_notify(EventNotifier *e)
     VirtIOBlockDataPlane *s = container_of(e, VirtIOBlockDataPlane,
                                            host_notifier);
     VirtIOBlock *vblk = VIRTIO_BLK(s->vdev);
+    bool hack;
+#pragma GCC diagnostic ignored "-Wnested-externs"
+    extern KVMClockState *kvm_clock;
+#pragma GCC diagnostic warning "-Wnested-externs"
+
+    struct kvm_clock_data data;
+
+    hack=vblk->parent_obj.hack;
+    bool first=true;
 
     event_notifier_test_and_clear(&s->host_notifier);
     blk_io_plug(s->conf->conf.blk);
+
+
     for (;;) {
         MultiReqBuffer mrb = {};
         int ret;
@@ -110,6 +123,21 @@ static void handle_notify(EventNotifier *e)
                 virtio_blk_free_request(req);
                 break; /* no more requests */
             }
+
+            if (first && hack) {
+                	qemu_mutex_lock_iothread();
+                	meu_qemu_mutex_lock();
+                	cpu_disable_ticks();
+
+                	pause_all_vcpus_hacked(&data);
+                	//data.clock = data.clock - (75000 * smp_cpus);
+                	kvm_clock->clock_armed = true;
+
+                	qemu_barrier_init(smp_cpus+1);
+                	//qemu_mutex_unlock_iothread();
+
+                	first=false;
+                }
 
             trace_virtio_blk_data_plane_process_request(s, req->elem.out_num,
                                                         req->elem.in_num,
@@ -133,6 +161,26 @@ static void handle_notify(EventNotifier *e)
             break;
         }
     }
+
+    if (!first && hack){
+        	bdrv_drain_all();
+
+        	cpu_enable_ticks();
+        	resume_all_vcpus();
+
+        	kvm_clock->clock=data.clock;
+
+
+        	//qemu_mutex_lock_iothread();
+        	qemu_mutex_unlock_iothread();
+        	qemu_barrier_destroy();
+
+        	kvmclock_start(kvm_clock);
+        	qemu_barrier_wait_inc();
+
+        	meu_qemu_mutex_unlock();
+        }
+
     blk_io_unplug(s->conf->conf.blk);
 }
 

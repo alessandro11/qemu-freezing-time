@@ -17,10 +17,18 @@ bool meu_pause = false;
 extern int all_vcpus_paused(void);
 extern int kvm_vm_ioctl(KVMState *s, int type, ...);
 
-void initialize_hack(QemuOptsList *qemu_drive_opts) {
+void initialize_hack(QemuOptsList *qemu_drive_opts, QemuOptsList *qemu_device_opts) {
        QemuOpts *opts;
        HackList *tmp;
-       const char *status;
+       const char *status, *path, *driver;
+       BusState *bus = NULL;
+       DeviceClass *dc;
+
+       QTAILQ_FOREACH(opts, &qemu_device_opts->head, next) {
+    	   configure_hack(opts);
+
+       }
+
 
     QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
         status = qemu_opt_get(opts,"hack");

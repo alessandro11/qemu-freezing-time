@@ -509,6 +509,37 @@ static BusState *qbus_find(const char *path, Error **errp)
     return bus;
 }
 
+
+bool *configure_hack(QemuOpts *opts) {
+	DeviceClass *dc;
+	const char *driver, *path;
+	BusState *bus = NULL;
+
+
+	driver = qemu_opt_get(opts, "driver");
+	dc = qdev_get_device_class(&driver, NULL);
+	if (!dc) {
+		return NULL;
+	}
+	path = qemu_opt_get(opts, "bus");
+	if (path != NULL) {
+		bus = qbus_find(path, NULL);
+		if (!bus) {
+			return NULL;
+		}
+	}else {
+		if (dc->bus_type != NULL) {
+			bus = qbus_find_recursive(sysbus_get_default(), NULL, dc->bus_type);
+			if (!bus || qbus_is_full(bus)) {
+				return NULL;
+			}
+		}
+	}
+
+	return 0;
+
+}
+
 DeviceState *qdev_device_add(QemuOpts *opts, Error **errp)
 {
     DeviceClass *dc;

@@ -630,7 +630,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     	cpu_disable_ticks();
 
     	pause_all_vcpus_hacked(&data);
-    	data.clock = data.clock - (75000 * smp_cpus);
+    	//data.clock = data.clock - (75000 * smp_cpus);
     	kvm_clock->clock_armed = true;
 
     	qemu_barrier_init(smp_cpus+1);
@@ -971,6 +971,7 @@ static void virtio_blk_device_realize(DeviceState *dev, Error **errp)
     virtio_init(vdev, "virtio-blk", VIRTIO_ID_BLOCK,
                 sizeof(struct virtio_blk_config));
 
+    vdev->hack=true;
     s->blk = conf->conf.blk;
     s->rq = NULL;
     s->sector_mask = (s->conf.conf.logical_block_size / BDRV_SECTOR_SIZE) - 1;

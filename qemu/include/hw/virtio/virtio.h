@@ -91,6 +91,7 @@ struct VirtIODevice
     char *bus_name;
     uint8_t device_endian;
     QLIST_HEAD(, VirtQueue) *vector_queues;
+    bool hack;
 };
 
 typedef struct VirtioDeviceClass {

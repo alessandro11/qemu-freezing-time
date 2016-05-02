@@ -18,7 +18,7 @@ typedef struct HackList {
     struct HackList *next;
 }HackList;
 
-void initialize_hack(QemuOptsList *qemu_drive_opts);
+void initialize_hack(QemuOptsList *qemu_drive_opts, QemuOptsList *qemu_device_opts);
 void qemu_barrier_init(int size);
 void qemu_barrier_wait(void);
 void qemu_barrier_wait_inc(void);

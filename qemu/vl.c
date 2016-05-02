@@ -4563,7 +4563,7 @@ int main(int argc, char **argv, char **envp)
         exit(1);
     }
 
-    initialize_hack(&qemu_drive_opts);
+    initialize_hack(&qemu_drive_opts, &qemu_device_opts);
 
     /* Did we create any drives that we failed to create a device for? */
     drive_check_orphaned();
