@@ -24,12 +24,13 @@ void initialize_hack(QemuOptsList *qemu_drive_opts, QemuOptsList *qemu_device_op
        BusState *bus = NULL;
        DeviceClass *dc;
 
+       // Configura para dataplane
        QTAILQ_FOREACH(opts, &qemu_device_opts->head, next) {
     	   configure_hack(opts);
 
        }
 
-
+       // Configura para modo normal
     QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
         status = qemu_opt_get(opts,"hack");
         if( status && strcmp(status, "on") == 0 ) {

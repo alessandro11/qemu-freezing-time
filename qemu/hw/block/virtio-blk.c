@@ -602,7 +602,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     VirtIOBlockReq *req;
     MultiReqBuffer mrb = {};
 
-    bool hack;
+    bool *hack = &s->parent_obj.hack;
     HackList *tmp;
 #pragma GCC diagnostic ignored "-Wnested-externs"
     extern HackList *hacklist;
@@ -610,6 +610,16 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 #pragma GCC diagnostic warning "-Wnested-externs"
 
     struct kvm_clock_data data;
+
+    for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
+		if (strcmp(s->blk->bs->filename, tmp->name) == 0) {
+			*hack=true;
+			break;
+		}
+	}
+    if (tmp == NULL)
+    	*hack=false;
+
 
     /* Some guests kick before setting VIRTIO_CONFIG_S_DRIVER_OK so start
      * dataplane here instead of waiting for .set_status().
@@ -621,11 +631,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 
     blk_io_plug(s->blk);
 
-    for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
-        hack = (strcmp(s->blk->bs->filename, tmp->name) == 0);
-    }
-
-    if (hack) {
+    if (*hack) {
     	meu_qemu_mutex_lock();
     	cpu_disable_ticks();
 
@@ -644,7 +650,7 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
         virtio_blk_submit_multireq(s->blk, &mrb);
     }
 
-    if (hack){
+    if (*hack){
     	bdrv_drain_all();
 
     	cpu_enable_ticks();
