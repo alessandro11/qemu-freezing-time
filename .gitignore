@@ -2,6 +2,11 @@
 *.d
 *.raw
 *.qcow2
+kernel-*
+vmlinuz-*
+bzImage*
+qemu/trace-[0-9]*
+utils/
 qemu/config-all-devices.mak
 qemu/config-all-disas.mak
 *.o
