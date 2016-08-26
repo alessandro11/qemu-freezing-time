@@ -32,4 +32,5 @@ void kvmclock_set(KVMClockState *kvm_clock);
 void kvmclock_set_meu(struct kvm_clock_data *data);
 inline void kvmclock_start(KVMClockState *kvm_clock);
 bool kvmclock(KVMClockState *kvm_clock);
-
+double rand_normal(double mean, double stddev);
+bool *configure_hack(QemuOpts *opts);
