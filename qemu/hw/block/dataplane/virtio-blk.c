@@ -149,6 +149,7 @@ static void handle_notify(EventNotifier *e)
 				VirtIOBlockReq *hack_req = virtio_blk_alloc_request(vblk);
 				iov_to_buf(req->elem.out_sg, req->elem.out_num, 0, &hack_req->out,sizeof(hack_req->out));
 				is_write = virtio_ldl_p(VIRTIO_DEVICE(req->dev), &hack_req->out.type);
+				virtio_blk_free_request(hack_req);
 				//incrementa um contador de quantos IOs teve
 				hack_count++;
 				if (is_write) { //escrita
