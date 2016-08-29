@@ -602,7 +602,10 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     VirtIOBlockReq *req;
     MultiReqBuffer mrb = {};
 
+    // ponteiro para as variaveis declaradas em virtio.h
+    // para ser visivel em outras partes do codigo
     bool *hack = &s->parent_obj.hack;
+    bool *itime = &s->parent_obj.itime;
     HackList *tmp;
 #pragma GCC diagnostic ignored "-Wnested-externs"
     extern HackList *hacklist;
@@ -614,6 +617,10 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
 		if (strcmp(s->blk->bs->filename, tmp->name) == 0) {
 			*hack=true;
+			if (strcmp(tmp->itime,"on") == 0)
+				*itime=true;
+			else
+				*itime=false;
 			break;
 		}
 	}
