@@ -22,6 +22,7 @@ void initialize_hack(QemuOptsList *qemu_drive_opts, QemuOptsList *qemu_device_op
        QemuOpts *opts;
        HackList *tmp;
        const char *status;
+       const char *itime;
 
        // Configura para dataplane
        QTAILQ_FOREACH(opts, &qemu_device_opts->head, next) {
@@ -32,15 +33,18 @@ void initialize_hack(QemuOptsList *qemu_drive_opts, QemuOptsList *qemu_device_op
        // Configura para modo normal
     QTAILQ_FOREACH(opts, &qemu_drive_opts->head, next) {
         status = qemu_opt_get(opts,"hack");
+        itime = qemu_opt_get(opts,"itime");
         if( status && strcmp(status, "on") == 0 ) {
             if( hacklist == NULL) {
                 hacklist = calloc(1,sizeof(HackList));
                 hacklist->name = qemu_opt_get(opts,"file");
+                hacklist->itime = itime;
             }
             else {
                 for (tmp=hacklist; tmp->next != NULL; tmp=tmp->next);
                 tmp->next = calloc(1,sizeof(HackList));
                 tmp->next->name = qemu_opt_get(opts,"file");
+                hacklist->itime = itime;
             }
         }
     }

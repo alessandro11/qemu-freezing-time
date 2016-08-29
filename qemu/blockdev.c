@@ -3982,7 +3982,11 @@ QemuOptsList qemu_common_drive_opts = {
             .name = "hack",
             .type = QEMU_OPT_BOOL,
             .help = "(test)",
-         },
+		},{
+			.name = "itime",
+			.type = QEMU_OPT_BOOL,
+			.help = "(Enable time injection.)",
+		 },
         { /* end of list */ }
     },
 };

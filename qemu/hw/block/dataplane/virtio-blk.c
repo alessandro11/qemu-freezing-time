@@ -95,6 +95,7 @@ static void handle_notify(EventNotifier *e)
                                            host_notifier);
     VirtIOBlock *vblk = VIRTIO_BLK(s->vdev);
     bool hack;
+    bool itime;
 #pragma GCC diagnostic ignored "-Wnested-externs"
     extern KVMClockState *kvm_clock;
 #pragma GCC diagnostic warning "-Wnested-externs"
@@ -103,6 +104,8 @@ static void handle_notify(EventNotifier *e)
     int hack_count=0,hack_time=0;
 
     hack=vblk->parent_obj.hack;
+    itime=vblk->parent_obj.itime;
+
     bool first=true;
     uint32_t is_write; //check if request is read or write
 
@@ -146,20 +149,24 @@ static void handle_notify(EventNotifier *e)
                                                         req->elem.index);
 
             if (hack) {
-				VirtIOBlockReq *hack_req = virtio_blk_alloc_request(vblk);
-				iov_to_buf(req->elem.out_sg, req->elem.out_num, 0, &hack_req->out,sizeof(hack_req->out));
-				is_write = virtio_ldl_p(VIRTIO_DEVICE(req->dev), &hack_req->out.type);
-				virtio_blk_free_request(hack_req);
-				//incrementa um contador de quantos IOs teve
-				hack_count++;
-				if (is_write) { //escrita
-					//incrementa o acumulador de tempo
-					hack_time+=rand_normal(100000,2000);
-				}
-				else { //leitura
-					//incrementa acumulador de tempo
-					hack_time+=rand_normal(100000,2000);
-				}
+            	if (itime) {
+					VirtIOBlockReq *hack_req = virtio_blk_alloc_request(vblk);
+					iov_to_buf(req->elem.out_sg, req->elem.out_num, 0, &hack_req->out,sizeof(hack_req->out));
+					is_write = virtio_ldl_p(VIRTIO_DEVICE(req->dev), &hack_req->out.type);
+					virtio_blk_free_request(hack_req);
+					//incrementa um contador de quantos IOs teve
+					hack_count++;
+					if (is_write) { //escrita
+						//incrementa o acumulador de tempo
+						hack_time+=rand_normal(100000,2000);
+						hack_time-=rand_normal(18500*smp_cpus, 100);
+					}
+					else { //leitura
+						//incrementa acumulador de tempo
+						hack_time+=rand_normal(100000,2000);
+						hack_time-=rand_normal(18500*smp_cpus, 100);
+					}
+            	}
             }
 
             virtio_blk_handle_request(req, &mrb);
@@ -187,10 +194,6 @@ static void handle_notify(EventNotifier *e)
         	cpu_enable_ticks();
         	resume_all_vcpus();
 
-        	//divide o acumulador de tempo pelo numero de requisicoes
-        	hack_time = hack_time / hack_count;
-        	//subtrai o acumulador pelo nosso overhead
-        	hack_time = hack_time - 74000;
         	//soma o acumulador com o tempo atual
         	kvm_clock->clock=data.clock + hack_time;
 
