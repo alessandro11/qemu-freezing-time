@@ -159,12 +159,12 @@ static void handle_notify(EventNotifier *e)
 					if (is_write) { //escrita
 						//incrementa o acumulador de tempo
 						hack_time+=rand_normal(100000,2000);
-						hack_time-=rand_normal(18500*smp_cpus, 100);
+						hack_time-=rand_normal(42000 + (9000*smp_cpus), 1000);
 					}
 					else { //leitura
 						//incrementa acumulador de tempo
 						hack_time+=rand_normal(100000,2000);
-						hack_time-=rand_normal(18500*smp_cpus, 100);
+						hack_time-=rand_normal(40000 + (9000*smp_cpus), 1000);
 					}
             	}
             }
