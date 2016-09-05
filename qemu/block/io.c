@@ -28,6 +28,7 @@
 #include "block/block_int.h"
 #include "block/throttle-groups.h"
 #include "qemu/error-report.h"
+#include "block/block-backend.h"
 
 #define NOT_DONE 0x7fffffff /* used while emulated sync operation in progress */
 
@@ -2149,6 +2150,9 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
         acb->req.error = bdrv_co_do_writev(bs, acb->req.sector,
             acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
     }
+
+    if(bs->blk->hack && bs->blk->itime)
+    	co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL,100000000ULL);
 
     bdrv_co_complete(acb);
 }

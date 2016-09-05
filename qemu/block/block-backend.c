@@ -17,38 +17,12 @@
 #include "sysemu/blockdev.h"
 #include "sysemu/sysemu.h"
 #include "qapi-event.h"
+#include "block/block-backend.h"
 
 /* Number of coroutines to reserve per attached device model */
 #define COROUTINE_POOL_RESERVATION 64
 
 static AioContext *blk_aiocb_get_aio_context(BlockAIOCB *acb);
-
-struct BlockBackend {
-    char *name;
-    int refcnt;
-    BlockDriverState *bs;
-    DriveInfo *legacy_dinfo;    /* null unless created by drive_new() */
-    QTAILQ_ENTRY(BlockBackend) link; /* for blk_backends */
-
-    void *dev;                  /* attached device model, if any */
-    /* TODO change to DeviceState when all users are qdevified */
-    const BlockDevOps *dev_ops;
-    void *dev_opaque;
-
-    /* the block size for which the guest device expects atomicity */
-    int guest_block_size;
-
-    /* If the BDS tree is removed, some of its options are stored here (which
-     * can be used to restore those options in the new BDS on insert) */
-    BlockBackendRootState root_state;
-
-    /* I/O stats (display with "info blockstats"). */
-    BlockAcctStats stats;
-
-    BlockdevOnError on_read_error, on_write_error;
-    bool iostatus_enabled;
-    BlockDeviceIoStatus iostatus;
-};
 
 typedef struct BlockBackendAIOCB {
     BlockAIOCB common;

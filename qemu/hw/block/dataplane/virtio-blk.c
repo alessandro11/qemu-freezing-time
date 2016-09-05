@@ -148,7 +148,7 @@ static void handle_notify(EventNotifier *e)
                                                         req->elem.in_num,
                                                         req->elem.index);
 
-            if (hack) {
+            /*if (hack) {
             	if (itime) {
 					VirtIOBlockReq *hack_req = virtio_blk_alloc_request(vblk);
 					iov_to_buf(req->elem.out_sg, req->elem.out_num, 0, &hack_req->out,sizeof(hack_req->out));
@@ -167,7 +167,7 @@ static void handle_notify(EventNotifier *e)
 						hack_time-=rand_normal(40000 + (9000*smp_cpus), 1000);
 					}
             	}
-            }
+            }*/
 
             virtio_blk_handle_request(req, &mrb);
         }

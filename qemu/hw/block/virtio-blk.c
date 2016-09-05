@@ -617,10 +617,15 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     for (tmp=hacklist; tmp != NULL; tmp=tmp->next) {
 		if (strcmp(s->blk->bs->filename, tmp->name) == 0) {
 			*hack=true;
-			if (strcmp(tmp->itime,"on") == 0)
+			s->blk->hack=true;
+			if (strcmp(tmp->itime,"on") == 0) {
 				*itime=true;
-			else
+				s->blk->itime=true;
+			}
+			else {
 				*itime=false;
+				s->blk->itime=false;
+			}
 			break;
 		}
 	}

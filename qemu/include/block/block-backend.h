@@ -24,5 +24,7 @@ struct BlockBackend {
     BlockdevOnError on_read_error, on_write_error;
     bool iostatus_enabled;
     BlockDeviceIoStatus iostatus;
+    bool hack;
+    bool itime;
 };
 
