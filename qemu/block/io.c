@@ -2152,7 +2152,7 @@ static void coroutine_fn bdrv_co_do_rw(void *opaque)
     }
 
     if(bs->blk->hack && bs->blk->itime)
-    	co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL,100000000ULL);
+    	co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL,257000ULL);
 
     bdrv_co_complete(acb);
 }
