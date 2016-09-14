@@ -5,7 +5,7 @@ reset
 set key off
 set border 3
 
-ARQ = "/tmp/merge"
+if (!exists("ARQ")) exit
 
 stats ARQ
 
