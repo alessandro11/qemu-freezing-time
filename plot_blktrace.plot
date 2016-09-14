@@ -23,9 +23,17 @@ bin_number(x) = floor(x/bin_width)
 
 rounded(x) = bin_width * ( bin_number(x) + 0.5 )
 
-xsize = STATS_mean_y + ( 2 * STATS_stddev_y)
+if (STATS_stddev_y > (2 * STATS_mean_y)) {
+	xini = STATS_mean_y - (STATS_stddev_y / 30)
+	xfim = STATS_mean_y + (STATS_stddev_y / 30)
+} else {
+	xini = STATS_mean_y - (STATS_mean_y / 2)
+	xfim = STATS_mean_y + (STATS_mean_y / 2)
+}
 
-set xrange [0:xsize]
+if (xini < 0) xini = 0;
+
+set xrange [xini:xfim]
 
 plot ARQ using (rounded($1)):(1) smooth frequency with boxes
 pause -1
