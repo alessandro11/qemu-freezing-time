@@ -191,7 +191,7 @@ static void handle_notify(EventNotifier *e)
     if (!first && hack){
         	bdrv_drain_all();
 
-        	cpu_enable_ticks();
+        	//cpu_enable_ticks();
         	resume_all_vcpus();
 
         	//soma o acumulador com o tempo atual
@@ -203,6 +203,7 @@ static void handle_notify(EventNotifier *e)
         	qemu_barrier_destroy();
 
         	kvmclock_start(kvm_clock);
+        	cpu_enable_ticks();
         	qemu_barrier_wait_inc();
 
         	meu_qemu_mutex_unlock();
