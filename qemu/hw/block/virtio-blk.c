@@ -665,14 +665,18 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
     if (*hack){
     	bdrv_drain_all();
 
-    	cpu_enable_ticks();
+
     	resume_all_vcpus();
 
     	kvm_clock->clock=data.clock;
-    	kvmclock_start(kvm_clock);
+
 
     	qemu_mutex_unlock_iothread();
     	qemu_barrier_destroy();
+
+    	kvmclock_start(kvm_clock);
+    	cpu_enable_ticks();
+
     	qemu_mutex_lock_iothread();
     	qemu_barrier_wait_inc();
 
