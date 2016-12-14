@@ -673,11 +673,11 @@ static void virtio_blk_handle_output(VirtIODevice *vdev, VirtQueue *vq)
 
     	qemu_mutex_unlock_iothread();
     	qemu_barrier_destroy();
+    	qemu_mutex_lock_iothread();
 
     	kvmclock_start(kvm_clock);
     	cpu_enable_ticks();
 
-    	qemu_mutex_lock_iothread();
     	qemu_barrier_wait_inc();
 
     	meu_qemu_mutex_unlock();
