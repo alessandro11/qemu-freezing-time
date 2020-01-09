@@ -3005,7 +3005,7 @@ int main(int argc, char **argv, char **envp)
     FILE *vmstate_dump_file = NULL;
     Error *main_loop_err = NULL;
     Error *err = NULL;
-
+srand(time(NULL));
     qemu_init_cpu_loop();
     qemu_mutex_lock_iothread();
 

@@ -167,6 +167,25 @@ bool kvmclock(KVMClockState *kvm_clock)
        return true;
 }
 
+typedef unsigned long long ULL;
+ULL random_number(ULL min_num, ULL max_num);
+ULL random_number(ULL min_num, ULL max_num)
+{
+    ULL result = 0, low_num = 0, hi_num = 0;
+
+    if (min_num < max_num)
+    {
+        low_num = min_num;
+        hi_num = max_num + 1; // include max_num in output
+    } else {
+        low_num = max_num + 1; // include max_num in output
+        hi_num = min_num;
+    }
+
+    result = (rand() % (hi_num - low_num)) + low_num;
+    return result;
+}
+
 inline void kvmclock_start(KVMClockState *kvm_clock)
 {
        struct kvm_clock_data data;
@@ -177,7 +196,14 @@ inline void kvmclock_start(KVMClockState *kvm_clock)
        }
        kvm_clock->clock_armed = false;
        kvm_clock->clock_valid = false;
-       data.clock = kvm_clock->clock ; //+ 10000000;
+       data.clock = kvm_clock->clock;
+       //unsigned long long _sleep = (rand() % 1000000000) + 1;
+       //unsigned long long _sleep = (rand() % 3800000) + 1;
+       // READ SYNC woking with 455 of stddev
+//data.clock = kvm_clock->clock - (-random_number(1500000, 3050000));
+       
+       // READ AIO
+       //data.clock = kvm_clock->clock - (-random_number(4000000, 10000000));
        data.flags = 0;
 
        ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
