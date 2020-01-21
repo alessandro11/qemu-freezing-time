@@ -197,14 +197,22 @@ inline void kvmclock_start(KVMClockState *kvm_clock)
        kvm_clock->clock_armed = false;
        kvm_clock->clock_valid = false;
        data.clock = kvm_clock->clock;
+       data.flags = 0;
        //unsigned long long _sleep = (rand() % 1000000000) + 1;
        //unsigned long long _sleep = (rand() % 3800000) + 1;
        // READ SYNC woking with 455 of stddev
-//data.clock = kvm_clock->clock - (-random_number(1500000, 3050000));
-       
+       //data.clock = kvm_clock->clock - (-random_number(1500000, 3050000));
+
        // READ AIO
-       //data.clock = kvm_clock->clock - (-random_number(4000000, 10000000));
-       data.flags = 0;
+       //data.clock = kvm_clock->clock - (-random_number(4 000 000, 10 000 000));
+
+       // WRITE SYNC
+       //ULL rnd_clock = random_number(400000, 90000);
+       /* ULL rnd_clock = random_number(1, 10); */
+       /* fprintf(stderr, "rnd_clock = %llu\n", rnd_clock); */
+       /* fprintf(stderr, "kvm_clock->clock - rnd_clock = %llu\n", kvm_clock->clock - rnd_clock); */
+       /* fprintf(stderr, "kvm_clock->clock + rnd_clock = %llu\n", kvm_clock->clock + rnd_clock); */
+       /* data.clock = kvm_clock->clock + rnd_clock; */
 
        ret = kvm_vm_ioctl(kvm_state, KVM_SET_CLOCK, &data);
 
