@@ -2136,30 +2136,97 @@ static void bdrv_co_maybe_schedule_bh(BlockAIOCBCoroutine *acb)
         qemu_bh_schedule(acb->bh);
     }
 }
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+typedef unsigned long long ULL;
+
+ULL get_value(const char *path);
+int file_changed(const char *path, __time_t *l_mtime);
+
+
+int
+file_changed(const char *path, __time_t *l_mtime)
+{
+  struct stat attr = {0};
+  int ret = 0;
+
+  if( stat(path, &attr) == -1 ) {
+    fprintf(stderr, "stat failed (%s): %s\n", path, strerror(errno));
+    return -1;
+  }
+
+  if( *l_mtime != attr.st_mtime ) {
+    ret = 1;
+    *l_mtime = attr.st_mtime;
+  }
+
+  return ret;
+}
+
+ULL
+get_value(const char *path)
+{
+  FILE *pf = NULL;
+  ULL val = 0;
+
+  pf = fopen(path, "r");
+  if( ! pf ) {
+    fprintf(stderr, "fopen failed (%s): %s\n", path, strerror(errno));
+  } else {
+    fscanf(pf, "%llu", &val);
+    fclose(pf);
+  }
+
+  return val;
+}
 
 /* Invoke bdrv_co_do_readv/bdrv_co_do_writev */
 static void coroutine_fn bdrv_co_do_rw(void *opaque)
 {
-    BlockAIOCBCoroutine *acb = opaque;
-    BlockDriverState *bs = acb->common.bs;
+  BlockAIOCBCoroutine *acb = opaque;
+  BlockDriverState *bs = acb->common.bs;
 
-    if (!acb->is_write) {
-        acb->req.error = bdrv_co_do_readv(bs, acb->req.sector,
-            acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
+  if (!acb->is_write) {
+    acb->req.error = bdrv_co_do_readv(bs, acb->req.sector,
+                                      acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
+  } else {
+    acb->req.error = bdrv_co_do_writev(bs, acb->req.sector,
+                                       acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
+  }
+
+  if(bs->blk->hack && bs->blk->itime) {
+    static ULL read_sleep = 0;
+    static ULL write_sleep = 0;
+    static __time_t lr_mtime = 0;
+    static __time_t lw_mtime = 0;
+
+	if( file_changed("read_sleep_val", &lr_mtime) == 1 ) {
+      read_sleep = get_value("read_sleep_val");
+      fprintf(stderr, "[WARNING]: read sleep changed to %llu!\n", read_sleep);
+	}
+	if( file_changed("write_sleep_val", &lw_mtime) == 1 ) {
+      write_sleep = get_value("write_sleep_val");
+      fprintf(stderr, "[WARNING]: write sleep changed to %llu!\n", write_sleep);
+	}
+
+    if (acb->is_write == true) {
+      //co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, 6ULL * acb->req.nb_sectors);
+      //fprintf(stderr, "[WRITE]: before sleeping for %llu\n", write_sleep);
+      co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, write_sleep);
+      //fprintf(stderr, "[WRITE]: after slept for %llu\n", write_sleep);
     } else {
-        acb->req.error = bdrv_co_do_writev(bs, acb->req.sector,
-            acb->req.nb_sectors, acb->req.qiov, acb->req.flags);
+      //co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, 2192ULL);
+      //co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, 100000ULL);
+      co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, read_sleep);
     }
+  }
 
-    if(bs->blk->hack && bs->blk->itime) {
-    	if (acb->is_write == true)
-    		co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, 6ULL * acb->req.nb_sectors);
-    	else
-		//co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, 2192ULL);
-		co_aio_sleep_ns(bdrv_get_aio_context(bs), QEMU_CLOCK_VIRTUAL, 100000ULL);
-    }
-
-    bdrv_co_complete(acb);
+  bdrv_co_complete(acb);
 }
 
 static BlockAIOCB *bdrv_co_aio_rw_vector(BlockDriverState *bs,
