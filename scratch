@@ -1,4 +1,0 @@
-- olhar nos traces pq o tempo fica com valores muito grandes (negativos?), olhar cada etapa do IO
-- plotar um grafico da amostra para facilitar a visualizacao
-- pode ser um bug do blktrace ja que ele nunca espera que o IO possa ter tempos negativos, olhar o fonte
-
