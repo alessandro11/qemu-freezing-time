@@ -1,0 +1,100 @@
+	QuickEmulator FREEZING TIME README
+    ==================================
+
+QEMU Freezing Time is storage emulator based in capable of emulating a complete
+machine in software, as a pure QEMU does. Our approach is to extend
+the emulator functionality. We explore the live migration of the
+Virtual Machine Monitor (VMM, (QEMU)), to handle the time and possibly
+dilating it, in this manner we can mimic different storage device
+latencies.
+
+The following paragraph is the abstract of the paper:
+Published in: 2018 IEEE 26th International Symposium on Modeling,
+Analysis, and Simulation of Computer and Telecommunication Systems
+(MASCOTS)
+Date of Conference: 25-28 Sept. 2018
+Date Added to IEEE Xplore: 08 November 2018
+ISBN Information:
+    Electronic ISBN: 978-1-5386-6886-3
+    Print on Demand(PoD) ISBN: 978-1-5386-6887-0
+
+ISSN Information:
+    Electronic ISSN: 2375-0227
+    Print on Demand(PoD) ISSN: 1526-7539
+    
+INSPEC Accession Number: 18232839
+DOI: 10.1109/MASCOTS.2018.00010
+Publisher: IEEE
+Conference Location: Milwaukee, WI, USA
+
+Abstract:
+========
+Recently we are seeing a considerable effort from both academy and
+industry in proposing new technologies for storage devices. Often
+these devices are not readily available for evaluation and methods to
+allow performing their tests just from their performance parameters
+are an important tool for system administrators. Simulators are a
+traditional approach for carrying out such evaluations, however, they
+are more suitable for evaluating the storage device as an isolate
+component, mostly due to time constraints. In this paper, we propose
+an approach based on virtual machine technology that is capable of
+emulate storage devices transparently for the operating system
+allowing evaluation of simulating devices within a real system using
+any synthetic or real workload. To emulate devices in real
+environments it is necessary to use the currently available devices as
+a storage medium which creates a difficulty when the device to be
+emulated is faster than this storage medium. To circumvent this
+limitation we introduce a new technique called Freezing Time, which
+takes advantage of virtual machine pausing mechanism to manipulate the
+virtual machine clock and hide the real I/O completion time. Our
+approach can be implemented just requiring the hypervisor to be
+modified, providing a high degree of compatibility and flexibility
+since it is not necessary to modify neither the operating system nor
+the application. We evaluate our tool under a real system using old
+magnetic disks to emulate faster storage devices. Experiments using
+our technique presented an average latency error of 6.08% for read
+operations and 6.78% for write operations when comparing a real to
+device.
+
+The full paper you can find at the root of repository "08526868.pdf".
+
+Compilation:
+============
+```./configure --enable-linux-aio --target-list=x86_64-softmmu--enable-kvm --enable-debug```
+
+you may get the following output:
+Disabling libtool due to broken toolchain support
+Install prefix    /usr/local
+BIOS directory    /usr/local/share/qemu
+binary directory  /usr/local/bin
+library directory /usr/local/lib
+module directory  /usr/local/lib/qemu
+libexec directory /usr/local/libexec
+include directory /usr/local/include
+config directory  /usr/local/etc
+local state directory   /usr/local/var
+Manual directory  /usr/local/share/man
+ELF interp prefix /usr/gnemul/qemu-%M
+Source path       <Absolute path where you cloned the repository>/qemu
+...
+```
+make -k
+
+```
+  GEN   x86_64-softmmu/config-devices.mak.tmp
+  GEN   x86_64-softmmu/config-devices.mak
+  GEN   config-all-devices.mak
+  GEN   config-host.h
+...
+
+LINK  x86_64-softmmu/qemu-system-x86_64
+```
+
+In case of missing dependencies packages, install them according to
+your Linux distribution package manager.
+
+Once the compilation succeed try (from the qemu dir):
+```x86_64-softmmu/qemu-system-x86_64 --help```
+
+if you get the help output, all succeeded.
+
