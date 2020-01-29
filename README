@@ -27,6 +27,7 @@ DOI: 10.1109/MASCOTS.2018.00010
 Publisher: IEEE
 Conference Location: Milwaukee, WI, USA
 
+
 Abstract:
 ========
 Recently we are seeing a considerable effort from both academy and
@@ -58,9 +59,10 @@ device.
 
 The full paper you can find at the root of repository "08526868.pdf".
 
+
 Compilation:
 ============
-```./configure --enable-linux-aio --target-list=x86_64-softmmu--enable-kvm --enable-debug```
+$ ./configure --enable-linux-aio --target-list=x86_64-softmmu--enable-kvm --enable-debug
 
 you may get the following output:
 Disabling libtool due to broken toolchain support
@@ -77,10 +79,9 @@ Manual directory  /usr/local/share/man
 ELF interp prefix /usr/gnemul/qemu-%M
 Source path       <Absolute path where you cloned the repository>/qemu
 ...
-```
-make -k
 
-```
+$ make -k
+
   GEN   x86_64-softmmu/config-devices.mak.tmp
   GEN   x86_64-softmmu/config-devices.mak
   GEN   config-all-devices.mak
@@ -88,13 +89,45 @@ make -k
 ...
 
 LINK  x86_64-softmmu/qemu-system-x86_64
-```
+
 
 In case of missing dependencies packages, install them according to
 your Linux distribution package manager.
 
 Once the compilation succeed try (from the qemu dir):
-```x86_64-softmmu/qemu-system-x86_64 --help```
+
+$ x86_64-softmmu/qemu-system-x86_64 --help
 
 if you get the help output, all succeeded.
+
+
+RUN
+===
+
+WARNING: you must execute with some privilege to explore KVM, perhaps
+         your system uses group or run as root.
+
+Preparing a storage in RAM (make sure /dev/shm is mounted on tmpfs).
+
+$ sudo dd if=/dev/zero of=/dev/shm/scratch.raw bs=1G count=6
+
+(make sure loop0 is free (to find out the next free one, execute sudo losetup -f)
+$ sudo losetup /dev/loop0 /dev/shm/scratch.raw
+
+$ mkfs.ext4 /dev/loop0
+
+Download the kernel at:
+https://drive.google.com/file/d/1xehxj17zuei94BfoBxf6n-BDrGQg86mu/view?usp=sharing
+
+Download Debian Wheezy image at:
+https://drive.google.com/file/d/1mz9_sHcXUriMdMBbhf8f2z5fsF8AQLHs/view?usp=sharing
+
+x86_64-softmmu/qemu-system-x86_64 -name test -m 2G -cpu host -enable-kvm -smp sockets=1,cores=4 \
+-rtc base=localtime,clock=host \
+-drive file=/dev/loop0,format=raw,if=none,id=drive0,cache=none,aio=native,hack=on,itime=on \
+-object iothread,id=iothread0 -device virtio-blk-pci,iothread=iothread0,drive=drive0 \
+-hda <PATH WHERE YOU DOWNLOADED>/freezingtime.qcow2 \
+-kernel <PATH WHERE YOU DOWNLOADED>/bzImage -append "root=/dev/hda" \
+-vga cirrus -boot c -monitor stdio -vnc localhost:1 -nographic -nodefaults
+
 
