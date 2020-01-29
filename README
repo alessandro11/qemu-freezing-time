@@ -114,7 +114,7 @@ $ sudo dd if=/dev/zero of=/dev/shm/scratch.raw bs=1G count=6
 (make sure loop0 is free (to find out the next free one, execute sudo losetup -f)
 $ sudo losetup /dev/loop0 /dev/shm/scratch.raw
 
-$ mkfs.ext4 /dev/loop0
+$ sudo mkfs.ext4 /dev/loop0
 
 Download the kernel at:
 https://drive.google.com/file/d/1xehxj17zuei94BfoBxf6n-BDrGQg86mu/view?usp=sharing
@@ -122,12 +122,33 @@ https://drive.google.com/file/d/1xehxj17zuei94BfoBxf6n-BDrGQg86mu/view?usp=shari
 Download Debian Wheezy image at:
 https://drive.google.com/file/d/1mz9_sHcXUriMdMBbhf8f2z5fsF8AQLHs/view?usp=sharing
 
-x86_64-softmmu/qemu-system-x86_64 -name test -m 2G -cpu host -enable-kvm -smp sockets=1,cores=4 \
+In case the download of the kernel and OS image has been downloaded in
+a different path than the previous directory from the repository,
+chnage the path of: ../../bzImage for /<DOWNLOAD PATH>/bzImage, ../freezingtime.qcow2
+for /<DOWNLOAD PATH>/freezingtime.qcow2.
+
+sudo x86_64-softmmu/qemu-system-x86_64 -name test -m 2G -cpu host -enable-kvm -smp sockets=1,cores=4 \
 -rtc base=localtime,clock=host \
 -drive file=/dev/loop0,format=raw,if=none,id=drive0,cache=none,aio=native,hack=on,itime=on \
 -object iothread,id=iothread0 -device virtio-blk-pci,iothread=iothread0,drive=drive0 \
--hda <PATH WHERE YOU DOWNLOADED>/freezingtime.qcow2 \
--kernel <PATH WHERE YOU DOWNLOADED>/bzImage -append "root=/dev/hda" \
+-hda ../../freezingtime.qcow2 \
+-kernel ../../bzImage -append "root=/dev/hda" \
 -vga cirrus -boot c -monitor stdio -vnc localhost:1 -nographic -nodefaults
 
+If the emulator is running without error at parse of the parameters,
+you may get the output:
 
+...
+QEMU 2.5.0 monitor - type 'help' for more information
+...
+
+Open a VNC session with you favorite viewer e.g.:
+
+$ gvncviewer localhost:1
+
+at console tty1 you should get a prompt, ready to go (no password is
+required).
+
+You can run the bash script to try /root/run-experiments.sh
+
+The results of the fio will be at /root/res
